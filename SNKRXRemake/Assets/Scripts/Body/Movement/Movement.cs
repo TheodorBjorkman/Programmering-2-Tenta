@@ -1,5 +1,4 @@
-﻿using System.Numerics;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +15,7 @@ namespace Body
         }
         public void Move() 
         {
-            Vector3 targetVel = new Vector2(moveSpeed)
+            Vector2 targetVel = new Vector2(moveDirection.x*moveSpeed, moveDirection.y*moveSpeed);
         }
     }
 
