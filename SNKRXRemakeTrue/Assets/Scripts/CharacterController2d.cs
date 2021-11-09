@@ -5,17 +5,42 @@ using UnityEngine.Events;
 
 public class CharacterController2d : MonoBehaviour
 {
-    [SerializeField] private float m_RotationSpeed = 45f;   // Rotation speed of entity
-    [Range(0, 1f)] [SerializeField] private float m_MoveSpeed = 1f;                          // Movement speed of the entity
-    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out turning
-    [SerializeField] private LayerMask m_WhatIsWall;                          // A mask determining what is a wall to the entity
-    [SerializeField] private float gravity = -15f;
+    // Fields of entity
+    [SerializeField] private float rotationSpeed = 45f;     // Rotation speed of entity
+    [Range(0, .3f)] [SerializeField] private float movementSmoothing = .05f;        // How much to smooth out turning
+    [SerializeField] private LayerMask whatIsWall;      // A mask determining what is a wall to the entity
+    [SerializeField] private float gravity = -15f;      // Force of gravity
+    [SerializeField] private float moveSpeed = 10f;     // Movement speed of the entity
+    [SerializeField] private int rotationDirection = 0;
+    // protected float MoveSpeed 
+    // {
+    //     get { return moveSpeed; }
+    //     set 
+    //     {
+    //         if ((value != 1) || (value != 0) || (value != -1))
+    //             throw new ArgumentException(String.Format("{0} is not -1, 0 or 1", value), "value");
+    //         else 
+    //             moveSpeed = value; 
+    //     }
+    // }
+    private Vector3 velocity = Vector3.zero;
 
-    private Rigidbody m_Rigidbody;
-    private Transform m_Transform;
-    private Vector3 m_Velocity = Vector3.zero;
+    // Will be components of entity
+    private Rigidbody rigidbody;
+    private Transform transform;
 
-    [SerializeField] protected float rotationDirection = 0f;
+    // Properties
+    protected float RotationDirection 
+    {
+        get { return rotationDirection; }
+        set 
+        {
+            if ((value != 1) || (value != 0) || (value != -1))
+                throw new ArgumentException(String.Format("{0} is not -1, 0 or 1", value), "value");
+            else 
+                RotationDirection = value; 
+        }
+    }
 
     [Header("Events")]
     [Space]
@@ -23,10 +48,14 @@ public class CharacterController2d : MonoBehaviour
     public UnityEvent TouchWallEvent;
 
     // Start is called before the first frame update
+    void Start()
+    {
+        StartController();
+    }
     protected void StartController()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
-        m_Transform = GetComponent<Transform>();
+        rigidbody = GetComponent<Rigidbody>();
+        transform = GetComponent<Transform>();
 
         if (TouchWallEvent == null)
             TouchWallEvent = new UnityEvent();
@@ -41,7 +70,9 @@ public class CharacterController2d : MonoBehaviour
     // Movement
     protected void Move()
     {
-        m_Transform.Rotate(new Vector3(0, rotationDirection, 0) * Time.deltaTime * m_RotationSpeed);
-        m_Rigidbody.AddForce(m_Velocity + new Vector3(0, gravity, 0));
+        velocity = transform.forward * moveSpeed;
+        rigidbody.velocity = (rigidbody.velocity - new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z)) + velocity;
+        rigidbody.AddForce(new Vector3(0, gravity, 0));
+        transform.Rotate(new Vector3(0, rotationDirection, 0) * Time.deltaTime * rotationSpeed);
     }
 }

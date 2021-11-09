@@ -156,10 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf03785289c90e44581faf5a579bf408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RotationSpeed: 180
-  m_MoveSpeed: 1
-  m_MovementSmoothing: 0.05
-  m_WhatIsWall:
+  rotationSpeed: 90.01
+  movementSmoothing: 0.05
+  whatIsWall:
     serializedVersion: 2
     m_Bits: 0
   gravity: -15
@@ -174,7 +173,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32461059}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fb3ac72ef63357546b76d064c94f2430, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -237,7 +236,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32461059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 16.37, z: 0}
+  m_LocalPosition: {x: 0, y: 16.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -429,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 19.4, z: 0}
+  m_LocalPosition: {x: 0, y: 71.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -461,7 +460,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008773696}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: fb3ac72ef63357546b76d064c94f2430, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
