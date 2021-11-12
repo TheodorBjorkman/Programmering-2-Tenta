@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace CharacterController 
+namespace CharacterController
 {
     public partial class CharacterController3d : MonoBehaviour
     {
@@ -35,6 +35,21 @@ namespace CharacterController
             {
                 Debug.Log(e.GetType().Name + " " + e.Message);
             }
+        }
+
+        protected void ChangeMoveSpeed(float newSpeed)
+        {
+            this.MoveSpeed = newSpeed;
+        }
+
+        protected void ChangeMaxSpeed(float newMax)
+        {
+            this.MaxSpeed = newMax;
+        }
+
+        protected void ChangeRotationSpeed(float newSpeed)
+        {
+            this.RotationSpeed = newSpeed;
         }
     }
 }
