@@ -9,9 +9,9 @@ namespace CharacterController
     public partial class CharacterController3d : MonoBehaviour
     {
         // Movement
-        protected void Move()
+        protected void Move(float moveDirection = 1f)
         {
-            velocity = transform.forward * moveSpeed;
+            velocity = transform.forward * moveSpeed * moveDirection;
             rigidbody.velocity = (rigidbody.velocity - new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z)) + velocity;
         }
 
@@ -35,21 +35,6 @@ namespace CharacterController
             {
                 Debug.Log(e.GetType().Name + " " + e.Message);
             }
-        }
-
-        protected void ChangeMoveSpeed(float newSpeed)
-        {
-            this.MoveSpeed = newSpeed;
-        }
-
-        protected void ChangeMaxSpeed(float newMax)
-        {
-            this.MaxSpeed = newMax;
-        }
-
-        protected void ChangeRotationSpeed(float newSpeed)
-        {
-            this.RotationSpeed = newSpeed;
         }
     }
 }
