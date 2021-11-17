@@ -49,6 +49,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CharacterController\CharacterController3dMethods.cs" />
      <Compile Include="Assets\Scripts\CharacterController\CharacterController3d.cs" />
+     <Compile Include="Assets\Scripts\Entity.cs" />
      <Compile Include="Assets\Scripts\CharacterController\CharacterController3dFields.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
  <Reference Include="UnityEngine">

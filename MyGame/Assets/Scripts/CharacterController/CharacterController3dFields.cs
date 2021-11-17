@@ -3,24 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Entity;
 
 namespace CharacterController
 {
-    public partial class CharacterController3d : MonoBehaviour
+    public partial class CharacterController3d : EntityBase
     {
         // Fields of entity
         [SerializeField] private float rotationSpeed = 180f;     // Rotation speed of entity
         [SerializeField] private float maxRotationSpeed = 360f;     // Max rotation speed of entity
-
-        [SerializeField] private LayerMask whatIsWall;      // A mask determining what is a wall to the entity
         [SerializeField] private float gravity = -15f;      // Force of gravity
         [SerializeField] private float moveSpeed = 1f;     // Movement speed of the entity
         [SerializeField] private float maxSpeed = 10f;      // Max movement speed of the entity
         [SerializeField] private int rotationDirection = 0;  //-1 is left, 1 is right
         private Vector3 velocity = Vector3.zero;        //Wanted velocity, calculated in the move method
+        private Vector3 startPosition = new Vector3(0, 1, 0);
 
         // Will contain components of entity
-        private Rigidbody rigidbody;
         private Transform transform;
 
         // Properties
@@ -79,11 +78,5 @@ namespace CharacterController
                     maxRotationSpeed = value;
             }
         }
-
-        //Used events
-        [Header("Events")]
-        [Space]
-
-        public UnityEvent TouchWallEvent;
     }
 }
