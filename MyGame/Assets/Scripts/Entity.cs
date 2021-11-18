@@ -15,7 +15,7 @@ namespace Entity
             set
             {
                 int intVal = (int)value;
-                if ((health - intVal) < 0) 
+                if ((health - intVal) < 0)
                 {
                     health = 0;
                     DeathEvent.Invoke();

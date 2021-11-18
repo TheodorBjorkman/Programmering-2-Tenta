@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Entity;
 
-namespace CharacterController 
+namespace CharacterController
 {
     public partial class CharacterController3d : EntityBase
     {
@@ -19,8 +20,11 @@ namespace CharacterController
         {
             transform = gameObject.GetComponent<Transform>() as Transform;
             transform.position = startPosition;
-            MeshRenderer meshR = gameObject.AddComponent<MeshRenderer>();
-            Material dMat = (Material)Resources.Load("Default-Material", typeof(Material));     // Repurposed from https://answers.unity.com/questions/151178/get-material-from-the-library-at-runtime.html
+            gameObject.AddComponent<MeshRenderer>();
+            MeshRenderer meshR = gameObject.GetComponent<MeshRenderer>();
+            Material defaultM = Resources.Load<Material>("/Concrete textures pack/pattern 01/Concrete pattern 01.mat");
+            meshR.material = defaultM;
+            UnityEngine.Debug.Log(meshR.material);     //???????????? For some reason if I don't log the material it wont render or smthng idk
             StartEntity();
         }
 
