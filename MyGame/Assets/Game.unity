@@ -1015,6 +1015,7 @@ GameObject:
   - component: {fileID: 733535501}
   - component: {fileID: 733535500}
   - component: {fileID: 733535499}
+  - component: {fileID: 733535502}
   m_Layer: 5
   m_Name: Search
   m_TagString: Untagged
@@ -1104,8 +1105,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 835065061}
-        m_TargetAssemblyTypeName: UnityEngine.Component, UnityEngine
+      - m_Target: {fileID: 733535497}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SendMessage
         m_Mode: 5
         m_Arguments:
@@ -1190,6 +1191,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733535497}
   m_CullTransparentMesh: 1
+--- !u!114 &733535502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733535497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f103557c983a3dc4d83ca00a5ec9c281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &834475275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1257,6 @@ GameObject:
   - component: {fileID: 835065058}
   - component: {fileID: 835065060}
   - component: {fileID: 835065059}
-  - component: {fileID: 835065061}
   m_Layer: 5
   m_Name: Search output
   m_TagString: Untagged
@@ -1313,18 +1325,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835065057}
   m_CullTransparentMesh: 1
---- !u!114 &835065061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835065057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bfa6d41a77e83147aa05b6b7abd57fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1079793462
 GameObject:
   m_ObjectHideFlags: 0
