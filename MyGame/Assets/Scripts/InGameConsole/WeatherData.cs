@@ -1,69 +1,43 @@
-using System.Collections;
+using System.Linq.Expressions;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Net;
-using System.Net.Http;
 using GenericData;
 using System.IO;
 using System.Threading;
+using UnityEngine.Networking;
 
-public class WeatherData : MonoBehaviour
+namespace Weather
 {
-    static readonly HttpClient client = new HttpClient();
-    DataList<string> dataList = new DataList<string>();
-    string keyAPI = "9579601d92b924d4099ae5dbaf27aaa6";
-    string cityName = "Stockholm";
-    // protected int temp    {   get;    private set;    }
-    // protected int tempMin    {   get;    private set;    }
-    // protected int tempMax    {   get;    private set;    }
-    // protected int feelsLike    {   get;    private set;    }
-    // protected int pressure    {   get;    private set;    }
-    // protected int humidity    {   get;    private set;    }
-    // protected int windSpeed    {   get;    private set;    }
-
-    public void UpdateData(string name)
+    public class WeatherData
     {
-        Data<string> test = new Data<string>();
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=9579601d92b924d4099ae5dbaf27aaa6");
-        HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-        StreamReader reader = new StreamReader(response.GetResponseStream());
-        string jsonResponse = reader.ReadToEnd();
-        WeatherInfo info = JsonUtility.FromJson<WeatherInfo>(jsonResponse);
-        Debug.Log(info.weather[0].main);
-    }
+        DataList<string> dataList = new DataList<string>();
 
-    static async void Test()
-    {
-        try	
+        public string value;
+        public IEnumerator<UnityWebRequestAsyncOperation> GetRequest(string uri)
         {
-            Debug.Log("Trying");
-            string responseBody = await client.GetFromJsonAsync("https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=9579601d92b924d4099ae5dbaf27aaa6");
-            Debug.Log(responseBody);
-        }
-        catch(HttpRequestException e)
-        {
-            Debug.Log("\nException Caught!");	
-            //  Debug.Log("Message :{0} ",e.Message);
-        }
-    }
+            UnityWebRequest webRequest = UnityWebRequest.Get(uri);
+            yield return webRequest.SendWebRequest();
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-            Test();
-    }
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
 
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                    Debug.Log("Connection Error");
+                    break;
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                    value = webRequest.downloadHandler.text;
+                    break;
+            }
+        }
+
+    }
 }
-
-      public class Weather
-      {
-          public int id;
-          public string main;
-      }
-
-      public class WeatherInfo
-      {
-          public int id;
-          public string name;
-          public List<Weather> weather;
-      }

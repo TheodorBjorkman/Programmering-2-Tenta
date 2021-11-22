@@ -5,7 +5,7 @@ using API;
 
 namespace Console
 {
-    public class ConsoleIOHandler : APICall
+    public class ConsoleIOHandler : APICallConsole
     {
         // Start is called before the first frame update
         void Awake()
@@ -16,7 +16,7 @@ namespace Console
         // Update is called once per frame
         void Update()
         {
-            
+
         }
     }
 }
