@@ -8,5 +8,7 @@ namespace GenericData
     {
         string name {   get;    set;    }
         T value {   get;    set;    }
+        DataList<WeatherNode> weather = new DataList<WeatherNode>();
+        MainNode main = new MainNode();
     }
 }

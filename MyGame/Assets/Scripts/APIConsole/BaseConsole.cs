@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using API;
+using TMPro;
 
 namespace Console
 {
     public class BaseConsole : ConsoleIOHandler
     {
-        void Call()
+        void OnEndEdit()
         {
-            GameObject output = GameObject.Find("Search Output");
-            output.GetComponent<Text>().text = GetWeather();
+            GetWeather();
         }
     }
 }

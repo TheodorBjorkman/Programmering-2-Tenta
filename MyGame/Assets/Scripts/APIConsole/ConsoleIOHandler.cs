@@ -2,21 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using API;
+using UnityEngine.UI;
+using GenericData;
 
 namespace Console
 {
     public class ConsoleIOHandler : APICallConsole
     {
-        // Start is called before the first frame update
-        void Awake()
+        protected void GetWeather()
         {
-            // https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=9579601d92b924d4099ae5dbaf27aaa6
+            gameObject.SendMessage("Call");
         }
-
-        // Update is called once per frame
         void Update()
         {
-
+            if (json != null)
+            {
+                Deserialize(json);
+                GameObject.Find("Search Output").GetComponent<Text>().text = json;
+                json = null;
+            }
+        }
+        string Deserialize(string input) 
+        {
+            string output = input;
+            Data<string> data = JsonUtility.FromJson<Data<string>>(json);
+            return output;
         }
     }
 }
