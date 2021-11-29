@@ -17,15 +17,16 @@ namespace Console
         {
             if (json != null)
             {
-                Deserialize(json);
+                json = Deserialize(json);
                 GameObject.Find("Search Output").GetComponent<Text>().text = json;
                 json = null;
             }
         }
-        string Deserialize(string input) 
+        string Deserialize(string input)
         {
-            string output = input;
-            Data<string> data = JsonUtility.FromJson<Data<string>>(json);
+            string output;
+            Data<string> data = JsonUtility.FromJson<Data<string>>(input);
+            output = data.weather.value[0].description;
             return output;
         }
     }

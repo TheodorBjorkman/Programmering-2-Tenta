@@ -6,7 +6,7 @@ namespace GenericData
 {
     public class DataList<T>
     {
-        T[] value = new T[1];
+        public T[] value = new T[1];
         T[] newVal;
         int length = 1;
 

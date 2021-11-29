@@ -6,9 +6,9 @@ namespace GenericData
 {
     public class Data<T>
     {
-        string name {   get;    set;    }
-        T value {   get;    set;    }
-        DataList<WeatherNode> weather = new DataList<WeatherNode>();
-        MainNode main = new MainNode();
+        public string name { get; set; }
+        public T value { get; set; }
+        public DataList<WeatherNode> weather { get; set; }
+        public MainNode main { get; set; }
     }
 }
