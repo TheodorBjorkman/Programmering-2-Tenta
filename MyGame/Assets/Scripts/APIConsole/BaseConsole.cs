@@ -11,7 +11,7 @@ namespace Console
     {
         void OnEndEdit()
         {
-            GetWeather();
+            ProcessInput(gameObject.GetComponent<TMP_InputField>().text);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace API
     public class APICallConsole : MonoBehaviour
     {
         protected string json;
-        protected IEnumerator Call()
+        protected IEnumerator GetWeather()
         {
             WeatherData wD = new WeatherData();
             string url = "https://api.openweathermap.org/data/2.5/weather?q=Stockholm&appid=9579601d92b924d4099ae5dbaf27aaa6";
