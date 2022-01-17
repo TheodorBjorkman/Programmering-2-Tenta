@@ -8,6 +8,9 @@ namespace API
 {
     public class APICallConsole : MonoBehaviour
     {
+        /// <summary>
+        /// Makes api calls for the console. 
+        /// </summary>
         protected string json;
         protected IEnumerator GetWeather()
         {

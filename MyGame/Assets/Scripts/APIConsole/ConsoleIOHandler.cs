@@ -8,20 +8,21 @@ using GenericData;
 
 namespace Console
 {
-    public class ConsoleIOHandler : APICallConsole
+    public partial class ConsoleIOHandler : APICallConsole
     {
+        /// <summary>
+        /// Handles the input from consoles, calls information and then formats it in a more readable way. Due to issues implementing JSon in Unity, current JSon parsing is manual.
+        /// Could add commands into a list of a class containing potential subcommands.
+        /// </summary>
         protected void ProcessInput(string input)
         {
+            // Calls the command if it exists otherwise defaults.
             string[] inputArray = input.Split(' ');
             switch (inputArray[0])
             {
+                // Commands exists in the ConsoleIOCommands file
                 case "help":
-                    if (inputArray.Length > 1)
-                    {
-                        Help(inputArray);
-                        break;
-                    }
-                    Output("Availible commands: help, get");
+                    Help(inputArray);
                     break;
                 case "get":
                     Get(inputArray);
@@ -33,8 +34,10 @@ namespace Console
         }
         void Update()
         {
+            // Due to the asynchronous nature of api calls it was tricky to make it output when the api had responded because unity is single threaded, the current fix is to check if there is information in the json variable and in that case cleaning and then outputting it.
             if (json != null)
             {
+                // Cleanweather is in the file ConsoleIOHandlerCleaning
                 json = CleanWeather(json);
                 Output(json);
                 json = null;
@@ -42,62 +45,8 @@ namespace Console
         }
         void Output(string input)
         {
+            // Sets the named Search Output text component to the input text
             GameObject.Find("Search Output").GetComponent<Text>().text = input;
-        }
-        void Help(string[] inputArray)
-        {
-            switch (inputArray[1])
-            {
-                case "get":
-                    Output("Get data. Example: \"get weather\". Data that can be fetched: weather");
-                    break;
-                default:
-                    break;
-            }
-        }
-        void Get(string[] inputArray)
-        {
-            if (inputArray.Length < 2)
-            {
-                Output("Invalid syntax: use \"help get\" for correct usage");
-                return;
-            }
-            switch (inputArray[1])
-            {
-                case "weather":
-                    gameObject.SendMessage("GetWeather");
-                    break;
-                default:
-                    Output($"Invalid syntax: cannot get {inputArray[1]}. See help get for retrievable values.");
-                    break;
-            }
-        }
-        string CleanWeather(string input)
-        {
-            input = input.Remove(0, input.IndexOf("description"));
-            input = input.Remove(input.IndexOf("icon"), input.IndexOf("main") - 8);
-            input = input.Remove(input.IndexOf("visibility"));
-            char[] charsToClean = new char[] { '[', ']', '(', ')', '{', '}', '}' };
-            input = RemoveCharacter(input, charsToClean);
-            input = input.Replace("\"", "");
-            input = input.Replace(",", "\n");
-            input = String.Join("", input.Split('"'));
-            return input;
-        }
-        string RemoveCharacter(string input, char rem)
-        {
-            if (input.Contains(rem.ToString()))
-                input = input.Remove(input.IndexOf(rem), 1);
-            return input;
-        }
-        string RemoveCharacter(string input, char[] rem)
-        {
-            foreach (char item in rem)
-            {
-                if (input.Contains(item.ToString()))
-                    input = input.Remove(input.IndexOf(item), 1);
-            }
-            return input;
         }
     }
 }

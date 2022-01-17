@@ -2,41 +2,40 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CharacterController;
 
-public class PlayerController : CharacterController3d
+namespace Controllers
 {
-    private float moveDirection = 0;
-    // Start is called before the first frame update
-    void Awake()
+    public class PlayerController : CharacterController3d
     {
-        StartController();
-        MeshFilter meshF = gameObject.AddComponent<MeshFilter>();
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        MeshFilter cubeMeshF = cube.GetComponent(typeof(MeshFilter)) as MeshFilter;
-        meshF.mesh = cubeMeshF.mesh;
-        Destroy(cube);
-        gameObject.AddComponent<BoxCollider>();
-    }
+        private float moveDirection = 0;
+        // Awake is called upon instantiation.
+        void Awake()
+        {
+            StartController();
+            MeshFilter meshF = gameObject.AddComponent<MeshFilter>();
+            GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            MeshFilter cubeMeshF = cube.GetComponent(typeof(MeshFilter)) as MeshFilter;
+            meshF.mesh = cubeMeshF.mesh;
+            Destroy(cube);
+            gameObject.AddComponent<BoxCollider>();
+        }
+        // Checks for input each frame. MoveSpeed is basically fixed with this, better way might be to just set a bool for sprint true or false if versatility is desired
+        void Update()
+        {
+            moveDirection = Input.GetAxisRaw("Vertical");
+            ChangeRotationDirection(Input.GetAxisRaw("Horizontal"));        // Gets horizontal directional input: w/left arrow = -1, no input = 0, d/right arrow = 1
+            if (Input.GetKey(KeyCode.LeftShift))
+                MoveSpeed = 8f;
+            else
+                MoveSpeed = 1f;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        moveDirection = Input.GetAxisRaw("Vertical");
-        ChangeRotationDirection(Input.GetAxisRaw("Horizontal"));        // Gets horizontal directional input: w/left arrow = -1, n/a = 0, d/right arrow = 1
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            this.MoveSpeed += 7f;
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            this.MoveSpeed -= 7f;
-        if (Input.GetKeyDown(KeyCode.R))
-            Destroy(gameObject);
-    }
-
-    // Update is called at fixed intervals
-    void FixedUpdate()
-    {
-        Rotate();
-        Gravity();
-        Move(moveDirection);
+        // Update is called at fixed intervals
+        void FixedUpdate()
+        {
+            Rotate();
+            ApplyGravity();
+            Move(moveDirection);
+        }
     }
 }

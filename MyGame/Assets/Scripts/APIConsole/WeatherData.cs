@@ -11,6 +11,9 @@ namespace Weather
     public class WeatherData
     {
         public string value;
+        /// <summary>
+        /// Asyncronous method for calling api, I did not write most of this but it is edited and I have tried a few other solutions that Unity did not like
+        /// </summary>
         public IEnumerator<UnityWebRequestAsyncOperation> GetRequest(string url)
         {
             UnityWebRequest webRequest = UnityWebRequest.Get(url);

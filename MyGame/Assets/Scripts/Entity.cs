@@ -1,44 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Entity
 {
     public class EntityBase : MonoBehaviour
     {
-        [SerializeField] private int health = 10;
-        protected Rigidbody rigidbody;
-        protected int Health
+        /// <summary>
+        /// Base class for Entities.
+        /// </summary>
+        private int health = 10;
+        private Rigidbody rigidbody;
+        public int Health
         {
             get { return health; }
+            // Set method avoids negative health
             set
             {
-                int intVal = (int)value;
-                if ((health - intVal) < 0)
+                int intVal = value;
+                if (health < intVal)
                 {
                     health = 0;
-                    DeathEvent.Invoke();
                 }
                 else
-                    health -= intVal;
+                    health = intVal;
             }
         }
-        //Used events
-        public UnityEvent DeathEvent;
-
+        // No need to change rigidbody's value so it's read only.
+        public Rigidbody Rigidbody { get { return rigidbody; } }
+        // Awake is called upon instantiation.
+        private void Awake()
+        {
+            StartEntity();
+        }
+        // Adds rigidbody, disables Unity's own gravity for more specific control.
         protected void StartEntity()
         {
-            InitEvents();
             gameObject.AddComponent<Rigidbody>();
             rigidbody = gameObject.GetComponent<Rigidbody>() as Rigidbody;
             rigidbody.useGravity = false;
-        }
-
-        private void InitEvents()
-        {
-            if (DeathEvent == null)
-                DeathEvent = new UnityEvent();
         }
     }
 }

@@ -6,25 +6,28 @@ using UnityEngine;
 using UnityEngine.Events;
 using Entity;
 
-namespace CharacterController
+namespace Controllers
 {
     public partial class CharacterController3d : EntityBase
     {
-        // Start is called before the first frame update
-        void Start()
+        /// <summary>
+        /// Contains the main methods of the Character controller. These decide what happens and when it happens.
+        /// </summary>
+        // Awake is called upon instantiation.
+        void Awake()
         {
             StartController();
         }
-
+        // Creates meshrenderer, sets variables transform, meshR and defaultM as well as setting position and material to default position and material.
         protected void StartController()
         {
             transform = gameObject.GetComponent<Transform>() as Transform;
             transform.position = startPosition;
+            defaultM = Resources.Load<Material>("/Concrete textures pack/pattern 01/Concrete pattern 01.mat");
             gameObject.AddComponent<MeshRenderer>();
             MeshRenderer meshR = gameObject.GetComponent<MeshRenderer>();
-            Material defaultM = Resources.Load<Material>("/Concrete textures pack/pattern 01/Concrete pattern 01.mat");
             meshR.material = defaultM;
-            UnityEngine.Debug.Log(meshR.material);     //???????????? For some reason if I don't log the material it wont render or smthng idk
+            UnityEngine.Debug.Log(meshR.material);     // For some reason if the material isn't logged it won't work properly
             StartEntity();
         }
 
@@ -33,7 +36,7 @@ namespace CharacterController
         {
             Move();
             Rotate();
-            Gravity();
+            ApplyGravity();
         }
     }
 }

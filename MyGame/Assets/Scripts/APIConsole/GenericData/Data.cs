@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,12 @@ namespace GenericData
 {
     public class Data<T>
     {
-        public string name { get; set; }
-        public T value { get; set; }
-        public MainNode main { get; set; }
-        public void InstantiateMain()
-        {
-            main = new MainNode();
-        }
+        /// <summary>
+        /// A generic class for storage of a key:value pair with a generic value and a string key.
+        /// </summary>
+        public string Key { get; set; }
+        public T Value { get; set; }
+        private string type = $"{T}";
+        public string Type { get { return type; } }
     }
 }
