@@ -1,0 +1,9 @@
+@startuml
+interface IChangeEntryData {
+    Entry : IChangeEntry <<get>>
+    Toggled : bool <<get>>
+    All : bool <<get>>
+    ToggleReadOnly : bool <<get>>
+    Conflicted : bool <<get>>
+}
+@enduml

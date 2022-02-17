@@ -1,0 +1,8 @@
+@startuml
+interface IStartView {
+    Text : string <<set>>
+    ButtonText : string <<set>>
+    SetButtonVisible(isVisible:bool) : void
+}
+"IView`1" "<IStartPresenter>" <|-- IStartView
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class PlasticMenuItem <<static>> {
+    <<internal>> {static} Add() : void
+    {static} ValidateMenu() : bool
+    {static} ShowPanel() : void
+    <<const>> MENU_ITEM_NAME : string
+    <<const>> MENU_ITEM_PRIORITY : int = 1000
+}
+@enduml

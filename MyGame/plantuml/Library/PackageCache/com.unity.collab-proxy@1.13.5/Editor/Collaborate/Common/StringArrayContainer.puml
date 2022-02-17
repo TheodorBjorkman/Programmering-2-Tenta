@@ -1,0 +1,5 @@
+@startuml
+class StringArrayContainer {
+}
+"ArrayContainer`1" "<string>" <|-- StringArrayContainer
+@enduml

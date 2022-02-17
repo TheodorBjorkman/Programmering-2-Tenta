@@ -1,0 +1,5 @@
+@startuml
+class DrawSplitter <<static>> {
+    <<internal>> {static} ForHorizontalIndicator() : void
+}
+@enduml

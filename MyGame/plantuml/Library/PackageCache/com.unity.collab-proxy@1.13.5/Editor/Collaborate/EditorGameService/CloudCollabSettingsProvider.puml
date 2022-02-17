@@ -1,0 +1,13 @@
+@startuml
+class CloudCollabSettingsProvider {
+    <<const>> k_CollaborateName : string = "Version Control"
+    m_Visuals : CloudCollabVisuals
+    CloudCollabSettingsProvider(keywords:IEnumerable<string>)
+    # <<override>> EditorGameService : IEditorGameService <<get>>
+    # <<override>> Title : string <<get>>
+    # <<override>> Description : string <<get>> = "Create together seamlessly"
+    # <<override>> GenerateServiceDetailUI() : VisualElement
+    {static} CreateSettingsProvider() : SettingsProvider
+}
+EditorGameServiceSettingsProvider <|-- CloudCollabSettingsProvider
+@enduml

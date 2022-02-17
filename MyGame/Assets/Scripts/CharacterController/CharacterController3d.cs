@@ -13,7 +13,7 @@ namespace Controllers
         /// <summary>
         /// Contains the main methods of the Character controller. These decide what happens and when it happens.
         /// </summary>
-        // Awake is called upon instantiation.
+        // Awake is called upon load. Awake is chosen over constructor in order to avoid potential issues with the method executing too early.
         void Awake()
         {
             StartController();

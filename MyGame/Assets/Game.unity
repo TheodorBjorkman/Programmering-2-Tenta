@@ -767,10 +767,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf03785289c90e44581faf5a579bf408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  DeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
   rotationSpeed: 45
   maxRotationSpeed: 360
   gravity: -15
@@ -1316,7 +1312,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: lorum ipsum dolor sit amet
+  m_Text: Write 'help' in the box above and press enter for commands
 --- !u!222 &835065060
 CanvasRenderer:
   m_ObjectHideFlags: 0

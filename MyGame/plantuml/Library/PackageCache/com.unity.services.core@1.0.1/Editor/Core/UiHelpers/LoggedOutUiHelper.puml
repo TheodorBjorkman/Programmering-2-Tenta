@@ -1,0 +1,8 @@
+@startuml
+class LoggedOutUiHelper <<static>> {
+    <<const>> k_UxmlPath : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/LoggedOut.uxml"
+    <<const>> k_ButtonClassName : string = "submit-button"
+    + {static} AddLoggedOutUI(loggedOutContainer:VisualElement) : void
+    {static} SetupButton(buttonContainer:VisualElement) : void
+}
+@enduml

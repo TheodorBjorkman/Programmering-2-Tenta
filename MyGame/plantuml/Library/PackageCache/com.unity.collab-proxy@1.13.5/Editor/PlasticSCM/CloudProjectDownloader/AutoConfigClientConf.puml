@@ -1,0 +1,9 @@
+@startuml
+class AutoConfigClientConf <<static>> {
+    <<internal>> {static} FromUnityAccessToken(unityAccessToken:string, serverName:string, projectPath:string) : void
+    {static} BuildClientConfigData(serverName:string, projectPath:string, response:CredentialsResponse) : ClientConfigData
+    {static} GetPassword(token:string, tokenType:CredentialsResponse.TokenType) : string
+    {static} GetWorkingMode(tokenType:CredentialsResponse.TokenType) : SEIDWorkingMode
+    <<const>> BEARER_PREFIX : string = "Bearer "
+}
+@enduml

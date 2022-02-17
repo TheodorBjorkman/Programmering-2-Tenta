@@ -1,0 +1,7 @@
+@startuml
+class RefreshAsset <<static>> {
+    <<internal>> {static} UnityAssetDatabase() : void
+    <<internal>> {static} VersionControlCache() : void
+    <<internal>> {static} RepaintInspectors() : void
+}
+@enduml

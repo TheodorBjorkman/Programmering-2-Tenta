@@ -1,0 +1,8 @@
+@startuml
+class "ListPool`1"<T> <<static>> {
+    - {static} <<readonly>> s_ListPool : ObjectPool<List<T>>
+    {static} Clear(l:List<T>) : void
+    + {static} Get() : List<T>
+    + {static} Release(toRelease:List<T>) : void
+}
+@enduml

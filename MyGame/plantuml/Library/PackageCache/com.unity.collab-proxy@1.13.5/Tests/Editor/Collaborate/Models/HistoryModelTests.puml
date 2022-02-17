@@ -1,0 +1,21 @@
+@startuml
+class HistoryModelTests {
+    m_Provider : TestSourceControlProvider
+    m_Model : HistoryModel
+    m_BusyStatusUpdatedCount : int
+    m_EntryCountUpdatedCount : int
+    m_HistoryListReceivedCount : int
+    m_HistoryListUpdatedCount : int
+    m_SelectedRevisionReceivedCount : int
+    + Setup() : void
+    + TearDown() : void
+    + TestHistoryListUpdated() : void
+    + TestIsBusyAndEntryCount() : void
+    + TestRequestingPageOfRevisions() : void
+    + TestRequestingSingleRevision() : void
+    + TestRequestUpdateTo() : void
+    + TestRequestRestoreTo() : void
+    + TestRequestGoBackTo() : void
+    + TestRevert() : void
+}
+@enduml

@@ -1,0 +1,16 @@
+@startuml
+class FloatingMenu {
+    + <<const>> ussClassName : string = "unity-floating-menu"
+    <<const>> k_ItemHeight : float = 28f
+    <<readonly>> m_Items : List<(string Text, Action Action, bool Enabled)>
+    {static} <<readonly>> k_StylePath : string
+    <<readonly>> m_Content : VisualElement
+    m_OpenDirection : MenuUtilities.OpenDirection
+    + FloatingMenu()
+    + AddEntry(text:string, action:Action, enabled:bool) : FloatingMenu
+    + AddEntries(items:IEnumerable<(string Text, Action Action, bool Enabled)>) : FloatingMenu
+    + SetOpenDirection(openDirection:MenuUtilities.OpenDirection) : FloatingMenu
+    + Open(x:float, y:float) : void
+    GenerateContent() : VisualElement
+}
+@enduml

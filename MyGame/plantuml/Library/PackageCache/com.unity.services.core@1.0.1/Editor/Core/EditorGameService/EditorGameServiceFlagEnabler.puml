@@ -1,0 +1,18 @@
+@startuml
+abstract class EditorGameServiceFlagEnabler {
+    m_ServiceFlagEndpoint : ServiceFlagEndpoint
+    # {abstract} FlagName : string <<get>>
+    + Enable() : void
+    + Disable() : void
+    <<internal>> GetFlagName() : string
+    <<internal>> InternalDisableLocalSettings() : void
+    # {abstract} EnableLocalSettings() : void
+    # {abstract} DisableLocalSettings() : void
+    + {abstract} IsEnabled() : bool
+    +  <<event>> ServiceFlagRequestComplete : Action 
+    SetFlagStatus(status:bool) : void
+    OnEndpointConfigurationReceived(endpointResponse:IAsyncOperation<ServiceFlagEndpointConfiguration>, status:bool) : void
+    OnServiceFlagRequestCompleted(webRequest:UnityWebRequest) : void
+}
+IEditorGameServiceEnabler <|-- EditorGameServiceFlagEnabler
+@enduml

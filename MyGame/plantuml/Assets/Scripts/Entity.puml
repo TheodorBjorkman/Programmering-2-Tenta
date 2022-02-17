@@ -1,0 +1,11 @@
+@startuml
+class EntityBase {
+    - health : int = 10
+    - rigidbody : Rigidbody
+    + Health : int <<get>> <<set>>
+    + Rigidbody : Rigidbody <<get>>
+    - Awake() : void
+    # StartEntity() : void
+}
+MonoBehaviour <|-- EntityBase
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class UnityIncomingChangesTreeTests {
+    + TestConflictNoMeta() : void
+    + TestConflictWithMeta() : void
+    + TestChangedNoMeta() : void
+    + TestChangedWithMeta() : void
+    + TestMovedNoMeta() : void
+    + TestMovedWithMeta() : void
+    + TestChangedMovedWithMeta() : void
+    + TestAddedNoMeta() : void
+    + TestAddedWithMeta() : void
+    + TestDeletedNoMeta() : void
+    + TestDeletedWithMeta() : void
+    + TestChangedWithDeletedMeta() : void
+    + TestOnlyMeta() : void
+    {static} BuildRootMountPointWithPath() : MountPointWithPath
+}
+class Build {
+    <<internal>> {static} FileConflict(mount:MountPointWithPath, path:string) : GluonFileConflict
+    <<internal>> {static} AddedDifference(path:string) : Difference
+    <<internal>> {static} MovedDifference(srcPath:string, dstPath:string) : Difference
+    <<internal>> {static} DeletedDifference(path:string) : Difference
+    <<internal>> {static} ChangedDifference(path:string) : Difference
+    {static} BuildFileRevision() : RevisionInfo
+}
+class FindChangeInfo {
+    <<internal>> {static} FromFileConflict(fileConflict:GluonFileConflict, tree:UnityIncomingChangesTree) : IncomingChangeInfo
+    <<internal>> {static} FromDifference(difference:Difference, tree:UnityIncomingChangesTree) : IncomingChangeInfo
+}
+UnityIncomingChangesTreeTests +-- Build
+UnityIncomingChangesTreeTests +-- FindChangeInfo
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+class UnityTestAttribute {
+    + UnityTestAttribute()
+    - <<readonly>> _builder : NUnitTestCaseBuilder
+    BuildFrom(method:IMethodInfo, suite:Test) : TestMethod
+}
+CombiningStrategyAttribute <|-- UnityTestAttribute
+ISimpleTestBuilder <|-- UnityTestAttribute
+IImplyFixture <|-- UnityTestAttribute
+@enduml

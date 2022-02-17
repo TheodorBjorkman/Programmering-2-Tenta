@@ -1,0 +1,23 @@
+@startuml
+class DownloadRepositoryOperation {
+    <<internal>> DownloadRepositoryToPathIfNeeded(cloudRepository:string, cloudOrganization:string, projectPath:string, unityAccessToken:string) : void
+    DownloadRepository(state:object) : void
+    {static} DisplayProgress(status:UpdateOperationStatus, progressData:BuildProgressSpeedAndRemainingTime.ProgressData, cloudRepository:string) : void
+    {static} CreateWorkspace(repositorySpec:RepositorySpec, projectPath:string) : WorkspaceInfo
+    {static} BuildRepSpec(cloudRepository:string, cloudOrganization:string, defaultCloudAlias:string) : RepositorySpec
+    {static} LogException(ex:Exception) : void
+    {static} WorkspaceExists(projectPath:string) : bool
+    <<volatile>> mOperationFinished : bool = false
+    <<volatile>> mOperationFailed : bool = false
+    <<volatile>> mDisplayProgress : bool
+    mUpdateNotifier : UpdateNotifier
+    {static} <<readonly>> mLog : ILog
+}
+class DownloadRepositoryParameters {
+    <<internal>> CloudRepository : string
+    <<internal>> CloudOrganization : string
+    <<internal>> ProjectPath : string
+    <<internal>> AccessToken : string
+}
+DownloadRepositoryOperation +-- DownloadRepositoryParameters
+@enduml

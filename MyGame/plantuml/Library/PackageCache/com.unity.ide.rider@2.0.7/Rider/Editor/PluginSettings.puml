@@ -1,0 +1,9 @@
+@startuml
+class PluginSettings {
+    + {static} SelectedLoggingLevel : LoggingLevel <<get>> <<set>>
+    + {static} LogEventsCollectorEnabled : bool <<get>>
+    - {static} ourVersionInfoStyle : GUIStyle
+    - {static} RiderPreferencesItem() : SettingsProvider
+    - {static} LinkButton(url:string) : void
+}
+@enduml

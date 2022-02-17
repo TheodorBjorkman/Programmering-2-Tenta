@@ -1,0 +1,11 @@
+@startuml
+class ServiceFlagRequest {
+    <<const>> k_ServiceFlagsKey : string = "service_flags"
+    m_DefaultCdnEndpointConfiguration : DefaultCdnEndpointConfiguration
+    + FetchServiceFlags() : IAsyncOperation<IServiceFlags>
+    {static} QueryProjectFlags(configurationRequestTask:IAsyncOperation<DefaultCdnEndpointConfiguration>, resultAsyncOp:AsyncOperation<IServiceFlags>) : void
+    {static} OnFetchServiceFlagsCompleted(getServiceFlagsRequest:UnityWebRequest, resultAsyncOp:AsyncOperation<IServiceFlags>) : void
+    {static} ExtractServiceFlagsFromUnityWebRequest(unityWebRequest:UnityWebRequest) : IServiceFlags
+}
+IServiceFlagRequest <|-- ServiceFlagRequest
+@enduml

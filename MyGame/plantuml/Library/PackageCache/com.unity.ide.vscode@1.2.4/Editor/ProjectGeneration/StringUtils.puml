@@ -1,0 +1,7 @@
+@startuml
+class StringUtils <<static>> {
+    - <<const>> WinSeparator : char = '\\'
+    - <<const>> UnixSeparator : char = '/'
+    + {static} NormalizePath(path:string) : string
+}
+@enduml

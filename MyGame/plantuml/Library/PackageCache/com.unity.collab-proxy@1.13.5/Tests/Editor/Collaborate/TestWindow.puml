@@ -1,0 +1,6 @@
+@startuml
+class TestWindow {
+    OnEnable() : void
+}
+EditorWindow <|-- TestWindow
+@enduml

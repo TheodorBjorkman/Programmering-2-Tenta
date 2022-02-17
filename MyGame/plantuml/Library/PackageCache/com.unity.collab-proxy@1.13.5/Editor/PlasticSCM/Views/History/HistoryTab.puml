@@ -1,0 +1,46 @@
+@startuml
+class HistoryTab {
+    <<internal>> HistoryTab(wkInfo:WorkspaceInfo, workspaceWindow:IWorkspaceWindow, repSpec:RepositorySpec, newIncomingChangesUpdater:NewIncomingChangesUpdater, viewHost:ViewHost, parentWindow:EditorWindow, isGluonMode:bool)
+    <<internal>> RefreshForItem(itemId:long, path:string, isDirectory:bool) : void
+    <<internal>> Update() : void
+    <<internal>> OnGUI() : void
+    <<internal>> DrawSearchFieldForHistoryTab() : void
+    <<internal>> OnDisable() : void
+    Refresh() : void
+    GetSelectedRevisions() : List<RepObjectInfo>
+    SelectRevisions(revisionsToSelect:List<RepObjectInfo>) : void
+    UpdateData(list:HistoryRevisionList, loadedRevisionId:long) : void
+    GetSelectedChangesetId() : long
+    GetSelectedHistoryGroupInfo() : SelectedHistoryGroupInfo
+    OpenRevision() : void
+    OpenRevisionWith() : void
+    SaveRevisionAs() : void
+    DiffWithPrevious() : void
+    DiffSelectedRevisions() : void
+    DiffChangeset() : void
+    RevertToThisRevision() : void
+    SearchField_OnDownOrUpArrowKeyPressed() : void
+    {static} GetFullPath(wkPath:string, path:string) : string
+    {static} DoActionsToolbar(refreshableView:IRefreshableView, progressControls:ProgressControlsForViews, searchField:SearchField, listView:HistoryListView, viewTitle:string) : void
+    {static} DoHistoryArea(historyListView:HistoryListView, isOperationRunning:bool) : void
+    {static} GetViewTitle(path:string) : string
+    BuildComponents(wkInfo:WorkspaceInfo, repSpec:RepositorySpec) : void
+    mSearchField : SearchField
+    mHistoryListView : HistoryListView
+    mItemId : long
+    mPath : string
+    mIsDirectory : bool
+    <<readonly>> mWkInfo : WorkspaceInfo
+    <<readonly>> mHistoryViewLogic : HistoryViewLogic
+    <<readonly>> mProgressControls : ProgressControlsForViews
+    <<readonly>> mWorkspaceWindow : IWorkspaceWindow
+    <<readonly>> mRepSpec : RepositorySpec
+    <<readonly>> mIsGluonMode : bool
+    <<readonly>> mParentWindow : EditorWindow
+    <<readonly>> mViewHost : ViewHost
+    <<readonly>> mGuiMessage : GuiMessage.IGuiMessage
+    <<readonly>> mNewIncomingChangesUpdater : NewIncomingChangesUpdater
+}
+IRefreshableView <|-- HistoryTab
+IHistoryViewMenuOperations <|-- HistoryTab
+@enduml

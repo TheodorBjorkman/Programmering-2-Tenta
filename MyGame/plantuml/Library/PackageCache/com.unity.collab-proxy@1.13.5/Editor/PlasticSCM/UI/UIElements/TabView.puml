@@ -1,0 +1,16 @@
+@startuml
+class TabView {
+    <<internal>> TabView()
+    <<internal>> AddTab(name:string, content:VisualElement) : Button
+    <<internal>> SwitchContent(content:VisualElement) : void
+    OnClickButton(eventBase:EventBase) : void
+    ButtonClicked(clickedButton:Button) : void
+    BuildComponents() : void
+    InitializeLayoutAndStyles() : void
+    mContentArea : VisualElement
+    mTabArea : VisualElement
+    mTabs : Dictionary<string, VisualElement>
+    mButtons : Dictionary<string, Button>
+}
+VisualElement <|-- TabView
+@enduml

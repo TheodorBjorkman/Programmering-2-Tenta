@@ -1,0 +1,11 @@
+@startuml
+class CloudProjectDownloader <<static>> {
+    {static} CloudProjectDownloader()
+    {static} RunOnceWhenAccessTokenIsInitialized() : void
+    {static} Execute(unityAccessToken:string) : void
+    <<internal>> {static} DownloadRepository(unityAccessToken:string) : void
+    <<internal>> {static} DownloadRepository(unityAccessToken:string, commandLineArgs:string[]) : void
+    <<const>> IS_PROJECT_DOWNLOADER_ALREADY_EXECUTED_KEY : string = "PlasticSCM.ProjectDownloader.IsAlreadyExecuted"
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

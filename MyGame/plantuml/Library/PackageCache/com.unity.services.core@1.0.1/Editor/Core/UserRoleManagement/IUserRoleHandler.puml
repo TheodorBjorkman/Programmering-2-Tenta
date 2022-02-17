@@ -1,0 +1,10 @@
+@startuml
+interface IUserRoleHandler {
+    CurrentUserRole : UserRole <<get>>
+    HasAuthorizationError : bool <<get>>
+    IsBusy() : bool
+    TrySendUserRoleRequest() : void
+     <<event>> UserRoleChanged : Action<UserRole> 
+     <<event>> UserRoleRequestCompleted : Action<UserRole> 
+}
+@enduml

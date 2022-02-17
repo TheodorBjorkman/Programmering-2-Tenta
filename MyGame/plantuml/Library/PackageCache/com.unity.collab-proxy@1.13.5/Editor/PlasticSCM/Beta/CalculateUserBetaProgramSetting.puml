@@ -1,0 +1,14 @@
+@startuml
+class CalculateUserBetaProgramSetting <<static>> {
+    {static} CalculateUserBetaProgramSetting()
+    {static} RunOnceWhenAccessTokenIsInitialized() : void
+    {static} Execute(unityAccessToken:string) : void
+    {static} EnableUserBetaProgramIfNeeded(unityAccessToken:string) : void
+    {static} SetBetaProgramNotEnabled() : void
+    <<const>> IS_USER_BETA_PROGRAM_ALREADY_CALCULATED_KEY : string = "PlasticSCM.UserBetaProgram.IsAlreadyCalculated"
+    <<const>> BETA_PROGRAM_NOT_CALCULATED : int = 0
+    <<const>> BETA_PROGRAM_NOT_ENABLED : int = 1
+    <<const>> BETA_PROGRAM_ENABLED : int = 2
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

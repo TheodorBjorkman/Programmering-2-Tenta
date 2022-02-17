@@ -1,0 +1,41 @@
+@startuml
+class UnityIncomingChangesTreeTests {
+    + TestConflictNoMeta() : void
+    + TestConflictWithMeta() : void
+    + TestChangedNoMeta() : void
+    + TestChangedWithMeta() : void
+    + TestMovedNoMeta() : void
+    + TestMovedWithMeta() : void
+    + TestChangedMovedWithMeta() : void
+    + TestAddedNoMeta() : void
+    + TestAddedWithMeta() : void
+    + TestDeletedNoMeta() : void
+    + TestDeletedWithMeta() : void
+    + TestOnlyMeta() : void
+    + TestDirectoryConflictNoMeta() : void
+    + TestDirectoryConflictWithMeta() : void
+    + TestChangedWithDeletedMeta() : void
+    {static} BuildRootMountPointWithPath() : MountPointWithPath
+}
+class BuildMergeTreeResult {
+    <<internal>> {static} CreateFileAddedDifference(path:string) : Difference
+    <<internal>> {static} CreateMovedDifference(srcPath:string, dstPath:string) : Difference
+    <<internal>> {static} CreateDeletedDifference(path:string) : Difference
+    <<internal>> {static} CreateModifiedDifference(path:string) : FileConflict
+    <<internal>> {static} CreateFileConflict(path:string) : FileConflict
+    <<internal>> {static} CreateEvilTwinConflict(path:string) : EvilTwinConflict
+    {static} CreateDirectoryRevision() : RevisionInfo
+    {static} CreateFileRevision(size:long) : RevisionInfo
+}
+class GetConflictResolutionMock {
+    GetConflictResolution(conflict:DirectoryConflict) : string
+}
+class FindChangeInfo {
+    <<internal>> {static} FromFileConflict(fileConflict:FileConflict, tree:UnityIncomingChangesTree) : MergeChangeInfo
+    <<internal>> {static} FromDifference(difference:Difference, tree:UnityIncomingChangesTree) : MergeChangeInfo
+    <<internal>> {static} FromDirectoryConflict(directoryConflict:DirectoryConflict, tree:UnityIncomingChangesTree) : MergeChangeInfo
+}
+UnityIncomingChangesTreeTests +-- BuildMergeTreeResult
+UnityIncomingChangesTreeTests +-- GetConflictResolutionMock
+UnityIncomingChangesTreeTests +-- FindChangeInfo
+@enduml

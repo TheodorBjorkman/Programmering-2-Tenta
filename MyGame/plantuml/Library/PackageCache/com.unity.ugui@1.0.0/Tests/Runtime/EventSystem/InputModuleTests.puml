@@ -1,0 +1,13 @@
+@startuml
+class InputModuleTests {
+    m_EventSystem : EventSystem
+    m_FakeBaseInput : FakeBaseInput
+    m_StandaloneInputModule : StandaloneInputModule
+    m_Canvas : Canvas
+    m_Image : Image
+    + TestSetup() : void
+    + DragCallbacksDoGetCalled() : IEnumerator
+    + MouseOutsideMaskRectTransform_WhileInsidePaddedArea_PerformsClick() : IEnumerator
+    + TearDown() : void
+}
+@enduml

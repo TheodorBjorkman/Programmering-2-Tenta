@@ -1,0 +1,22 @@
+@startuml
+class TestHistoryView {
+    + Presenter : IHistoryPresenter <<get>> <<set>>
+    + DialogueReturnValue : bool = true
+    + BusyStatus : bool?
+    + Page : int?
+    + MaxPage : int?
+    + ReceivedEntry : IHistoryEntry
+    + DialogueTitle : string
+    + DialogueMessage : string
+    + DialogueAffirmative : string
+    + DialogueNegative : string
+    + ReceivedList : IReadOnlyList<IHistoryEntry>
+    + SetBusyStatus(busy:bool) : void
+    + SetHistoryList(list:IReadOnlyList<IHistoryEntry>) : void
+    + SetPage(page:int, max:int) : void
+    + SetSelection(entry:IHistoryEntry) : void
+    + DisplayDialogue(title:string, message:string, affirmative:string) : bool
+    + DisplayDialogue(title:string, message:string, affirmative:string, negative:string) : bool
+}
+IHistoryView <|-- TestHistoryView
+@enduml

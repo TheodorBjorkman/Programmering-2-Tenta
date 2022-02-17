@@ -1,0 +1,21 @@
+@startuml
+class HelpPanel {
+    <<internal>> TextScroll : Vector2
+    <<internal>> Visible : bool <<get>>
+    <<internal>> Image : PlasticGui.Help.HelpImage <<get>>
+    <<internal>> Data : HelpData <<get>>
+    <<internal>> GUIContent : GUIContent <<get>>
+    <<internal>> HelpPanel(window:EditorWindow)
+    <<internal>> Show(helpImage:PlasticGui.Help.HelpImage, helpData:HelpData) : void
+    <<internal>> Hide() : void
+    <<internal>> TryGetLinkAtChar(charIndex:int, link:HelpLink) : bool
+    ClearData() : void
+    UpdateData(helpImage:PlasticGui.Help.HelpImage, helpData:HelpData) : void
+    {static} GetFormattedLinkAtChar(formattedLinks:List<FormattedHelpLink>, charIndex:int) : FormattedHelpLink
+    mHelpImage : PlasticGui.Help.HelpImage
+    mHelpData : HelpData
+    mHelpGUIContent : GUIContent
+    mFormattedLinks : List<FormattedHelpLink>
+    mWindow : EditorWindow
+}
+@enduml

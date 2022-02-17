@@ -1,0 +1,24 @@
+@startuml
+class PlasticSCMWindow {
+    <<internal>> {static} ShowWindow() : void
+    OnEnable() : void
+    OnDestroy() : void
+    Dispose() : void
+    BuildComponents() : void
+    BuildTabview(root:VisualElement) : void
+    RefreshButton_Clicked() : void
+    SettingsButton_Clicked() : void
+    {static} InviteMemberButton_clicked(obj:object) : void
+    BuildStatusBar(root:VisualElement) : void
+    <<internal>> ShowUpdateNotification(show:bool, icon:string, notification:string) : void
+    <<internal>> mTabView : TabView
+    mRefreshButton : Button
+    mSettingsButton : Button
+    mUpdateNotification : VisualElement
+    mUpdateNotificaionImage : Image
+    mUpdateNotificationLabel : Label
+    mUpdateButton : Button
+    mBranchLabel : Label
+}
+EditorWindow <|-- PlasticSCMWindow
+@enduml

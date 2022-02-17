@@ -1,0 +1,7 @@
+@startuml
+class AssetsSelection <<static>> {
+    <<internal>> {static} GetSelectedAsset(assetList:AssetList) : Asset
+    <<internal>> {static} GetSelectedPath(assetList:AssetList) : string
+    <<internal>> {static} GetSelectedPaths(selectedAssets:AssetList) : List<string>
+}
+@enduml

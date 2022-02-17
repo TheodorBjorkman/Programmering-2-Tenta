@@ -1,0 +1,25 @@
+@startuml
+class NotificationPanelData {
+    <<internal>> HasUpdateAction : bool
+    <<internal>> InfoText : string
+    <<internal>> ActionText : string
+    <<internal>> TooltipText : string
+    <<internal>> NotificationStyle : StyleType
+    <<internal>> Clear() : void
+}
+interface IIncomingChangesNotificationPanel {
+    IsVisible : bool <<get>>
+    Data : NotificationPanelData <<get>>
+}
+class DrawIncomingChangesNotificationPanel <<static>> {
+    <<internal>> {static} For(workspaceInfo:WorkspaceInfo, workspaceWindow:WorkspaceWindow, mergeViewLauncher:IMergeViewLauncher, gluonSwitcher:IGluonViewSwitcher, isGluonMode:bool, isVisible:bool, notificationPanelData:NotificationPanelData) : void
+    {static} DoActionButton(workspaceInfo:WorkspaceInfo, workspaceWindow:WorkspaceWindow, mergeViewLauncher:IMergeViewLauncher, gluonSwitcher:IGluonViewSwitcher, isGluonMode:bool, isUpdateAction:bool, buttonContent:GUIContent, buttonStyle:GUIStyle) : void
+    {static} ShowIncomingChangesForMode(workspaceInfo:WorkspaceInfo, mergeViewLauncher:IMergeViewLauncher, gluonSwitcher:IGluonViewSwitcher, isGluonMode:bool) : void
+}
+enum StyleType {
+    None,
+    Red,
+    Green,
+}
+NotificationPanelData +-- StyleType
+@enduml

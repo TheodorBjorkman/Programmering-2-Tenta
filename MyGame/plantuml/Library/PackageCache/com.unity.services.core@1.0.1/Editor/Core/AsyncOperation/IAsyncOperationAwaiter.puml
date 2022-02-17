@@ -1,0 +1,12 @@
+@startuml
+interface IAsyncOperationAwaiter {
+    IsCompleted : bool <<get>>
+    GetResult() : void
+}
+interface "IAsyncOperationAwaiter`1"<out T> {
+    IsCompleted : bool <<get>>
+    GetResult() : T
+}
+ICriticalNotifyCompletion <|-- IAsyncOperationAwaiter
+ICriticalNotifyCompletion <|-- "IAsyncOperationAwaiter`1"
+@enduml

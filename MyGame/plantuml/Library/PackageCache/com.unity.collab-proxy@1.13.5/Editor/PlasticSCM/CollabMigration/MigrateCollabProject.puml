@@ -1,0 +1,15 @@
+@startuml
+class MigrateCollabProject <<static>> {
+    {static} MigrateCollabProject()
+    <<internal>> {static} RunOnceWhenAccessTokenAndProjectIdAreInitialized() : void
+    {static} Execute(unityAccessToken:string, projectGuid:string) : void
+    <<internal>> {static} DeletePlasticDirectoryIfExists(projectPath:string) : void
+    {static} LaunchMigrationIfProjectIsArchivedAndMigrated(unityAccessToken:string, projectPath:string, projectGuid:string, headCommitSha:string) : void
+    {static} AfterWorkspaceMigrated() : void
+    {static} GetCollabHeadCommitSha(guid:string, path:string) : string
+    <<const>> IS_PROJECT_MIGRATED_ALREADY_CALCULATED_KEY : string = "PlasticSCM.MigrateCollabProject.IsAlreadyCalculated"
+    <<const>> MIGRATED_NOT_CALCULATED : int = 0
+    <<const>> MIGRATED_NOTHING_TO_DO : int = 1
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

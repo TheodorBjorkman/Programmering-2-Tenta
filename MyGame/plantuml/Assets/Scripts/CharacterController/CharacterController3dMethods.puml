@@ -1,0 +1,9 @@
+@startuml
+class CharacterController3d <<partial>> {
+    # Move(moveDirection:float) : void
+    # Rotate() : void
+    # ApplyGravity() : void
+    # ChangeRotationDirection(direction:float) : void
+}
+EntityBase <|-- CharacterController3d
+@enduml

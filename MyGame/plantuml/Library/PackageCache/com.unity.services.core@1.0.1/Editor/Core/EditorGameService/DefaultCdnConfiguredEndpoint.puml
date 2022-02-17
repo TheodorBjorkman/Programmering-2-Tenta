@@ -1,0 +1,13 @@
+@startuml
+class DefaultCdnConfiguredEndpoint {
+}
+class DefaultCdnEndpointConfiguration {
+    core : string
+    + Core : string <<get>>
+    <<internal>> BuildApiUrl() : string
+    <<internal>> BuildProjectsApiUrl(organizationKey:string) : string
+    <<internal>> BuildProjectApiUrl(organizationKey:string, projectId:string) : string
+    <<internal>> BuildUsersUrl(organizationKey:string, projectId:string) : string
+}
+"CdnConfiguredEndpoint`1" "<DefaultCdnEndpointConfiguration>" <|-- DefaultCdnConfiguredEndpoint
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class HistoryEntry <<struct>> {
+    + HistoryEntry(revisionId:string, status:HistoryEntryStatus, authorName:string, message:string, time:DateTimeOffset, changes:IReadOnlyList<IChangeEntry>)
+    + Status : HistoryEntryStatus <<get>>
+    + RevisionId : string <<get>>
+    + AuthorName : string <<get>>
+    + Message : string <<get>>
+    + Time : DateTimeOffset <<get>>
+    + Changes : IReadOnlyList<IChangeEntry> <<get>>
+    + GetGotoText() : string
+}
+IHistoryEntry <|-- HistoryEntry
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+enum ChangeEntryStatus {
+    None,
+    Untracked,
+    Ignored,
+    Modified,
+    Added,
+    Deleted,
+    Renamed,
+    Copied,
+    TypeChange,
+    Unmerged,
+    Unknown,
+    Broken,
+}
+interface IChangeEntry {
+    Path : string <<get>>
+    OriginalPath : string <<get>>
+    Status : ChangeEntryStatus <<get>>
+    Staged : bool <<get>>
+    Unmerged : bool <<get>>
+    Tag : object <<get>>
+    StatusToString() : string
+}
+@enduml

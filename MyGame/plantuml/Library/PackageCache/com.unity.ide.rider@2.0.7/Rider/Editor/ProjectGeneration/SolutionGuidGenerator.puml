@@ -1,0 +1,7 @@
+@startuml
+class SolutionGuidGenerator <<static>> {
+    + {static} GuidForProject(projectName:string) : string
+    + {static} GuidForSolution(projectName:string, sourceFileExtension:string) : string
+    {static} ComputeGuidHashFor(input:string) : string
+}
+@enduml

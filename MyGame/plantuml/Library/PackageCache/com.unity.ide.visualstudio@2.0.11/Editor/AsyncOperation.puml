@@ -1,0 +1,14 @@
+@startuml
+class "AsyncOperation`1"<T> {
+    - <<readonly>> _producer : Func<T>
+    - <<readonly>> _resetEvent : ManualResetEventSlim
+    - _result : T
+    - _exception : Exception
+    - AsyncOperation(producer:Func<T>)
+    + {static} Run(producer:Func<T>) : AsyncOperation<T>
+    - Run() : void
+    - CheckCompletion() : void
+    + Result : T <<get>>
+    + Exception : Exception <<get>>
+}
+@enduml

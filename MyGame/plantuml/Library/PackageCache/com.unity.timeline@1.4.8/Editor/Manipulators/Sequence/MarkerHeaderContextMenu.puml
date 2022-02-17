@@ -1,0 +1,6 @@
+@startuml
+class TimelineMarkerHeaderContextMenu {
+    # <<override>> ContextClick(evt:Event, state:WindowState) : bool
+}
+Manipulator <|-- TimelineMarkerHeaderContextMenu
+@enduml

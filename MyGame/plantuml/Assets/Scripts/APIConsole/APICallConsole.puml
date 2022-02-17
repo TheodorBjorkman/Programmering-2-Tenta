@@ -1,0 +1,7 @@
+@startuml
+class APICallConsole {
+    # json : string
+    # GetWeather() : IEnumerator
+}
+MonoBehaviour <|-- APICallConsole
+@enduml

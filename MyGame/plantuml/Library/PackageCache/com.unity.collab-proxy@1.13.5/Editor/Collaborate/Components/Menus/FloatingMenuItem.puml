@@ -1,0 +1,12 @@
+@startuml
+class FloatingMenuItem {
+    <<const>> k_UssClassName : string = "unity-floating-menu-item"
+    {static} <<readonly>> k_StylePath : string
+    + <<override>> canGrabFocus : bool <<get>> = true
+    <<readonly>> m_Action : Action
+    + FloatingMenuItem(text:string, action:Action, enabled:bool, height:float)
+    OnExec() : void
+    # <<override>> ExecuteDefaultActionAtTarget(evt:EventBase) : void
+}
+VisualElement <|-- FloatingMenuItem
+@enduml

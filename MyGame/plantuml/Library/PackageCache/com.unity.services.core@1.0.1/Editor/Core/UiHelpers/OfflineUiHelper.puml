@@ -1,0 +1,8 @@
+@startuml
+class OfflineUiHelper <<static>> {
+    <<const>> k_UxmlPath : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/Offline.uxml"
+    <<const>> k_ButtonClassName : string = "submit-button"
+    + {static} AddOfflineUI(offlineContainer:VisualElement, buttonClickAction:Action) : void
+    {static} SetupButton(buttonContainer:VisualElement, buttonClickAction:Action) : void
+}
+@enduml

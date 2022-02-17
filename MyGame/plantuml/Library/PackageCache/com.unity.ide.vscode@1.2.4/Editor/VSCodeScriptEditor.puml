@@ -1,0 +1,34 @@
+@startuml
+class VSCodeScriptEditor {
+    <<const>> vscode_argument : string = "vscode_arguments"
+    <<const>> vscode_extension : string = "vscode_userExtensions"
+    {static} <<readonly>> k_ResetArguments : GUIContent
+    m_Arguments : string
+    m_Discoverability : IDiscovery
+    m_ProjectGeneration : IGenerator
+    {static} <<readonly>> k_SupportedFileNames : string[]
+    {static} IsOSX : bool <<get>>
+    {static} DefaultApp : string <<get>>
+    {static} DefaultArgument : string <<get>> = "\"$(ProjectPath)\" -g \"$(File)\":$(Line):$(Column)"
+    Arguments : string <<get>> <<set>>
+    {static} defaultExtensions : string[] <<get>>
+    {static} HandledExtensions : string[] <<get>>
+    {static} HandledExtensionsString : string <<get>> <<set>>
+    + TryGetInstallationForPath(editorPath:string, installation:CodeEditor.Installation) : bool
+    + OnGUI() : void
+    RegenerateProjectFiles() : void
+    SettingsButton(preference:ProjectGenerationFlag, guiMessage:string, toolTip:string) : void
+    + CreateIfDoesntExist() : void
+    + SyncIfNeeded(addedFiles:string[], deletedFiles:string[], movedFiles:string[], movedFromFiles:string[], importedFiles:string[]) : void
+    + SyncAll() : void
+    + OpenProject(path:string, line:int, column:int) : bool
+    {static} OpenOSX(arguments:string) : bool
+    {static} SupportsExtension(path:string) : bool
+    + Installations : CodeEditor.Installation[] <<get>>
+    + VSCodeScriptEditor(discovery:IDiscovery, projectGeneration:IGenerator)
+    {static} VSCodeScriptEditor()
+    {static} IsVSCodeInstallation(path:string) : bool
+    + Initialize(editorInstallationPath:string) : void
+}
+IExternalCodeEditor <|-- VSCodeScriptEditor
+@enduml

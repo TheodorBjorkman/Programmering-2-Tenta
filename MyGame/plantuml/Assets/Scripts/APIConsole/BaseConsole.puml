@@ -1,0 +1,6 @@
+@startuml
+class BaseConsole {
+    OnEndEdit() : void
+}
+ConsoleIOHandler <|-- BaseConsole
+@enduml

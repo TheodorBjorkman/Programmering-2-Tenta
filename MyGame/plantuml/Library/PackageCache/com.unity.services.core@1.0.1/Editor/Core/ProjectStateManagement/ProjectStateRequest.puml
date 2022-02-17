@@ -1,0 +1,7 @@
+@startuml
+class ProjectStateRequest {
+    + GetProjectState() : ProjectState
+    {static} IsInternetReachable() : bool
+}
+IProjectStateRequest <|-- ProjectStateRequest
+@enduml

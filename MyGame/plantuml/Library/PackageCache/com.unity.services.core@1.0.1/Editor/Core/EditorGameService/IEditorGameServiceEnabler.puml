@@ -1,0 +1,7 @@
+@startuml
+interface IEditorGameServiceEnabler {
+    Enable() : void
+    Disable() : void
+    IsEnabled() : bool
+}
+@enduml

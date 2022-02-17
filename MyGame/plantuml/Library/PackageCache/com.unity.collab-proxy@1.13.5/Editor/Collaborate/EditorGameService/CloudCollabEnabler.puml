@@ -1,0 +1,13 @@
+@startuml
+class CloudCollabEnabler {
+    <<const>> k_ProjectSettingsSettingName : string = "Collab"
+    m_IsEnabled : bool
+    # <<override>> FlagName : string <<get>> = "collab"
+    # <<override>> EnableLocalSettings() : void
+    # <<override>> DisableLocalSettings() : void
+    + <<override>> IsEnabled() : bool
+    {static} GetEnabledStatusWithReflection() : bool
+    {static} SetEnabledStatusWithReflection(value:bool) : void
+}
+EditorGameServiceFlagEnabler <|-- CloudCollabEnabler
+@enduml

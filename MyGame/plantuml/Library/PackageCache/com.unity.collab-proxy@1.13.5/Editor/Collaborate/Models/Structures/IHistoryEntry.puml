@@ -1,0 +1,16 @@
+@startuml
+enum HistoryEntryStatus {
+    Ahead,
+    Current,
+    Behind,
+}
+interface IHistoryEntry {
+    Status : HistoryEntryStatus <<get>>
+    RevisionId : string <<get>>
+    AuthorName : string <<get>>
+    Message : string <<get>>
+    Time : DateTimeOffset <<get>>
+    Changes : IReadOnlyList<IChangeEntry> <<get>>
+    GetGotoText() : string
+}
+@enduml

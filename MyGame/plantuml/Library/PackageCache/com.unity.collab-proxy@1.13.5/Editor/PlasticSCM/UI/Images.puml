@@ -1,0 +1,114 @@
+@startuml
+class Images {
+    <<internal>> {static} GetHelpImage(image:HelpImage) : Texture2D
+    <<internal>> {static} GetImage(image:Name) : Texture2D
+    <<internal>> {static} GetFileIcon(path:string) : Texture
+    <<internal>> {static} GetFileIconFromCmPath(path:string) : Texture
+    <<internal>> {static} GetDropDownIcon() : Texture
+    <<internal>> {static} GetDirectoryIcon() : Texture
+    <<internal>> {static} GetPrivatedOverlayIcon() : Texture
+    <<internal>> {static} GetAddedOverlayIcon() : Texture
+    <<internal>> {static} GetDeletedLocalOverlayIcon() : Texture
+    <<internal>> {static} GetDeletedRemoteOverlayIcon() : Texture
+    <<internal>> {static} GetCheckedOutOverlayIcon() : Texture
+    <<internal>> {static} GetOutOfSyncOverlayIcon() : Texture
+    <<internal>> {static} GetConflictedOverlayIcon() : Texture
+    <<internal>> {static} GetConflictResolvedOverlayIcon() : Texture
+    <<internal>> {static} GetLockedLocalOverlayIcon() : Texture
+    <<internal>> {static} GetLockedRemoteOverlayIcon() : Texture
+    <<internal>> {static} GetIgnoredOverlayIcon() : Texture
+    <<internal>> {static} GetWarnIcon() : Texture
+    <<internal>> {static} GetInfoIcon() : Texture
+    <<internal>> {static} GetErrorDialogIcon() : Texture
+    <<internal>> {static} GetWarnDialogIcon() : Texture
+    <<internal>> {static} GetInfoDialogIcon() : Texture
+    <<internal>> {static} GetRefreshIcon() : Texture
+    <<internal>> {static} GetSettingsIcon() : Texture
+    <<internal>> {static} GetCloseIcon() : Texture
+    <<internal>> {static} GetClickedCloseIcon() : Texture
+    <<internal>> {static} GetHoveredCloseIcon() : Texture
+    <<internal>> {static} GetFileIcon() : Texture
+    <<internal>> {static} GetLinkUnderlineImage() : Texture2D
+    {static} GetEmptyImage() : Texture2D
+    {static} GetFileIconFromRelativePath(relativePath:string) : Texture
+    {static} GetImageFileRelativePath(imageFileName:string) : string
+    {static} TryLoadImage(imageFileRelativePath:string, image2xFilePath:string) : Texture2D
+    {static} LoadTextureFromFile(path:string) : Texture2D
+    {static} mFileIcon : Texture
+    {static} mDirectoryIcon : Texture
+    {static} mPrivatedOverlayIcon : Texture
+    {static} mAddedOverlayIcon : Texture
+    {static} mDeletedLocalOverlayIcon : Texture
+    {static} mDeletedRemoteOverlayIcon : Texture
+    {static} mCheckedOutOverlayIcon : Texture
+    {static} mOutOfSyncOverlayIcon : Texture
+    {static} mConflictedOverlayIcon : Texture
+    {static} mConflictResolvedOverlayIcon : Texture
+    {static} mLockedLocalOverlayIcon : Texture
+    {static} mLockedRemoteOverlayIcon : Texture
+    {static} mIgnoredverlayIcon : Texture
+    {static} mWarnIcon : Texture
+    {static} mInfoIcon : Texture
+    {static} mErrorDialogIcon : Texture
+    {static} mWarnDialogIcon : Texture
+    {static} mInfoDialogIcon : Texture
+    {static} mRefreshIcon : Texture
+    {static} mSettingsIcon : Texture
+    {static} mCloseIcon : Texture
+    {static} mClickedCloseIcon : Texture
+    {static} mHoveredCloseIcon : Texture
+    {static} mLinkUnderlineImage : Texture2D
+    {static} mEmptyImage : Texture2D
+    {static} mPopupIcon : Texture
+    {static} <<readonly>> mLog : ILog
+}
+enum Name {
+    None,
+    IconPlastic,
+    IconCloseButton,
+    IconPressedCloseButton,
+    IconAdded,
+    IconAddedOverlay,
+    IconPrivateOverlay,
+    IconCheckedOutLocalOverlay,
+    IconDeleted,
+    IconDeletedLocalOverlay,
+    IconDeletedRemoteOverlay,
+    IconChanged,
+    IconOutOfSyncOverlay,
+    IconMoved,
+    IconMergeLink,
+    Ignored,
+    IgnoredOverlay,
+    IconMergeConflict,
+    IconMergeConflictOverlay,
+    IconConflictResolvedOverlay,
+    IconLockedLocalOverlay,
+    IconLockedRemoteOverlay,
+    IconMerged,
+    IconFsChanged,
+    IconMergeCategory,
+    XLink,
+    Ok,
+    NotOnDisk,
+    IconRepository,
+    IconPlasticView,
+    IconPlasticViewNotify,
+    IconPlasticNotifyIncoming,
+    IconPlasticNotifyConflict,
+    Loading,
+    IconEmptyGravatar,
+    Step1,
+    Step2,
+    Step3,
+    StepOk,
+    ButtonSsoSignInUnity,
+    ButtonSsoSignInEmail,
+    ButtonSsoSignInGoogle,
+    DownloadIconGreen,
+    DownloadIconRed,
+    IconBranch,
+    IconUndo,
+}
+Images +-- Name
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+class ChangesetsViewMenu {
+    <<internal>> ChangesetsViewMenu(changesetMenuOperations:IChangesetMenuOperations, menuOperations:IMenuOperations, isGluonMode:bool)
+    <<internal>> Popup() : void
+    DiffChangesetMenuItem_Click() : void
+    DiffSelectedChangesetsMenuItem_Click() : void
+    DiffBranchMenuItem_Click() : void
+    UpdateMenuItems(menu:GenericMenu) : void
+    {static} AddDiffChangesetMenuItem(menuItemContent:GUIContent, menu:GenericMenu, changeset:ChangesetExtendedInfo, operations:ChangesetMenuOperations, menuFunction:GenericMenu.MenuFunction) : void
+    {static} AddDiffSelectedChangesetsMenuItem(menuItemContent:GUIContent, menu:GenericMenu, operations:ChangesetMenuOperations, menuFunction:GenericMenu.MenuFunction) : void
+    {static} AddDiffBranchMenuItem(menuItemContent:GUIContent, menu:GenericMenu, changeset:ChangesetExtendedInfo, operations:ChangesetMenuOperations, menuFunction:GenericMenu.MenuFunction) : void
+    BuildComponents() : void
+    {static} GetBranchName(changesetInfo:ChangesetExtendedInfo) : string
+    {static} IsOnMainBranch(singleSeletedChangeset:ChangesetExtendedInfo) : bool
+    mDiffChangesetMenuItemContent : GUIContent
+    mDiffSelectedChangesetsMenuItemContent : GUIContent
+    mDiffBranchMenuItemContent : GUIContent
+    <<readonly>> mChangesetMenuOperations : IChangesetMenuOperations
+    <<readonly>> mMenuOperations : IMenuOperations
+    <<readonly>> mIsGluonMode : bool
+    <<const>> MAIN_BRANCH_NAME : string = "/main"
+}
+interface IMenuOperations {
+    DiffBranch() : void
+    GetSelectedChangeset() : ChangesetExtendedInfo
+}
+ChangesetsViewMenu +-- IMenuOperations
+@enduml

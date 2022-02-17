@@ -1,0 +1,25 @@
+@startuml
+class EditorGameServiceRegistry <<sealed>> {
+    <<internal>> Services : Dictionary<string, IEditorGameService>
+    m_ProjectStateRequest : IProjectStateRequest
+    m_ProjectStateHelper : IProjectStateHelper
+    m_ServiceFlagRequest : IServiceFlagRequest
+    m_CachedProjectState : ProjectState?
+    m_UserRoleHandler : UserRoleHandler
+    <<internal>> UserRoleHandler : UserRoleHandler <<get>>
+    <<internal>> EditorGameServiceRegistry(projectStateRequest:IProjectStateRequest, projectStateHelper:IProjectStateHelper, serviceFlagRequest:IServiceFlagRequest, userRoleHandler:UserRoleHandler)
+    + {static} Instance : EditorGameServiceRegistry <<get>> <<internal set>>
+    {static} RegisterAllServices() : void
+    StartListeningToProjectStateChanges() : void
+    StopListeningToProjectStateChanges() : void
+    VerifyIfProjectBindChanges() : void
+    UpdateServicesForProjectBinding() : void
+    UpdateServiceActivation(flagsAsyncOperation:IAsyncOperation<IServiceFlags>) : void
+    UpdateServicesForProjectUnbinding() : void
+    <<internal>> {static} TryGetServiceFromType(type:Type, service:IEditorGameService) : bool
+    <<internal>> {static} IsIdentifierValid(editorGameService:IEditorGameService) : bool
+    <<internal>> RegisterService(editorGameService:IEditorGameService) : void
+    + GetEditorGameService() : IEditorGameService
+}
+IEditorGameServiceRegistry <|-- EditorGameServiceRegistry
+@enduml

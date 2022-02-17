@@ -1,0 +1,29 @@
+@startuml
+class Discovery <<static>> {
+    <<internal>> <<const>> ManagedWorkload : string = "Microsoft.VisualStudio.Workload.ManagedGame"
+    <<internal>> {static} _vsWherePath : string
+    + {static} FindVSWhere() : void
+    + {static} GetVisualStudioInstallations() : IEnumerable<IVisualStudioInstallation>
+    - {static} IsCandidateForDiscovery(path:string) : bool
+    + {static} TryDiscoverInstallation(editorPath:string, installation:IVisualStudioInstallation) : bool
+    - {static} QueryVsWhere() : IEnumerable<VisualStudioInstallation>
+}
+class VsWhereResult {
+    + entries : VsWhereEntry[]
+    + {static} FromJson(json:string) : VsWhereResult
+    + ToVisualStudioInstallations() : IEnumerable<VisualStudioInstallation>
+}
+class VsWhereEntry {
+    + displayName : string
+    + isPrerelease : bool
+    + productPath : string
+    + catalog : VsWhereCatalog
+}
+class VsWhereCatalog {
+    + productDisplayVersion : string
+    + buildVersion : string
+}
+Discovery +-- VsWhereResult
+Discovery +-- VsWhereEntry
+Discovery +-- VsWhereCatalog
+@enduml

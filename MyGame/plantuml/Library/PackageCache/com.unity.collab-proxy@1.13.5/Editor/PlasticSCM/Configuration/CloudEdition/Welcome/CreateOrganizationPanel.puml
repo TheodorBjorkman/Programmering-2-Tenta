@@ -1,0 +1,45 @@
+@startuml
+class CreateOrganizationPanel {
+    <<internal>> CreateOrganizationPanel(parentWindow:CloudEditionWelcomeWindow, parentPanel:VisualElement, restApi:IPlasticWebRestApi)
+    <<internal>> Dispose() : void
+    OnOrganizationNameTextFieldChanged(evt:ChangeEvent<string>) : void
+    DataCenterClicked(action:DropdownMenuAction) : void
+    DisplayAlert(label:Label, alert:string, color:Color, display:bool) : void
+    Success(datacenters:List<string>, defaultDatacenter:int) : void
+    Error(message:string) : void
+    OrganizationAvailable(organizationName:string) : void
+    OrganizationUnavailable(organizationName:string) : void
+    ValidationFailed(validationResult:string) : void
+    Error(organizationName:string, message:string) : void
+    Success(organization:string) : void
+    ValidationFailed(validationResult:CreateOrganization.ValidationResult) : void
+    OrganizationUnavailable() : void
+    Error(message:string) : void
+    OrganizationNameTextBox_DelayedTextChanged() : void
+    GetDatacentersRetryButton_Click() : void
+    EncryptionLinkLabel_LinkClicked() : void
+    BackButton_Clicked() : void
+    CreateButton_Clicked() : void
+    DataCenterActive(action:DropdownMenuAction) : DropdownMenuAction.Status
+    BuildComponents() : void
+    InitializeLayoutAndStyles() : void
+    mParentWindow : CloudEditionWelcomeWindow
+    mParentPanel : VisualElement
+    mOrganizationNameTextField : TextField
+    mOrganizationNameNotification : Label
+    mDataCenterRetryContainer : VisualElement
+    mDataCenterRetryAlert : Label
+    mDataCenterRetryButton : Button
+    mDatacenter : ToolbarMenu
+    mBackButton : Button
+    mCreateButton : Button
+    mEncryptLearnMoreButton : Button
+    mGettingDatacentersProgressContainer : VisualElement
+    mLoadingSpinner : LoadingSpinner
+    mSelectedDatacenter : string
+    mEncryptData : Toggle
+    mProgressControls : IProgressControls
+    <<readonly>> mRestApi : IPlasticWebRestApi
+}
+VisualElement <|-- CreateOrganizationPanel
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+interface IEditorGameServiceRegistry {
+    GetEditorGameService() : IEditorGameService
+}
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class ServiceFlags {
+    m_FlagsDictionary : Dictionary<string, bool>
+    m_FlagNames : List<string>
+    + GetFlagNames() : List<string>
+    + DoesFlagExist(flagName:string) : bool
+    + IsFlagActive(flagName:string) : bool
+    + ServiceFlags(flagsDictionary:IDictionary<string, object>)
+}
+IServiceFlags <|-- ServiceFlags
+@enduml

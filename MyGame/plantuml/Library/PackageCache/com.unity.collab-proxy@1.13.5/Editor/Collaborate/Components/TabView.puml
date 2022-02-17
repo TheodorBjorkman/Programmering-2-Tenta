@@ -1,0 +1,29 @@
+@startuml
+class TabView {
+    + <<const>> UssClassName : string = "unity-tab-view"
+    + <<const>> ContentContainerUssClassName : string
+    + <<const>> TabHeaderUssClassName : string
+    + <<const>> ToolbarUssClassName : string
+    {static} <<readonly>> k_StylePath : string
+    <<const>> k_NoTabs : int
+    m_ActiveTabIndex : int
+    m_Active : bool
+    <<readonly>> m_Content : VisualElement
+    <<readonly>> m_Toolbar : VisualElement
+    <<readonly>> m_TabList : List<(TextButton button, TabPageComponent tab)>
+    +  <<event>> TabSwitched : Action<int> 
+    + TabView()
+    + SetActive() : void
+    + SetInactive() : void
+    + AddTab(tabName:string, tab:TabPageComponent) : void
+    + SwitchTab(index:int) : void
+    SwitchTabInternal(index:int) : void
+    SwitchToNextTab() : void
+    + <<override>> contentContainer : VisualElement <<get>>
+}
+class UxmlFactory <<new>> {
+}
+VisualElement <|-- TabView
+TabView +-- UxmlFactory
+"UxmlFactory`1" "<TabView>" <|-- UxmlFactory
+@enduml

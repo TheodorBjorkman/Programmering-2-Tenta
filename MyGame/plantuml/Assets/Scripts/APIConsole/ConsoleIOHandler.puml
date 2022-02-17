@@ -1,0 +1,8 @@
+@startuml
+class ConsoleIOHandler <<partial>> {
+    # ProcessInput(input:string) : void
+    Update() : void
+    Output(input:string) : void
+}
+APICallConsole <|-- ConsoleIOHandler
+@enduml

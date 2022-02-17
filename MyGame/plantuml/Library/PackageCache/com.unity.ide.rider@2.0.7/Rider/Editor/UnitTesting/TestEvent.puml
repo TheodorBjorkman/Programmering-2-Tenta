@@ -1,0 +1,18 @@
+@startuml
+enum EventType {
+    TestStarted,
+    TestFinished,
+    RunFinished,
+    RunStarted,
+}
+class TestEvent {
+    + type : EventType
+    + id : string
+    + assemblyName : string
+    + output : string
+    + testStatus : TestStatus
+    + duration : double
+    + parentId : string
+    + TestEvent(type:EventType, id:string, assemblyName:string, output:string, duration:double, testStatus:TestStatus, parentID:string)
+}
+@enduml

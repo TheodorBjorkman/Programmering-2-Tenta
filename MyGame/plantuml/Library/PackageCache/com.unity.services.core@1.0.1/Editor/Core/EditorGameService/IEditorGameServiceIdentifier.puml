@@ -1,0 +1,5 @@
+@startuml
+interface IEditorGameServiceIdentifier {
+    GetKey() : string
+}
+@enduml

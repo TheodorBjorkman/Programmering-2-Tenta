@@ -8,7 +8,7 @@ namespace Controllers
     public class PlayerController : CharacterController3d
     {
         private float moveDirection = 0;
-        // Awake is called upon instantiation.
+        // Awake is called upon load.
         void Awake()
         {
             StartController();

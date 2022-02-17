@@ -1,0 +1,9 @@
+@startuml
+abstract class PageComponent {
+    # Active : bool <<get>>
+    + SetActive(active:bool) : void
+    # {abstract} SetActive() : void
+    # {abstract} SetInactive() : void
+}
+VisualElement <|-- PageComponent
+@enduml

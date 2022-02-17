@@ -1,0 +1,21 @@
+@startuml
+class MergeTreeResultMock <<static>> {
+    <<internal>> {static} Build0() : MergeTreeResult
+    <<internal>> {static} Build1() : MergeTreeResult
+    <<internal>> {static} Build2() : MergeTreeResult
+    {static} CreateDirectoryAddedDifference() : Difference
+    {static} CreateFileAddedDifference(size:long) : Difference
+    {static} CreateMovedDifference() : Difference
+    {static} CreateDeletedDifference() : Difference
+    {static} CreateModifiedDifference(size:long) : FileConflict
+    {static} CreateFileConflict(size:long) : FileConflict
+    {static} CreateAddedDiffXlinkChanged() : DiffXlinkChanged
+    {static} CreateModifiedDiffXlinkChanged() : FileConflict
+    {static} CreateChangeDeleteConflict(changeSize:long, deleteSize:long, isChangeDelete:bool) : ChangeDeleteConflict
+    {static} CreateEvilTwinConflict(addedSize:int) : EvilTwinConflict
+    {static} CreateWritableXlinkConflict() : ClientWritableXlinkConflict
+    {static} CreateDirectoryRevision() : RevisionInfo
+    {static} CreateFileRevision(size:long) : RevisionInfo
+    {static} CreateRandomPath() : string
+}
+@enduml

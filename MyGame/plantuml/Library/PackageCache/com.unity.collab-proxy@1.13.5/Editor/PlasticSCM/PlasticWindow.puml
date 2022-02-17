@@ -1,0 +1,88 @@
+@startuml
+class PlasticWindow {
+    <<internal>> WorkspaceWindowForTesting : WorkspaceWindow <<get>>
+    <<internal>> ViewSwitcherForTesting : ViewSwitcher <<get>>
+    <<internal>> PlasticApiForTesting : IPlasticAPI <<get>>
+    <<internal>> PlasticWebRestApiForTesting : IPlasticWebRestApi <<get>>
+    <<internal>> CmConnectionForTesting : CmConnection <<get>>
+    + {static}  <<event>> OnNotificationUpdated : Action 
+    + {static} Open() : void
+    + {static} GetWindowIcon() : Texture
+    <<internal>> SetupWindowTitle() : void
+    <<internal>> SetNotificationStatus(status:PlasticNotification.Status) : void
+    <<internal>> DisableCollabIfEnabledWhenLoaded() : void
+    <<internal>> ShowPendingChanges() : void
+    <<internal>> Add() : void
+    <<internal>> Checkout() : void
+    <<internal>> Checkin() : void
+    <<internal>> Undo() : void
+    <<internal>> ShowDiff() : void
+    <<internal>> ShowHistory() : void
+    IfVisible() : void
+    IfVisible() : void
+    OnWorkspaceCreated(wkInfo:WorkspaceInfo, isGluonMode:bool) : void
+    <<internal>> RefreshWorkspaceUI() : void
+    OnEnable() : void
+    OnDisable() : void
+    OnDestroy() : void
+    OnFocus() : void
+    OnGUI() : void
+    Update() : void
+    <<internal>> InitializePlastic() : void
+    InitializeNewIncomingChanges(wkInfo:WorkspaceInfo, bIsGluonMode:bool) : void
+    OnApplicationActivated() : void
+    OnApplicationDeactivated() : void
+    ExecuteFullReload() : void
+    DoExceptionErrorArea() : void
+    <<internal>> GetWelcomeView() : WelcomeView
+    {static} DoSearchField(viewSwitcher:ViewSwitcher) : void
+    {static} DoTabToolbar(isPlasticExeAvailable:bool, workspaceInfo:WorkspaceInfo, viewSwitcher:ViewSwitcher, isGluonMode:bool) : void
+    {static} DoLaunchButtons(isPlasticExeAvailable:bool, wkInfo:WorkspaceInfo, viewSwitcher:ViewSwitcher, isGluonMode:bool) : void
+    {static} DrawLaunchButton(icon:Texture, tooltip:string) : bool
+    {static} InviteMemberButton_clicked(obj:object) : void
+    {static} TrySimplifiedUIButton_Clicked(obj:object) : void
+    {static} TurnOffPlasticButton_Clicked(obj:object) : void
+    {static} ForceCheckout_Clicked(obj:object) : void
+    {static} SetupCloudProjectIdIfNeeded(wkInfo:WorkspaceInfo, plasticApi:IPlasticAPI) : void
+    {static} DisableVCSIfEnabled(projectPath:string) : void
+    {static} DisposeNewIncomingChanges(window:PlasticWindow) : void
+    {static} RegisterApplicationFocusHandlers(window:PlasticWindow) : void
+    {static} UnRegisterApplicationFocusHandlers(window:PlasticWindow) : void
+    {static} IsExitGUIException(ex:Exception) : bool
+    {static} IsIMGUIPaintException(ex:Exception) : bool
+    {static} ClosePlasticWindow(window:PlasticWindow) : void
+    {static} ShowPlasticWindow(window:PlasticWindow) : void
+    {static} NeedsToDisplayWelcomeView(clientNeedsConfiguration:bool, wkInfo:WorkspaceInfo) : bool
+    {static} RepaintProjectWindow() : void
+    {static} DisableCollabIfEnabled(projectPath:string) : void
+    {static} InstantiateFrom(window:PlasticWindow) : PlasticWindow
+    mForceToOpen : bool
+    mWkInfo : WorkspaceInfo
+    mException : Exception
+    <<internal>> mIncomingChangesNotificationPanel : IIncomingChangesNotificationPanel
+    mLastUpdateTime : double = 0f
+    mCooldownAutoRefreshPendingChangesAction : CooldownWindowDelayer
+    <<internal>> mViewSwitcher : ViewSwitcher
+    mWelcomeView : WelcomeView
+    <<internal>> mNotificationDrawer : NotificationDrawer
+    mDeveloperNewIncomingChangesUpdater : PlasticGui.WorkspaceWindow.NewIncomingChangesUpdater
+    mGluonNewIncomingChangesUpdater : GluonNewIncomingChangesUpdater
+    mWorkspaceWindow : WorkspaceWindow
+    mIsGluonMode : bool
+    mDisableCollabIfEnabledWhenLoaded : bool
+    mPlasticAPI : PlasticAPI
+    {static} mPlasticWebRestApi : PlasticWebRestApi
+    mEventSenderScheduler : EventSenderScheduler
+    mPingEventLoop : PingEventLoop
+    mAssetOperations : IAssetMenuOperations
+    mNotificationStatus : PlasticNotification.Status
+    {static} mPlasticWindowIcon : Texture
+    {static} <<readonly>> mLog : ILog
+}
+class Reload <<static>> {
+    <<internal>> {static} IfWorkspaceConfigChanged(plasticApi:IPlasticAPI, lastWkInfo:WorkspaceInfo, lastIsGluonMode:bool, reloadAction:Action) : void
+    {static} IsWorkspaceConfigChanged(lastWkInfo:WorkspaceInfo, currentWkInfo:WorkspaceInfo, lastIsGluonMode:bool, currentIsGluonMode:bool) : bool
+}
+EditorWindow <|-- PlasticWindow
+PlasticWindow +-- Reload
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ExceptionHelper <<static>> {
+    <<const>> k_UxmlPath : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/ExceptionVisual.uxml"
+    <<const>> k_ExceptionContext : string = "exception-context"
+    <<const>> k_ExceptionMessage : string = "exception-message"
+    + {static} AddExceptionVisual(exceptionContainer:VisualElement, exceptionContext:string, exceptionMessage:string) : void
+    {static} SetLabelText(labelContainer:VisualElement, className:string, message:string) : void
+}
+@enduml

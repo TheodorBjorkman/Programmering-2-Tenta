@@ -1,0 +1,13 @@
+@startuml
+class ConflictedChangeListAdapter {
+    m_Presenter : IChangesPresenter
+    m_List : IReadOnlyList<IChangeEntryData>
+    + List : IReadOnlyList<IChangeEntryData> <<set>>
+    + ConflictedChangeListAdapter(presenter:IChangesPresenter)
+    + <<override>> Height : int <<get>>
+    # <<override>> MakeItem() : ConflictedChangeListElement
+    # <<override>> BindItem(element:ConflictedChangeListElement, index:int) : void
+    + <<override>> GetEntryCount() : int
+}
+"BaseListAdapter`1" "<ConflictedChangeListElement>" <|-- ConflictedChangeListAdapter
+@enduml

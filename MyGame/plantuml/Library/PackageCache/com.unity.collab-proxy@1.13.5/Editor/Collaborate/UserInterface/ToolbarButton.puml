@@ -1,0 +1,32 @@
+@startuml
+class ToolbarButton {
+    m_CurrentState : ToolbarButtonState
+    m_ErrorMessage : string
+    <<readonly>> m_IconCache : Dictionary<ToolbarButtonState, GUIContent>
+    m_CollabButton : ButtonWithAnimatedIconRotation
+    + ToolbarButton()
+    OnUnityConnectUserStateChanged(state:UserInfo) : void
+    OnUnityConnectStateChanged(state:ConnectInfo) : void
+    OnCollabStateChanged(info:CollabInfo) : void
+    OnPlasticNotificationUpdated() : void
+    {static} LoadIcon(iconName:string) : Texture
+    GetIconForState() : GUIContent
+    + <<override>> OnGUI(rect:Rect) : void
+    + Update() : void
+    # <<virtual>> GetCurrentState() : ToolbarButtonState
+}
+enum ToolbarButtonState {
+    NeedToEnableCollab,
+    UpToDate,
+    Conflict,
+    OperationError,
+    ServerHasChanges,
+    FilesToPush,
+    InProgress,
+    Disabled,
+    Offline,
+    Plastic,
+}
+SubToolbar <|-- ToolbarButton
+ToolbarButton +-- ToolbarButtonState
+@enduml

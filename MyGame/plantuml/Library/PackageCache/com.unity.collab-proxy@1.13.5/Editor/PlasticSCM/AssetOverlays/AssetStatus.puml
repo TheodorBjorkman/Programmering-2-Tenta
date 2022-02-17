@@ -1,0 +1,30 @@
+@startuml
+enum AssetStatus {
+    None= 0,
+    Private= 1 << 0,
+    Ignored= 1 << 2,
+    Added= 1 << 3,
+    Checkout= 1 << 4,
+    Controlled= 1 << 5,
+    UpToDate= 1 << 6,
+    OutOfDate= 1 << 7,
+    Conflicted= 1 << 8,
+    DeletedOnServer= 1 << 9,
+    Locked= 1 << 10,
+    LockedRemote= 1 << 11,
+}
+class LockStatusData {
+    <<internal>> <<readonly>> Status : AssetStatus
+    <<internal>> <<readonly>> LockedBy : string
+    <<internal>> <<readonly>> WorkspaceName : string
+    <<internal>> LockStatusData(status:AssetStatus, lockedBy:string, workspaceName:string)
+}
+class ClassifyAssetStatus {
+    <<internal>> {static} IsControlled(status:AssetStatus) : bool
+    <<internal>> {static} IsLockedRemote(status:AssetStatus) : bool
+    <<internal>> {static} IsConflicted(status:AssetStatus) : bool
+    <<internal>> {static} IsAdded(status:AssetStatus) : bool
+    <<internal>> {static} IsCheckedOut(status:AssetStatus) : bool
+    {static} ContainsAny(status:AssetStatus, matchTo:AssetStatus) : bool
+}
+@enduml

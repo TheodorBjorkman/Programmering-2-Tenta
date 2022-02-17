@@ -1,0 +1,9 @@
+@startuml
+class DownloadAndInstallOperation {
+    <<internal>> {static} Run(plasticEdition:Edition, installerDestinationPath:string, progressControls:ProgressControlsForDialogs) : void
+    {static} RunInstaller(installerPath:string, progressControls:ProgressControlsForDialogs) : void
+    {static} DownloadInstaller(url:string, destinationPath:string, progressControls:ProgressControlsForDialogs) : void
+    {static} UnZipMacOsPackage(zipInstallerPath:string) : string
+    {static} GetInstallerUrl(version:string, isCloudEdition:bool) : string
+}
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+interface IAssetStatusCache {
+    GetStatusForPath(fullPath:string) : AssetStatus
+    GetStatusForGuid(guid:string) : AssetStatus
+    GetLockStatusData(guid:string) : LockStatusData
+    GetLockStatusDataForPath(path:string) : LockStatusData
+    Clear() : void
+}
+class AssetStatusCache {
+    <<internal>> AssetStatusCache(wkInfo:WorkspaceInfo, isGluonMode:bool, repaintProjectWindow:Action)
+    GetStatusForPath(fullPath:string) : AssetStatus
+    GetStatusForGuid(guid:string) : AssetStatus
+    GetLockStatusDataForPath(path:string) : LockStatusData
+    GetLockStatusData(guid:string) : LockStatusData
+    Clear() : void
+    {static} GetAssetPath(guid:string) : string
+    <<readonly>> mLocalStatusCache : LocalStatusCache
+    <<readonly>> mRemoteStatusCache : RemoteStatusCache
+    <<readonly>> mLockStatusCache : LockStatusCache
+}
+IAssetStatusCache <|-- AssetStatusCache
+@enduml

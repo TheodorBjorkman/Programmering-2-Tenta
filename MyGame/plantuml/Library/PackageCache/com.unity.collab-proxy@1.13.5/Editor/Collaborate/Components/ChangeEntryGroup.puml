@@ -1,0 +1,23 @@
+@startuml
+class ChangeEntryGroup {
+    <<readonly>> m_ListView : AdapterListView
+    <<readonly>> m_GroupHeader : ChangesGroupHeader
+    <<readonly>> m_ListNotice : ListNotice
+    m_Title : string
+    m_Searching : bool
+    m_SelectedEntryCount : int
+    m_EntryCount : int
+    + ChangeEntryGroup(adapterListView:AdapterListView)
+    + Title : string <<set>> <<get>>
+    + Searching : bool <<set>> <<get>>
+    + NumberMenuItems : int <<set>>
+    + EntryCount : int <<set>> <<get>>
+    + SelectedEntryCount : int <<set>> <<get>>
+    UpdateListNoticeText() : void
+    UpdateTitle() : void
+    UpdateListNotice() : void
+    + SetOverflowCallback(callback:Action<float, float>) : void
+    + ScrollTo(idx:int) : void
+}
+VisualElement <|-- ChangeEntryGroup
+@enduml

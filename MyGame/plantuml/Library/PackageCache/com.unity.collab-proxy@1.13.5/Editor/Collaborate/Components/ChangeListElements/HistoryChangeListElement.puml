@@ -1,0 +1,16 @@
+@startuml
+class HistoryChangeListElement {
+    + <<new>> <<const>> UssClassName : string = "history-change-list-element"
+    + <<const>> StatusIconUssClassName : string
+    + <<const>> RevertButtonUssClassName : string
+    + <<readonly>> statusIcon : VisualElement
+    + <<readonly>> revertButton : IconButton
+    + HistoryChangeListElement()
+    + <<override>> ClearData() : void
+}
+class UxmlFactory <<new>> {
+}
+BaseChangeListElement <|-- HistoryChangeListElement
+HistoryChangeListElement +-- UxmlFactory
+"UxmlFactory`1" "<HistoryChangeListElement>" <|-- UxmlFactory
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+class AssetOperations {
+    <<internal>> AssetOperations(wkInfo:WorkspaceInfo, workspaceWindow:IWorkspaceWindow, viewSwitcher:IViewSwitcher, historyViewLauncher:IHistoryViewLauncher, viewHost:ViewHost, newIncomingChangesUpdater:NewIncomingChangesUpdater, assetStatusCache:IAssetStatusCache, mergeViewLauncher:IMergeViewLauncher, gluonViewSwitcher:IGluonViewSwitcher, parentWindow:EditorWindow, assetSelection:IAssetSelection, isGluonMode:bool)
+    ShowPendingChanges() : void
+    Add() : void
+    Checkout() : void
+    Checkin() : void
+    Undo() : void
+    ShowDiff() : void
+    ShowHistory() : void
+    {static} GetSymbolicName(selectedPath:string) : string
+    <<readonly>> mWkInfo : WorkspaceInfo
+    <<readonly>> mViewSwitcher : IViewSwitcher
+    <<readonly>> mHistoryViewLauncher : IHistoryViewLauncher
+    <<readonly>> mWorkspaceWindow : IWorkspaceWindow
+    <<readonly>> mViewHost : ViewHost
+    <<readonly>> mNewIncomingChangesUpdater : NewIncomingChangesUpdater
+    <<readonly>> mAssetStatusCache : IAssetStatusCache
+    <<readonly>> mMergeViewLauncher : IMergeViewLauncher
+    <<readonly>> mGluonViewSwitcher : IGluonViewSwitcher
+    <<readonly>> mIsGluonMode : bool
+    <<readonly>> mGuiMessage : GuiMessage.IGuiMessage
+    <<readonly>> mProgressControls : EditorProgressControls
+    <<readonly>> mParentWindow : EditorWindow
+    <<readonly>> mAssetSelection : IAssetSelection
+}
+interface IAssetSelection {
+    GetSelectedAssets() : AssetList
+}
+class GetSelectedPaths <<static>> {
+    <<internal>> {static} ForOperation(assetSelection:IAssetSelection, assetStatusCache:IAssetStatusCache, operation:AssetMenuOperations) : List<string>
+    {static} IsApplicableForOperation(path:string, isDirectory:bool, operation:AssetMenuOperations, assetStatusCache:IAssetStatusCache) : bool
+}
+IAssetMenuOperations <|-- AssetOperations
+AssetOperations +-- IAssetSelection
+AssetOperations +-- GetSelectedPaths
+@enduml

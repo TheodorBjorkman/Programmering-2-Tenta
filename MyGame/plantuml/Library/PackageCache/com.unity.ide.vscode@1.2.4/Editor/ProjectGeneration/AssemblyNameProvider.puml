@@ -1,0 +1,35 @@
+@startuml
+interface IAssemblyNameProvider {
+    ProjectSupportedExtensions : string[] <<get>>
+    ProjectGenerationFlag : ProjectGenerationFlag <<get>>
+    GetAssemblyNameFromScriptPath(path:string) : string
+    GetAssemblies(shouldFileBePartOfSolution:Func<string, bool>) : IEnumerable<Assembly>
+    GetAllAssetPaths() : IEnumerable<string>
+    GetRoslynAnalyzerPaths() : IEnumerable<string>
+    FindForAssetPath(assetPath:string) : UnityEditor.PackageManager.PackageInfo
+    ParseResponseFile(responseFilePath:string, projectDirectory:string, systemReferenceDirectories:string[]) : ResponseFileData
+    IsInternalizedPackagePath(path:string) : bool
+    ToggleProjectGeneration(preference:ProjectGenerationFlag) : void
+}
+interface IPackageInfoCache {
+    ResetPackageInfoCache() : void
+}
+class AssemblyNameProvider {
+    - <<readonly>> m_PackageInfoCache : Dictionary<string, UnityEditor.PackageManager.PackageInfo>
+    m_ProjectGenerationFlag : ProjectGenerationFlag
+    + ProjectSupportedExtensions : string[] <<get>>
+    + ProjectGenerationFlag : ProjectGenerationFlag <<get>>
+    + GetAssemblyNameFromScriptPath(path:string) : string
+    + GetAssemblies(shouldFileBePartOfSolution:Func<string, bool>) : IEnumerable<Assembly>
+    + GetAllAssetPaths() : IEnumerable<string>
+    - {static} ResolvePotentialParentPackageAssetPath(assetPath:string) : string
+    + ResetPackageInfoCache() : void
+    + FindForAssetPath(assetPath:string) : UnityEditor.PackageManager.PackageInfo
+    + ParseResponseFile(responseFilePath:string, projectDirectory:string, systemReferenceDirectories:string[]) : ResponseFileData
+    + IsInternalizedPackagePath(path:string) : bool
+    + ToggleProjectGeneration(preference:ProjectGenerationFlag) : void
+    + GetRoslynAnalyzerPaths() : IEnumerable<string>
+}
+IAssemblyNameProvider <|-- AssemblyNameProvider
+IPackageInfoCache <|-- AssemblyNameProvider
+@enduml

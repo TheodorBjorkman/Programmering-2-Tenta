@@ -1,0 +1,5 @@
+@startuml
+class "ArrayContainer`1"<T> {
+    + Values : T[]
+}
+@enduml

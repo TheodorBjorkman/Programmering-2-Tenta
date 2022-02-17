@@ -1,0 +1,44 @@
+@startuml
+class ChangesTabPageView {
+    m_Presenter : IChangesPresenter
+    + <<const>> UssClassName : string = "changes-tab-page-view"
+    + <<const>> SearchBarUssClassName : string
+    + <<const>> EntryGroupsUssClassName : string
+    + <<const>> PublishButtonUssClassName : string
+    + <<const>> TextFieldUssClassName : string
+    + <<const>> ListViewUssClassName : string
+    {static} <<readonly>> k_LayoutPath : string
+    {static} <<readonly>> k_StylePath : string
+    <<readonly>> m_PublishButton : IconTextButton
+    <<readonly>> m_RevisionSummaryBox : BetterTextField
+    <<readonly>> m_SearchBar : SearchBar
+    <<readonly>> m_EntryGroupsContainer : VisualElement
+    m_Active : bool
+    m_ConflictedChangeListAdapter : ConflictedChangeListAdapter
+    m_ToggleableChangeListAdapter : ToggleableChangeListAdapter
+    m_EntryToggleableGroup : ChangeEntryGroup
+    m_EntryConflictsGroup : ChangeEntryGroup
+    m_ActiveGroup : VisualElement
+    + ChangesTabPageView()
+    + Presenter : IChangesPresenter <<set>>
+    SetupEvents() : void
+    + SetBusyStatus(busy:bool) : void
+    # <<override>> SetActive() : void
+    # <<override>> SetInactive() : void
+    + SetSearchQuery(query:string) : void
+    + SetRevisionSummary(message:string) : void
+    + SetConflicts(list:IReadOnlyList<IChangeEntryData>) : void
+    + SetSelectedChanges() : void
+    + SetChanges(list:IReadOnlyList<IChangeEntryData>) : void
+    + SetToggledCount(count:int) : void
+    + SetPublishEnabled(enabled:bool, reason:string) : void
+    + DisplayDialogue(title:string, message:string, affirmative:string) : bool
+    + DisplayDialogue(title:string, message:string, affirmative:string, negative:string) : bool
+}
+class UxmlFactory <<new>> {
+}
+TabPageComponent <|-- ChangesTabPageView
+IChangesView <|-- ChangesTabPageView
+ChangesTabPageView +-- UxmlFactory
+"UxmlFactory`1" "<ChangesTabPageView>" <|-- UxmlFactory
+@enduml

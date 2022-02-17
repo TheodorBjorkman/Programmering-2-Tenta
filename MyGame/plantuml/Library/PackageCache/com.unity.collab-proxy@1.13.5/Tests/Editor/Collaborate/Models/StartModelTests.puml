@@ -1,0 +1,31 @@
+@startuml
+class StartModelTests {
+    m_Provider : TestCollab
+    m_Atc : AsyncToCoroutine
+    + OneTimeSetup() : void
+    + Setup() : void
+    + TearDown() : void
+    + TestWhenProjectBoundSavesAssets() : IEnumerator
+    + TestWhenGenesisReturnsForbiddenShowsCredentialsError() : IEnumerator
+    + TestsWhenGenesisReturnsErrorShowsGenericError() : IEnumerator
+    + TestWhenGenesisReturnsOkCallsTurnOnCollabInternal() : IEnumerator
+}
+class TestCollab {
+    + isProjectBoundTestImpl : Func<ProjectStatus>
+    + saveAssetsTestImpl : Action
+    + turnOnCollabInternalTestImpl : Action
+    + putAsyncTestImpl : Func<Task<HttpResponseMessage>>
+    + showCredentialsErrorTestImpl : Action
+    + showGeneralErrorTestImpl : Action
+    + TestCollab()
+    + <<async>> TestRequestTurnOnService() : Task
+    # <<override>> PutAsync(client:HttpClient, fullUrl:string, content:StringContent) : Task<HttpResponseMessage>
+    # <<override>> TurnOnCollabInternal() : void
+    # <<override>> SaveAssets() : void
+    + <<override>> GetProjectStatus() : ProjectStatus
+    # <<override>> ShowCredentialsError() : void
+    # <<override>> ShowGeneralError() : void
+}
+StartModelTests +-- TestCollab
+Collab <|-- TestCollab
+@enduml

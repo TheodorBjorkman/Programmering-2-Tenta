@@ -1,0 +1,60 @@
+@startuml
+class ChangesetsTab {
+    <<internal>> ChangesetsTab(wkInfo:WorkspaceInfo, workspaceWindow:IWorkspaceWindow, viewSwitcher:IViewSwitcher, historyViewLauncher:IHistoryViewLauncher, parentWindow:EditorWindow, isGluonMode:bool)
+    <<internal>> OnDisable() : void
+    <<internal>> Update() : void
+    <<internal>> OnGUI() : void
+    <<internal>> DrawSearchFieldForChangesetsTab() : void
+    Refresh() : void
+    GetSelectedChangesetsCount() : int
+    DiffChangeset() : void
+    DiffSelectedChangesets() : void
+    DiffWithAnotherChangeset() : void
+    CreateBranch() : void
+    LabelChangeset() : void
+    SwitchToChangeset() : void
+    MergeChangeset() : void
+    CherryPickChangeset() : void
+    SubtractiveChangeset() : void
+    SubtractiveChangesetInterval() : void
+    CherryPickChangesetInterval() : void
+    MergeToChangeset() : void
+    MoveChangeset() : void
+    DeleteChangeset() : void
+    BrowseRepositoryOnChangeset() : void
+    CreateCodeReview() : void
+    SearchField_OnDownOrUpArrowKeyPressed() : void
+    FillChangesets(wkInfo:WorkspaceInfo, query:string) : void
+    DiffBranch() : void
+    GetSelectedChangeset() : ChangesetExtendedInfo
+    OnChangesetsListViewSizeChanged() : void
+    OnSelectionChanged() : void
+    {static} UpdateChangesetsList(changesetsListView:ChangesetsListView, queryResult:ViewQueryResult, loadedChangesetId:long) : void
+    {static} GetLoadedChangesetId(wkInfo:WorkspaceInfo, isGluonMode:bool) : long
+    {static} GetChangesetsQuery(dateFilter:DateFilter) : string
+    {static} GetChangesetsCount(queryResult:ViewQueryResult) : int
+    VerifyIfSearchFieldIsRecentlyFocused(searchField:SearchField) : void
+    DoActionsToolbar(refreshableView:IRefreshableView, progressControls:ProgressControlsForViews, searchField:SearchField, changesetsListView:ChangesetsListView, dateFilter:DateFilter) : void
+    {static} DoChangesetsArea(changesetsListView:ChangesetsListView, isOperationRunning:bool) : void
+    {static} DoChangesArea(diffPanel:DiffPanel) : void
+    <<internal>> DrawDateFilter() : void
+    InitializeShowChangesButtonWidth() : void
+    BuildComponents(wkInfo:WorkspaceInfo, workspaceWindow:IWorkspaceWindow, viewSwitcher:IViewSwitcher, historyViewLauncher:IHistoryViewLauncher, parentWindow:EditorWindow) : void
+    mIsRefreshing : bool
+    mShouldScrollToSelection : bool
+    mShowChangesButtonWidth : float
+    mSplitterState : object
+    mBorderColor : Color
+    mDateFilter : DateFilter
+    mSearchField : SearchField
+    mIsSearchFieldFocused : bool = false
+    mChangesetsListView : ChangesetsListView
+    mDiffPanel : DiffPanel
+    <<readonly>> mIsGluonMode : bool
+    <<readonly>> mProgressControls : ProgressControlsForViews
+    <<readonly>> mParentWindow : EditorWindow
+    <<readonly>> mWkInfo : WorkspaceInfo
+}
+IRefreshableView <|-- ChangesetsTab
+IChangesetMenuOperations <|-- ChangesetsTab
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class AssetPostprocessor {
+    <<internal>> {static} IsEnabled : bool <<get>> <<set>>
+    {static} OnPostprocessAllAssets(importedAssets:string[], deletedAssets:string[], movedAssets:string[], movedFromAssetPaths:string[]) : void
+}
+@enduml

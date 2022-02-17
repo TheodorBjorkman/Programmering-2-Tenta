@@ -1,0 +1,18 @@
+@startuml
+class PlasticApp <<static>> {
+    <<internal>> {static} InitializeIfNeeded() : void
+    <<internal>> {static} RegisterClientHandlersIfNeeded() : void
+    <<internal>> {static} Dispose() : void
+    {static} InitLocalization() : void
+    {static} ConfigureLogging() : void
+    {static} RegisterExceptionHandlers() : void
+    {static} UnRegisterExceptionHandlers() : void
+    {static} HandleUnhandledException(sender:object, args:UnhandledExceptionEventArgs) : void
+    {static} HandleLog(logString:string, stackTrace:string, type:LogType) : void
+    {static} SetupFsWatcher() : void
+    {static} IsPlasticStackTrace(stackTrace:string) : bool
+    {static} IsExitGUIException(ex:Exception) : bool
+    {static} mIsInitialized : bool
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

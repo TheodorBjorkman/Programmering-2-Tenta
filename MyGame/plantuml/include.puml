@@ -1,0 +1,87 @@
+@startuml !include
+skinparam ClassAttributeIconSize 0
+skinparam Monochrome true
+hide circle
+class EntityBase {
+    - health : int = 10
+    - rigidbody : Rigidbody
+    + Health : int <<get>> <<set>>
+    + Rigidbody : Rigidbody <<get>>
+    - Awake() : void
+    # StartEntity() : void
+}
+MonoBehaviour <|-- EntityBase
+class PlayerController {
+    - moveDirection : float = 0
+    Awake() : void
+    Update() : void
+    FixedUpdate() : void
+}
+CharacterController3d <|-- PlayerController
+class Spawner {
+    - Awake() : void
+    Update() : void
+}
+MonoBehaviour <|-- Spawner
+class CharacterController3d <<partial>> {
+    Awake() : void
+    # StartController() : void
+    FixedUpdate() : void
+}
+EntityBase <|-- CharacterController3d
+class CharacterController3d <<partial>> {
+    - rotationSpeed : float = 180f
+    - maxRotationSpeed : float = 360f
+    - gravity : float
+    - moveSpeed : float = 1f
+    - maxSpeed : float = 10f
+    - rotationDirection : int = 0
+    - velocity : Vector3
+    - startPosition : Vector3
+    - defaultM : Material
+    - transform : Transform
+    + RotationDirection : float <<get>> <<set>>
+    + MoveSpeed : float <<get>> <<set>>
+    + MaxSpeed : float <<get>> <<set>>
+    + RotationSpeed : float <<get>> <<set>>
+    + MaxRotationSpeed : float <<get>> <<set>>
+}
+EntityBase <|-- CharacterController3d
+class CharacterController3d <<partial>> {
+    # Move(moveDirection:float) : void
+    # Rotate() : void
+    # ApplyGravity() : void
+    # ChangeRotationDirection(direction:float) : void
+}
+EntityBase <|-- CharacterController3d
+class APICallConsole {
+    # json : string
+    # GetWeather() : IEnumerator
+}
+MonoBehaviour <|-- APICallConsole
+class BaseConsole {
+    OnEndEdit() : void
+}
+ConsoleIOHandler <|-- BaseConsole
+class ConsoleIOHandler <<partial>> {
+    Help(inputArray:string[]) : void
+    Get(inputArray:string[]) : void
+}
+APICallConsole <|-- ConsoleIOHandler
+class ConsoleIOHandler <<partial>> {
+    # ProcessInput(input:string) : void
+    Update() : void
+    Output(input:string) : void
+}
+APICallConsole <|-- ConsoleIOHandler
+class ConsoleIOHandler <<partial>> {
+    CleanWeather(input:string) : string
+    RemoveCharacter(input:string, rem:char) : string
+    RemoveCharacter(input:string, rem:char[]) : string
+}
+APICallConsole <|-- ConsoleIOHandler
+class WeatherData {
+    + value : string
+    + GetRequest(url:string) : IEnumerator<UnityWebRequestAsyncOperation>
+}
+@enduml

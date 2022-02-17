@@ -1,0 +1,23 @@
+@startuml
+class CheckinMergeNeededDialog {
+    # <<override>> DefaultRect : Rect <<get>>
+    <<internal>> {static} Merge(wkInfo:WorkspaceInfo, parentWindow:EditorWindow) : CheckinMergeNeededData
+    # <<override>> OnModalGUI() : void
+    # <<override>> GetTitle() : string
+    DoMergeNowArea() : void
+    DoMergeLaterArea() : void
+    DoButtonsArea() : void
+    DoMergeButton() : void
+    DoCancelButton() : void
+    MergeButtonAction() : void
+    RadioToggle(text:string, isOn:bool) : bool
+    {static} Create(repSpec:RepositorySpec, currentBranchInfo:BranchInfo, progressControls:ProgressControlsForDialogs) : CheckinMergeNeededDialog
+    mMergeNow : bool = true
+    mChildBranchName : string
+    mProgressControls : ProgressControlsForDialogs
+    mCurrentBranchInfo : BranchInfo
+    mRepSpec : RepositorySpec
+    <<const>> DEFAULT_BRANCH_NAME : string = "task000"
+}
+PlasticDialog <|-- CheckinMergeNeededDialog
+@enduml

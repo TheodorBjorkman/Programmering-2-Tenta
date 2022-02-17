@@ -1,0 +1,5 @@
+@startuml
+interface IVisuals {
+    GetVisuals() : VisualElement
+}
+@enduml

@@ -1,0 +1,6 @@
+@startuml
+class AccessTokenErrorUiHelper <<static>> {
+    <<const>> k_UxmlPath : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/AccessTokenError.uxml"
+    + {static} AddAccessTokenErrorUI(accessTokenErrorContainer:VisualElement) : void
+}
+@enduml

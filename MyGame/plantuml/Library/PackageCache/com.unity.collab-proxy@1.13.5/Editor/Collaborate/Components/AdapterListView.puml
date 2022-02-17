@@ -1,0 +1,20 @@
+@startuml
+class AdapterListView {
+    + <<const>> UssClassName : string = "unity-adapter-list-view"
+    + <<const>> ListViewUssClassName : string
+    m_Adapter : IAdapter
+    <<readonly>> m_ListView : ListView
+    + AdapterListView()
+    + SetAdapter(adapter:BaseListAdapter<T>) : void
+    + RemoveAdapter() : void
+    + SelectionType : SelectionType <<set>> <<get>>
+    + NotifyDataSetChanged() : void
+    + ScrollToIndex(idx:int) : void
+}
+class UxmlFactory <<new>> {
+}
+VisualElement <|-- AdapterListView
+IAdapterObserver <|-- AdapterListView
+AdapterListView +-- UxmlFactory
+"UxmlFactory`1" "<AdapterListView>" <|-- UxmlFactory
+@enduml

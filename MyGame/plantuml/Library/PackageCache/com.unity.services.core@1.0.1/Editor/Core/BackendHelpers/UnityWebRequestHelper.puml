@@ -1,0 +1,5 @@
+@startuml
+class UnityWebRequestHelper <<static>> {
+    <<internal>> {static} IsUnityWebRequestReadyForTextExtract(unityWebRequest:UnityWebRequest, downloadHandlerText:string) : bool
+}
+@enduml

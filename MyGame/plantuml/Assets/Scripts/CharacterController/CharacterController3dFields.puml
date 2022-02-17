@@ -1,0 +1,20 @@
+@startuml
+class CharacterController3d <<partial>> {
+    - rotationSpeed : float = 180f
+    - maxRotationSpeed : float = 360f
+    - gravity : float
+    - moveSpeed : float = 1f
+    - maxSpeed : float = 10f
+    - rotationDirection : int = 0
+    - velocity : Vector3
+    - startPosition : Vector3
+    - defaultM : Material
+    - transform : Transform
+    + RotationDirection : float <<get>> <<set>>
+    + MoveSpeed : float <<get>> <<set>>
+    + MaxSpeed : float <<get>> <<set>>
+    + RotationSpeed : float <<get>> <<set>>
+    + MaxRotationSpeed : float <<get>> <<set>>
+}
+EntityBase <|-- CharacterController3d
+@enduml

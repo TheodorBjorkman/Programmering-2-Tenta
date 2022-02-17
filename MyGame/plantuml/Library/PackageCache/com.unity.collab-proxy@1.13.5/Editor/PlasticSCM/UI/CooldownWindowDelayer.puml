@@ -1,0 +1,15 @@
+@startuml
+class CooldownWindowDelayer {
+    <<internal>> CooldownWindowDelayer(action:Action, cooldownSeconds:double)
+    <<internal>> Ping() : void
+    RefreshCooldown() : void
+    StartCooldown() : void
+    EndCooldown() : void
+    OnUpdate() : void
+    <<readonly>> mAction : Action
+    <<readonly>> mCooldownSeconds : double
+    mLastUpdateTime : double
+    mIsOnCooldown : bool
+    mSecondsOnCooldown : double
+}
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+class TestMainView {
+    + tabIndex : int?
+    + inProgress : bool
+    + progress : (string title, string details, int percentage, int completed, int total, bool isPercentage, bool canCancel)?
+    + backNavigation : string
+    + Presenter : IMainPresenter <<get>> <<set>>
+    + alerts : Dictionary<string, (string id, AlertBox.AlertLevel level, string message, (string text, Action action)? button)>
+    + AddAlert(id:string, level:AlertBox.AlertLevel, message:string, button:(string text, Action action)?) : void
+    + RemoveAlert(id:string) : void
+    + SetTab(index:int) : void
+    + AddOperationProgress() : void
+    + RemoveOperationProgress() : void
+    + SetOperationProgress(title:string, details:string, percentage:int, completed:int, total:int, isPercentage:bool, canCancel:bool) : void
+    + ClearBackNavigation() : void
+    + DisplayBackNavigation(text:string) : void
+}
+IMainView <|-- TestMainView
+@enduml

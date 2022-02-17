@@ -1,0 +1,11 @@
+@startuml
+class ParseArguments <<static>> {
+    <<internal>> {static} CloudProject(args:Dictionary<string, string>) : string
+    <<internal>> {static} CloudOrganization(args:Dictionary<string, string>) : string
+    <<internal>> {static} ProjectPath(args:Dictionary<string, string>) : string
+    {static} GetOrganizationNameFromData(data:string) : string
+    <<const>> CLOUD_PROJECT : string = "-cloudProject"
+    <<const>> CLOUD_ORGANIZATION : string = "-cloudOrganization"
+    <<const>> CREATE_PROJECT : string = "-createProject"
+}
+@enduml

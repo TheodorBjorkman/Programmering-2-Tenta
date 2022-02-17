@@ -1,0 +1,34 @@
+@startuml
+class DrawAssetOverlay <<static>> {
+    <<internal>> {static} Initialize(cache:IAssetStatusCache, repaintProjectWindow:Action) : void
+    <<internal>> {static} Dispose() : void
+    <<internal>> {static} ClearCache() : void
+    <<internal>> {static} GetStatusesToDraw(status:AssetStatus) : AssetStatus
+    <<internal>> {static} GetStatusString(statusValue:AssetStatus) : string
+    <<internal>> {static} GetTooltipText(statusValue:AssetStatus, lockStatusData:LockStatusData) : string
+    {static} OnProjectWindowItemGUI(guid:string, selectionRect:Rect) : void
+    {static} mAssetStatusCache : IAssetStatusCache
+    {static} mRepaintProjectWindow : Action
+    <<const>> OVERLAY_ICON_SIZE : float = 16f
+}
+class DrawOverlayIcon <<static>> {
+    <<internal>> {static} ForStatus(selectionRect:Rect, status:AssetStatus, tooltipText:string) : void
+    <<internal>> {static} GetOverlayIcon(status:AssetStatus) : Texture
+    {static} Inflate(rect:Rect, width:float, height:float) : Rect
+    {static} GetOverlayRect(selectionRect:Rect, overlayIcon:Texture, status:AssetStatus) : Rect
+    {static} GetTooltipRect(selectionRect:Rect, overlayRect:Rect) : Rect
+    {static} GetOverlayRectForSmallestSize(selectionRect:Rect, overlayIcon:Texture, alignment:OverlayAlignment) : Rect
+    {static} GetOverlayRectForOtherSizes(selectionRect:Rect, overlayIcon:Texture, alignment:OverlayAlignment) : Rect
+    {static} GetIconPosition(status:AssetStatus) : OverlayAlignment
+    {static} IsLeftAligned(alignment:OverlayAlignment) : bool
+    {static} IsTopAligned(alignment:OverlayAlignment) : bool
+}
+enum OverlayAlignment {
+    TopLeft,
+    BottomLeft,
+    TopRight,
+    BottomRight,
+}
+DrawAssetOverlay +-- DrawOverlayIcon
+DrawOverlayIcon +-- OverlayAlignment
+@enduml

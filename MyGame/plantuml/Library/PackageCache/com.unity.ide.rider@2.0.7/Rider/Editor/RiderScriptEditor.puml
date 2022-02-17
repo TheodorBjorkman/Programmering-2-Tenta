@@ -1,0 +1,33 @@
+@startuml
+class RiderScriptEditor {
+    m_Discoverability : IDiscovery
+    m_ProjectGeneration : IGenerator
+    m_Initiliazer : RiderInitializer
+    {static} RiderScriptEditor()
+    - {static} ShowWarningOnUnexpectedScriptEditor(path:string) : void
+    <<internal>> {static} GetEditorRealPath(path:string) : string
+    + RiderScriptEditor(discovery:IDiscovery, projectGeneration:IGenerator)
+    - {static} defaultExtensions : string[] <<get>>
+    - {static} HandledExtensions : string[] <<get>>
+    - {static} HandledExtensionsString : string <<get>> <<set>>
+    - {static} SupportsExtension(path:string) : bool
+    + OnGUI() : void
+    RegenerateProjectFiles() : void
+    SettingsButton(preference:ProjectGenerationFlag, guiMessage:string, toolTip:string) : void
+    + SyncIfNeeded(addedFiles:string[], deletedFiles:string[], movedFiles:string[], movedFromFiles:string[], importedFiles:string[]) : void
+    + SyncAll() : void
+    + Initialize(editorInstallationPath:string) : void
+    + OpenProject(path:string, line:int, column:int) : bool
+    - OpenOSXApp(path:string, line:int, column:int) : bool
+    - GetSolutionFile(path:string) : string
+    {static} IsUnityScript(path:string) : bool
+    {static} GetBaseUnityDeveloperFolder() : string
+    + TryGetInstallationForPath(editorPath:string, installation:CodeEditor.Installation) : bool
+    + {static} IsRiderInstallation(path:string) : bool
+    - {static} IsAssetImportWorkerProcess() : bool
+    + {static} CurrentEditor : string <<get>>
+    + Installations : CodeEditor.Installation[] <<get>>
+    - CreateSolutionIfDoesntExist() : void
+}
+IExternalCodeEditor <|-- RiderScriptEditor
+@enduml

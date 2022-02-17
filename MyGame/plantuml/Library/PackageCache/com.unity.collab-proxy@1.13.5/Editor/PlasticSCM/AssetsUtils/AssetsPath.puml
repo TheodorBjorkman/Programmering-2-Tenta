@@ -1,0 +1,13 @@
+@startuml
+class AssetsPath <<static>> {
+    <<internal>> {static} GetLayoutsFolderRelativePath() : string
+    <<internal>> {static} GetStylesFolderRelativePath() : string
+    <<internal>> {static} GetImagesFolderRelativePath() : string
+    <<internal>> {static} GetRelativePath(fullPath:string) : string
+    <<internal>> {static} GetFullPath(obj:Object) : string
+    {static} AssetsPath()
+    <<internal>> {static} IsRunningAsUPMPackage() : bool
+    {static} mProjectFullPath : string
+    {static} mAssetsFolderLocation : string
+}
+@enduml

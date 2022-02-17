@@ -1,0 +1,15 @@
+@startuml
+abstract class "BaseListAdapter`1"<T> {
+    <<readonly>> m_AdapterObservers : List<IAdapterObserver>
+    MakeItem : Func<VisualElement> <<get>>
+    BindItem : Action<VisualElement, int> <<get>>
+    + {abstract} Height : int <<get>>
+    # {abstract} MakeItem() : T
+    # {abstract} BindItem(element:T, index:int) : void
+    + {abstract} GetEntryCount() : int
+    + RegisterObserver(observer:IAdapterObserver) : void
+    + DeregisterObserver(observer:IAdapterObserver) : void
+    + NotifyDataSetChanged() : void
+}
+IAdapter <|-- "BaseListAdapter`1"
+@enduml

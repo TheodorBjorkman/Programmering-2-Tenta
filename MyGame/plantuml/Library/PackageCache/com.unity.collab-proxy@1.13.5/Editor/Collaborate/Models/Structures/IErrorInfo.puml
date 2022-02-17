@@ -1,0 +1,24 @@
+@startuml
+interface IErrorInfo {
+    Code : int <<get>>
+    Priority : ErrorInfoPriority <<get>>
+    Behaviour : ErrorInfoBehavior <<get>>
+    Message : string <<get>>
+    ShortMessage : string <<get>>
+    CodeString : string <<get>>
+}
+enum ErrorInfoPriority {
+    Critical= 0,
+    Error,
+    Warning,
+    Info,
+    None,
+}
+enum ErrorInfoBehavior {
+    Alert= 0,
+    Automatic,
+    Hidden,
+    ConsoleOnly,
+    Reconnect,
+}
+@enduml

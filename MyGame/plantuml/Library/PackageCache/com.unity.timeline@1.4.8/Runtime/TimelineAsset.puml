@@ -1,0 +1,62 @@
+@startuml
+class TimelineAsset <<partial>> {
+    m_Tracks : List<ScriptableObject>
+    m_FixedDuration : double
+    m_CacheOutputTracks : TrackAsset[]
+    m_CacheRootTracks : List<TrackAsset>
+    m_CacheFlattenedTracks : List<TrackAsset>
+    m_EditorSettings : EditorSettings
+    m_DurationMode : DurationMode
+    m_MarkerTrack : MarkerTrack
+    + editorSettings : EditorSettings <<get>>
+    + <<override>> duration : double <<get>>
+    + fixedDuration : double <<get>> <<set>>
+    + durationMode : DurationMode <<get>> <<set>>
+    + <<override>> outputs : IEnumerable<PlayableBinding> <<get>>
+    + clipCaps : ClipCaps <<get>>
+    + outputTrackCount : int <<get>>
+    + rootTrackCount : int <<get>>
+    OnValidate() : void
+    <<internal>> {static} GetValidFramerate(framerate:float) : float
+    + GetRootTrack(index:int) : TrackAsset
+    + GetRootTracks() : IEnumerable<TrackAsset>
+    + GetOutputTrack(index:int) : TrackAsset
+    + GetOutputTracks() : IEnumerable<TrackAsset>
+    UpdateRootTrackCache() : void
+    UpdateOutputTrackCache() : void
+    <<internal>> flattenedTracks : IEnumerable<TrackAsset> <<get>>
+    + markerTrack : MarkerTrack <<get>>
+    <<internal>> trackObjects : List<ScriptableObject> <<get>>
+    <<internal>> AddTrackInternal(track:TrackAsset) : void
+    <<internal>> RemoveTrack(track:TrackAsset) : void
+    + <<override>> CreatePlayable(graph:PlayableGraph, go:GameObject) : Playable
+    OnBeforeSerialize() : void
+    OnAfterDeserialize() : void
+    __internalAwake() : void
+    + GatherProperties(director:PlayableDirector, driver:IPropertyCollector) : void
+    + CreateMarkerTrack() : void
+    <<internal>> Invalidate() : void
+    <<internal>> UpdateFixedDurationWithItemsDuration() : void
+    CalculateItemsDuration() : DiscreteTime
+    {static} AddSubTracksRecursive(track:TrackAsset, allTracks:List<TrackAsset>) : void
+}
+enum DurationMode {
+    BasedOnClips,
+    FixedLength,
+}
+class EditorSettings {
+    <<internal>> {static} <<readonly>> kMinFps : float
+    <<internal>> {static} <<readonly>> kMaxFps : float = 1000.0f
+    <<internal>> {static} <<readonly>> kDefaultFps : float = 60.0f
+    m_Framerate : float
+    m_ScenePreview : bool = true
+    + fps : float <<get>> <<set>>
+    + scenePreview : bool <<get>> <<set>>
+}
+PlayableAsset <|-- TimelineAsset
+ISerializationCallbackReceiver <|-- TimelineAsset
+ITimelineClipAsset <|-- TimelineAsset
+IPropertyPreview <|-- TimelineAsset
+TimelineAsset +-- DurationMode
+TimelineAsset +-- EditorSettings
+@enduml

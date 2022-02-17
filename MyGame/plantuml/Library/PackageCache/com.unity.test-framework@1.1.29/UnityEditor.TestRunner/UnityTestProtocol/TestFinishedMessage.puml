@@ -1,0 +1,12 @@
+@startuml
+class TestFinishedMessage {
+    + name : string
+    + state : TestState
+    + message : string
+    + duration : ulong
+    + durationMicroseconds : ulong
+    + stackTrace : string
+    + TestFinishedMessage()
+}
+Message <|-- TestFinishedMessage
+@enduml

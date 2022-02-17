@@ -1,0 +1,16 @@
+@startuml
+class PendingChangesTab <<partial>> {
+    CheckinForMode(wkInfo:WorkspaceInfo, isGluonMode:bool, keepItemsLocked:bool) : void
+    <<internal>> UndoForMode(wkInfo:WorkspaceInfo, isGluonMode:bool) : void
+    UndoChangesForMode(isGluonMode:bool, changesToUndo:List<ChangeInfo>, dependenciesCandidates:List<ChangeInfo>) : void
+    PartialCheckin(keepItemsLocked:bool) : void
+    Checkin() : void
+    PartialUndo() : void
+    Undo() : void
+    PartialUndoChanges(changesToUndo:List<ChangeInfo>, dependenciesCandidates:List<ChangeInfo>) : void
+    UndoChanges(changesToUndo:List<ChangeInfo>, dependenciesCandidates:List<ChangeInfo>) : void
+    EndCheckin() : void
+    {static} CheckEmptyOperation(elements:List<ChangeInfo>) : bool
+    {static} CheckEmptyOperation(elements:List<ChangeInfo>, bHasPendingMergeLinks:bool) : bool
+}
+@enduml

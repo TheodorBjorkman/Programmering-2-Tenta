@@ -1,0 +1,11 @@
+@startuml
+class "ScriptableObjectSingleton`1"<T> {
+    {static} s_Instance : T
+    + {static} Instance : T <<get>>
+    # ScriptableObjectSingleton()
+    {static} CreateAndLoad() : void
+    # Save() : void
+    {static} GetFilePath() : string
+}
+ScriptableObject <|-- "ScriptableObjectSingleton`1"
+@enduml

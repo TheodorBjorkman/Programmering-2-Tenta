@@ -1,0 +1,11 @@
+@startuml
+class SetupCloudProjectId <<static>> {
+    <<internal>> {static} HasCloudProjectId() : bool
+    <<internal>> {static} GetCloudProjectId() : string
+    <<internal>> {static} ForWorkspace(wkInfo:WorkspaceInfo, plasticApi:IPlasticAPI) : void
+    <<internal>> {static} ForRepository(repInfo:RepositoryInfo) : void
+    <<internal>> {static} SetCloudProjectId(projectId:string) : void
+    {static} <<readonly>> PlayerSettingsType : Type
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

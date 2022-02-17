@@ -1,0 +1,7 @@
+@startuml
+class Spawner {
+    - Awake() : void
+    Update() : void
+}
+MonoBehaviour <|-- Spawner
+@enduml

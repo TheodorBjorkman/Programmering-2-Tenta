@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using API;
 using UnityEngine.UI;
-using GenericData;
 
 namespace Console
 {

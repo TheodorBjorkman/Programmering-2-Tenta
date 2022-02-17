@@ -1,0 +1,7 @@
+@startuml
+class LearnMoreVisualHelper <<static>> {
+    {static} <<readonly>> k_LearnMoreAboutTeamsUrl : string = "https://unity3d.com/teams"
+    + {static} SetupLearnMore(containerUI:VisualElement) : void
+    {static} GoToLearnMore() : void
+}
+@enduml

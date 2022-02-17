@@ -1,0 +1,7 @@
+@startuml
+class ConsoleIOHandler <<partial>> {
+    Help(inputArray:string[]) : void
+    Get(inputArray:string[]) : void
+}
+APICallConsole <|-- ConsoleIOHandler
+@enduml

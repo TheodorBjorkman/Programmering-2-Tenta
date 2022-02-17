@@ -1,0 +1,10 @@
+@startuml
+interface IEditorGameService {
+    Name : string <<get>>
+    Identifier : IEditorGameServiceIdentifier <<get>>
+    RequiresCoppaCompliance : bool <<get>>
+    HasDashboard : bool <<get>>
+    GetFormattedDashboardUrl() : string
+    Enabler : IEditorGameServiceEnabler <<get>>
+}
+@enduml

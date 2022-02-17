@@ -1,0 +1,13 @@
+@startuml
+class ServiceFlagEndpoint {
+}
+class ServiceFlagEndpointConfiguration {
+    <<const>> k_ServiceFlagFormat : string = "/projects/{0&#125;/service_flags"
+    core : string
+    + Core : string <<get>>
+    BuildApiUrl() : string
+    + BuildServiceFlagUrl(projectId:string) : string
+    + BuildPayload(serviceFlagName:string, status:bool) : string
+}
+"CdnConfiguredEndpoint`1" "<ServiceFlagEndpointConfiguration>" <|-- ServiceFlagEndpoint
+@enduml

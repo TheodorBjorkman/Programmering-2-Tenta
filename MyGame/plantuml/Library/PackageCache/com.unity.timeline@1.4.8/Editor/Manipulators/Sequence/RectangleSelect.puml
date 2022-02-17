@@ -1,0 +1,8 @@
+@startuml
+class RectangleSelect {
+    # <<override>> enableAutoPan : bool <<get>>
+    # <<override>> CanStartRectangle(evt:Event, mousePosition:Vector2, state:WindowState) : bool
+    # <<override>> OnFinish(evt:Event, state:WindowState, rect:Rect) : bool
+}
+RectangleTool <|-- RectangleSelect
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class SanityTests {
+    + TestWithString() : void
+    + TestWithCustomObject() : void
+}
+class TestObject {
+    + TestString : string
+    + TestList : List<string>
+    + TestInt : int
+}
+SanityTests +-- TestObject
+@enduml

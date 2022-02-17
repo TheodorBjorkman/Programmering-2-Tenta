@@ -1,0 +1,8 @@
+@startuml
+class IndentLevelScope <<struct>> {
+    <<readonly>> m_PrevValue : int
+    + IndentLevelScope(newValue:int)
+    + Dispose() : void
+}
+IDisposable <|-- IndentLevelScope
+@enduml

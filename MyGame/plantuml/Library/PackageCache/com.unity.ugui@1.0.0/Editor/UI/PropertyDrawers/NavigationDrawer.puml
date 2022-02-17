@@ -1,0 +1,14 @@
+@startuml
+class NavigationDrawer {
+    - {static} s_Styles : Styles = null
+    + <<override>> OnGUI(pos:Rect, prop:SerializedProperty, label:GUIContent) : void
+    {static} GetNavigationMode(navigation:SerializedProperty) : Navigation.Mode
+    + <<override>> GetPropertyHeight(prop:SerializedProperty, label:GUIContent) : float
+}
+class Styles {
+    <<readonly>> + navigationContent : GUIContent
+    + Styles()
+}
+PropertyDrawer <|-- NavigationDrawer
+NavigationDrawer +-- Styles
+@enduml

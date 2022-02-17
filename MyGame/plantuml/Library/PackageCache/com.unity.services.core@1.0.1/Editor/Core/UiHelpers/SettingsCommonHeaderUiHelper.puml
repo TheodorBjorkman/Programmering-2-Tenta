@@ -1,0 +1,30 @@
+@startuml
+class SettingsCommonHeaderUiHelper <<static>> {
+    <<internal>> {static} GenerateCommonHeader(title:string, description:string, toggleConfiguration:ToggleConfiguration, dashboardButtonClick:Action) : VisualElement
+    {static} ConfigureTitle(title:string, projectSettingsHeaderVisualElement:VisualElement) : void
+    {static} ConfigureDescription(description:string, projectSettingsHeaderVisualElement:VisualElement) : void
+    {static} ConfigureDashboardButton(dashboardButtonClick:Action, projectSettingsHeaderVisualElement:VisualElement) : void
+    {static} ConfigureToggle(configuration:ToggleConfiguration, projectSettingsHeaderVisualElement:VisualElement) : void
+}
+class UxmlPath <<static>> {
+    <<internal>> <<const>> servicesProjectSettingsCommonHeader : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/ProjectSettingsCommonHeader.uxml"
+}
+class UxmlNodeName <<static>> {
+    <<internal>> <<const>> dashboardLinkButton : string = "dashboard-link-button"
+    <<internal>> <<const>> serviceTitle : string = "service-title"
+    <<internal>> <<const>> serviceDescription : string = "service-description"
+    <<internal>> <<const>> serviceToggle : string = "service-toggle"
+    <<internal>> <<const>> toggleContainer : string = "toggle-container"
+}
+class ToggleConfiguration {
+    <<internal>> Value : bool <<get>>
+    <<internal>> Visible : bool <<get>>
+    <<internal>> Enabled : bool <<get>>
+    <<internal>> Tooltip : string <<get>>
+    <<internal>> ValueChangedAction : Action<ChangeEvent<bool>> <<get>>
+    <<internal>> ToggleConfiguration(value:bool, visible:bool, enabled:bool, valueChangedAction:Action<ChangeEvent<bool>>, tooltip:string)
+}
+SettingsCommonHeaderUiHelper +-- UxmlPath
+SettingsCommonHeaderUiHelper +-- UxmlNodeName
+SettingsCommonHeaderUiHelper +-- ToggleConfiguration
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+interface IHistoryView {
+    SetBusyStatus(busy:bool) : void
+    SetHistoryList(list:IReadOnlyList<IHistoryEntry>) : void
+    SetPage(page:int, max:int) : void
+    SetSelection(entry:IHistoryEntry) : void
+    DisplayDialogue(title:string, message:string, affirmative:string) : bool
+    DisplayDialogue(title:string, message:string, affirmative:string, negative:string) : bool
+}
+"IView`1" "<IHistoryPresenter>" <|-- IHistoryView
+@enduml

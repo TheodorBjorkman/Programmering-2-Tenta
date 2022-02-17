@@ -1,0 +1,5 @@
+@startuml
+class InspectorAssetSelection {
+    GetSelectedAssets() : AssetList
+}
+@enduml

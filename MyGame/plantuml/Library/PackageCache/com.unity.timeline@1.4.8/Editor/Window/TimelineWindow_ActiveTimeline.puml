@@ -1,0 +1,11 @@
+@startuml
+class TimelineWindow <<partial>> {
+    - m_PreviousMasterSequence : TimelineAsset
+    + ClearCurrentTimeline() : void
+    + SetCurrentTimeline(seq:TimelineAsset) : void
+    + SetCurrentTimeline(director:PlayableDirector, hostClip:TimelineClip) : void
+    SetCurrentTimeline(seq:TimelineAsset, instanceOfDirector:PlayableDirector, hostClip:TimelineClip, force:bool) : void
+    OnBeforeSequenceChange() : void
+    OnAfterSequenceChange() : void
+}
+@enduml

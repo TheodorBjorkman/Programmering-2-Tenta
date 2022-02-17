@@ -1,0 +1,10 @@
+@startuml
+class PlaymodeTestsControllerSettings {
+    + filters : RuntimeTestRunnerFilter[]
+    + sceneBased : bool
+    + originalScene : string
+    + bootstrapScene : string
+    + {static} CreateRunnerSettings(filters:RuntimeTestRunnerFilter[]) : PlaymodeTestsControllerSettings
+    <<internal>> BuildNUnitFilter() : ITestFilter
+}
+@enduml

@@ -1,0 +1,22 @@
+@startuml
+class EditorGameServiceAnalyticsSender <<static>> {
+    <<const>> k_Version : int = 1
+    <<const>> k_EventName : string = "editorgameserviceeditor"
+    <<internal>> {static} SendProjectSettingsGoToDashboardEvent(package:string) : void
+    {static} SendEvent(component:string, action:string, package:string) : void
+}
+class AnalyticsComponent <<static>> {
+    + <<const>> ProjectSettings : string = "Project Settings"
+}
+class AnalyticsAction <<static>> {
+    + <<const>> GoToDashboard : string = "Go to Dashboard"
+}
+class EditorGameServiceEvent <<struct>> {
+    + action : string
+    + component : string
+    + package : string
+}
+EditorGameServiceAnalyticsSender +-- AnalyticsComponent
+EditorGameServiceAnalyticsSender +-- AnalyticsAction
+EditorGameServiceAnalyticsSender +-- EditorGameServiceEvent
+@enduml

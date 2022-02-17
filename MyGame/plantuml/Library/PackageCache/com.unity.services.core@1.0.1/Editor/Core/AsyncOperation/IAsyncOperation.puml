@@ -1,0 +1,17 @@
+@startuml
+interface IAsyncOperation {
+    IsDone : bool <<get>>
+    Status : AsyncOperationStatus <<get>>
+     <<event>> Completed : Action<IAsyncOperation> 
+    Exception : Exception <<get>>
+}
+interface "IAsyncOperation`1"<out T> {
+    IsDone : bool <<get>>
+    Status : AsyncOperationStatus <<get>>
+     <<event>> Completed : Action<IAsyncOperation<T>> 
+    Exception : Exception <<get>>
+    Result : T <<get>>
+}
+IEnumerator <|-- IAsyncOperation
+IEnumerator <|-- "IAsyncOperation`1"
+@enduml

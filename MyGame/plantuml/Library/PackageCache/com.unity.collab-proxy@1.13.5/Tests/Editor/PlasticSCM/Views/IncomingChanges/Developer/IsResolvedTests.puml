@@ -1,0 +1,15 @@
+@startuml
+class IsResolvedTests {
+    + IsDirectoryConflictResolved() : void
+    + IsDirectoryConflictNotResolved() : void
+    + IsFileConflictResolved() : void
+    + IsFileConflictNotResolved() : void
+    + IsDirectoryConflictWithMetaResolved() : void
+    + IsDirectoryConflictWithMetaNotResolved() : void
+    + IsFileConflictWithMetaResolved() : void
+    + IsFileDirectoryConflictWithMetaNotResolved() : void
+    BuilDirectoryConflict(isResolved:bool, itemId:long) : MergeChangeInfo
+    BuildFileConflict(mountPointId:MountPointId, itemId:long) : MergeChangeInfo
+    {static} CreateFileRevision(itemId:long) : RevisionInfo
+}
+@enduml

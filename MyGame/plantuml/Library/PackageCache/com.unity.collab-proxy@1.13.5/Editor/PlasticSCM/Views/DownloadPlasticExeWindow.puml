@@ -1,0 +1,24 @@
+@startuml
+class DownloadPlasticExeWindow {
+    <<internal>> {static} ShowWindow(isGluonMode:bool) : void
+    OnEnable() : void
+    OnDestroy() : void
+    Dispose() : void
+    DownloadCloudEditionButton_Clicked() : void
+    DownloadEnterpriseEditionButton_Clicked() : void
+    CancelButton_Clicked() : void
+    CheckForPlasticExe() : void
+    BuildComponents() : void
+    InitializeLayoutAndStyles() : void
+    {static} sIsGluonMode : bool
+    mInstallerFile : string
+    mRequireMessageLabel : Label
+    mMessageLabel : Label
+    mDownloadCloudEditionButton : Button
+    mDownloadEnterpriseButton : Button
+    mCancelButton : Button
+    mProgressControlsContainer : VisualElement
+    mProgressControls : ProgressControlsForDialogs
+}
+EditorWindow <|-- DownloadPlasticExeWindow
+@enduml

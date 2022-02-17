@@ -1,0 +1,15 @@
+@startuml
+class PendingChangesSelection <<static>> {
+    <<internal>> {static} SelectChanges(treeView:PendingChangesTreeView, changesToSelect:List<ChangeInfo>) : void
+    <<internal>> {static} GetSelectedPathsWithoutMeta(treeView:PendingChangesTreeView) : List<string>
+    <<internal>> {static} GetSelectedPaths(treeView:PendingChangesTreeView) : List<string>
+    <<internal>> {static} GetSelectedMetaPaths(treeView:PendingChangesTreeView) : List<string>
+    <<internal>> {static} GetAllChanges(treeView:PendingChangesTreeView) : List<ChangeInfo>
+    <<internal>> {static} GetChangesToFocus(treeView:PendingChangesTreeView) : List<ChangeInfo>
+    <<internal>> {static} GetSelectedChangesGroupInfo(treeView:PendingChangesTreeView) : SelectedChangesGroupInfo
+    <<internal>> {static} GetSelectedChanges(treeView:PendingChangesTreeView) : List<ChangeInfo>
+    <<internal>> {static} GetSelectedChange(treeView:PendingChangesTreeView) : ChangeInfo
+    {static} IsApplicableDiffWorkspaceContent(treeView:PendingChangesTreeView) : bool
+    {static} IsAddedFile(change:ChangeInfo) : bool
+}
+@enduml

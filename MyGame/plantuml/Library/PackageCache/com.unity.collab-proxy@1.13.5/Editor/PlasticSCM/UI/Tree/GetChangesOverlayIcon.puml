@@ -1,0 +1,38 @@
+@startuml
+class GetChangesOverlayIcon <<static>> {
+    <<internal>> {static} ForPlasticIncomingChange(incomingChange:MergeChangeInfo, isSolvedConflict:bool) : Data
+    <<internal>> {static} ForGluonIncomingChange(incomingChange:GluonIncomingChangeInfo, isSolvedConflict:bool) : Data
+    <<internal>> {static} ForPendingChange(changeInfo:ChangeInfo, isConflict:bool) : Data
+    <<internal>> {static} ForAssetStatus(status:AssetStatus) : Data
+    {static} ForConflict(isResolved:bool) : Data
+}
+class Data {
+    <<internal>> <<readonly>> Texture : Texture
+    <<internal>> <<readonly>> XOffset : float
+    <<internal>> <<readonly>> YOffset : float
+    <<internal>> <<readonly>> Size : float
+    <<internal>> Data(texture:Texture, xOffset:float, yOffset:float, size:float)
+}
+class BuildData <<static>> {
+    <<internal>> {static} ForOk() : Data
+    <<internal>> {static} ForXLink() : Data
+    <<internal>> {static} ForIgnored() : Data
+    <<internal>> {static} ForPrivated() : Data
+    <<internal>> {static} ForAdded() : Data
+    <<internal>> {static} ForDeleted() : Data
+    <<internal>> {static} ForCheckedOut() : Data
+    <<internal>> {static} ForDeletedOnServer() : Data
+    <<internal>> {static} ForOutOfDate() : Data
+    <<internal>> {static} ForLocked() : Data
+    <<internal>> {static} ForLockedRemote() : Data
+    {static} GetLeftXOffset() : float
+    <<internal>> {static} ForConflicted() : Data
+    <<internal>> {static} ForConflictResolved() : Data
+    {static} GetRightXOffset() : float
+    {static} GetBottomYOffset() : float
+    {static} GetTopYOffset() : float
+    <<const>> SIZE : float = 16f
+}
+GetChangesOverlayIcon +-- Data
+GetChangesOverlayIcon +-- BuildData
+@enduml

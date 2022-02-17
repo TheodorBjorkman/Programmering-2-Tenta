@@ -1,0 +1,13 @@
+@startuml
+interface IProgressInfo {
+    Title : string <<get>>
+    Details : string <<get>>
+    CurrentCount : int <<get>>
+    TotalCount : int <<get>>
+    LastErrorString : string <<get>>
+    LastError : ulong <<get>>
+    CanCancel : bool <<get>>
+    PercentageProgressType : bool <<get>>
+    PercentageComplete : int <<get>>
+}
+@enduml

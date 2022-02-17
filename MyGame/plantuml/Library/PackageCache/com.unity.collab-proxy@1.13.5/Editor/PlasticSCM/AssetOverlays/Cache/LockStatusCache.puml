@@ -1,0 +1,24 @@
+@startuml
+class LockStatusCache {
+    <<internal>> LockStatusCache(wkInfo:WorkspaceInfo, repaintProjectWindow:Action)
+    <<internal>> GetStatus(fullPath:string) : AssetStatus
+    <<internal>> GetLockStatusData(fullPath:string) : LockStatusData
+    <<internal>> Clear() : void
+    AsyncCalculateStatus(cancelToken:CancelToken) : void
+    mCurrentCancelToken : CancelToken
+    mStatusByPathCache : Dictionary<string, LockStatusData>
+    <<readonly>> mWkInfo : WorkspaceInfo
+    <<readonly>> mRepaintProjectWindow : Action
+    {static} mLock : object
+}
+class FillLockCandidates <<static>> {
+    <<internal>> {static} ForTree(wkInfo:WorkspaceInfo, lockCandidates:Dictionary<RepositorySpec, List<WorkspaceTreeNode>>) : void
+    {static} ForChildren(directoryNode:WorkspaceTreeNode, pendingDirectories:Queue<WorkspaceTreeNode>, lockCandidates:Dictionary<RepositorySpec, List<WorkspaceTreeNode>>) : void
+}
+class BuildStatusByNodeCache <<static>> {
+    <<internal>> {static} ForLocks(wkPath:string, lockInfoByNode:Dictionary<WorkspaceTreeNode, LockInfo>) : Dictionary<string, LockStatusData>
+    {static} BuildLockStatusData(node:WorkspaceTreeNode, lockInfo:LockInfo, nameResolver:LockOwnerNameResolver) : LockStatusData
+}
+LockStatusCache +-- FillLockCandidates
+LockStatusCache +-- BuildStatusByNodeCache
+@enduml

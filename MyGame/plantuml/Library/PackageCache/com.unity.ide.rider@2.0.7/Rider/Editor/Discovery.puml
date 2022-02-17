@@ -1,0 +1,71 @@
+@startuml
+interface IDiscovery {
+    PathCallback() : CodeEditor.Installation[]
+}
+class Discovery {
+    + PathCallback() : CodeEditor.Installation[]
+}
+class RiderPathLocator <<static>> {
+    + {static} GetAllRiderPaths() : RiderInfo[]
+    - {static} CollectAllRiderPathsLinux() : RiderInfo[]
+    - {static} CollectRiderInfosMac() : RiderInfo[]
+    - {static} CollectRiderInfosWindows() : RiderInfo[]
+    - {static} GetToolboxBaseDir() : string
+    - {static} GetToolboxRiderRootPath(localAppData:string) : string
+    <<internal>> {static} GetBuildVersion(path:string) : ProductInfo
+    <<internal>> {static} GetBuildNumber(path:string) : Version
+    <<internal>> {static} GetIsToolbox(path:string) : bool
+    - {static} GetRelativePathToBuildTxt() : string
+    - {static} CollectPathsFromRegistry(registryKey:string, installPaths:List<string>) : void
+    - {static} CollectPathsFromRegistry(installPaths:List<string>, key:RegistryKey) : void
+    - {static} CollectPathsFromToolbox(toolboxRiderRootPath:string, dirName:string, searchPattern:string, isMac:bool) : string[]
+    - {static} GetExecutablePaths(dirName:string, searchPattern:string, isMac:bool, buildDir:string) : string[]
+}
+class SettingsJson {
+    + install_location : string
+    + {static} GetInstallLocationFromJson(json:string) : string
+}
+class ToolboxHistory {
+    + history : List<ItemNode>
+    + {static} GetLatestBuildFromJson(json:string) : string
+}
+class ItemNode {
+    + item : BuildNode
+}
+class BuildNode {
+    + build : string
+}
+class ProductInfo {
+    + version : string
+    + versionSuffix : string
+    <<internal>> {static} GetProductInfo(json:string) : ProductInfo
+}
+class ToolboxInstallData {
+    + active_application : ActiveApplication
+    + {static} GetLatestBuildFromJson(json:string) : string
+}
+class ActiveApplication {
+    + builds : List<string>
+}
+class RiderInfo <<struct>> {
+    + IsToolbox : bool
+    + Presentation : string
+    + BuildNumber : Version
+    + ProductInfo : ProductInfo
+    + Path : string
+    + RiderInfo(path:string, isToolbox:bool)
+}
+class Logger <<static>> {
+    <<internal>> {static} Warn(message:string, e:Exception) : void
+}
+IDiscovery <|-- Discovery
+RiderPathLocator +-- SettingsJson
+RiderPathLocator +-- ToolboxHistory
+RiderPathLocator +-- ItemNode
+RiderPathLocator +-- BuildNode
+RiderPathLocator +-- ProductInfo
+RiderPathLocator +-- ToolboxInstallData
+RiderPathLocator +-- ActiveApplication
+RiderPathLocator +-- RiderInfo
+RiderPathLocator +-- Logger
+@enduml

@@ -1,0 +1,54 @@
+@startuml
+abstract class EditorGameServiceSettingsProvider {
+    <<const>> k_BasePath : string = "Project/Services/{0&#125;"
+    <<const>> k_InsufficientPermissionMsg : string = "You do not have the required permissions to activate or deactivate a service"
+    <<const>> k_UserNameAnonymous : string = "anonymous"
+    <<const>> k_AuthenticationErrorMessage : string
+    m_ParentVisualElement : VisualElement
+    m_ProjectStateRequest : IProjectStateRequest
+    m_CurrentProjectState : ProjectState
+    # {abstract} EditorGameService : IEditorGameService <<get>>
+    # {abstract} Title : string <<get>>
+    # {abstract} Description : string <<get>>
+    # {abstract} GenerateServiceDetailUI() : VisualElement
+    # EditorGameServiceSettingsProvider(path:string, scopes:SettingsScope, keywords:IEnumerable<string>)
+    # {static} GenerateProjectSettingsPath(serviceName:string) : string
+    GetSetupOrServiceUI(projectState:ProjectState) : VisualElement
+    <<internal>> {static} IsUserOnline(projectState:ProjectState) : bool
+    DrawOfflineUI(parentVisualElement:VisualElement) : void
+    DrawAccessTokenErrorUI(parentVisualElement:VisualElement) : void
+    <<internal>> {static} IsUserLoggedIn(projectState:ProjectState) : bool
+    {static} DrawLoggedOutUI(parentVisualElement:VisualElement) : void
+    DrawProjectBindingUI(parentVisualElement:VisualElement) : void
+    DrawCoppaComplianceUI(parentVisualElement:VisualElement) : void
+    <<internal>> {static} IsUserAllowedToEditServiceToggle(editorGameService:IEditorGameService, projectState:ProjectState, userRole:UserRole) : bool
+    <<internal>> {static} IsUserAllowedToEditCoppaCompliance(userRole:UserRole) : bool
+    # <<virtual>> GenerateUnsupportedDetailUI() : VisualElement
+    RefreshUI() : void
+    {static} GenerateParentElement() : VisualElement
+    {static} AddStyleSheetsToParentElement(parentElement:VisualElement) : void
+    GenerateCommonHeader(projectState:ProjectState) : VisualElement
+    {static} CoppaComplianceMet(editorGameService:IEditorGameService, projectState:ProjectState) : bool
+    <<internal>> {static} TranslateStringsInTree(rootElement:VisualElement) : void
+}
+class UssPath <<static>> {
+    <<internal>> <<const>> ServicesProjectSettingsCommon : string = "Packages/com.unity.services.core/Editor/Core/EditorGameService/USS/ServicesProjectSettingsCommon.uss"
+    <<internal>> <<const>> ServicesProjectSettingsDark : string = "Packages/com.unity.services.core/Editor/Core/EditorGameService/USS/ServicesProjectSettingsDark.uss"
+    <<internal>> <<const>> ServicesProjectSettingsLight : string = "Packages/com.unity.services.core/Editor/Core/EditorGameService/USS/ServicesProjectSettingsLight.uss"
+}
+class NodeName <<static>> {
+    <<internal>> <<const>> CoppaContainer : string = "CoppaContainer"
+}
+class ClassName <<static>> {
+    <<internal>> <<const>> EditMode : string = "edit-mode"
+}
+class ExceptionMessages <<static>> {
+    <<internal>> <<const>> ProjectBinding : string = "There was an error during the Project Binding process. Please make sure you are online and logged in:"
+    <<internal>> <<const>> CoppaCompliance : string = "There was an error during the COPPA Compliance process. Please make sure you are online and logged in:"
+}
+SettingsProvider <|-- EditorGameServiceSettingsProvider
+EditorGameServiceSettingsProvider +-- UssPath
+EditorGameServiceSettingsProvider +-- NodeName
+EditorGameServiceSettingsProvider +-- ClassName
+EditorGameServiceSettingsProvider +-- ExceptionMessages
+@enduml

@@ -1,0 +1,21 @@
+@startuml
+class UserRoleHandler {
+    m_CurrentUserRoleOperation : IAsyncOperation<UserRole>
+    +  <<event>> UserRoleChanged : Action<UserRole> 
+    +  <<event>> UserRoleRequestCompleted : Action<UserRole> 
+    + CurrentUserRole : UserRole <<get>>
+    + HasAuthorizationError : bool <<get>>
+    + UserRoleHandler()
+    OnProjectStateChanged() : void
+    {static} ShouldResetUserRole(projectState:ProjectState) : bool
+    + Dispose() : void
+    + IsBusy() : bool
+    + TrySendUserRoleRequest() : void
+    ShouldSendUserRoleRequest() : bool
+    SendUserRoleRequest() : void
+    OnUserRoleRequestOperationCompleted(asyncOperation:IAsyncOperation<UserRole>) : void
+    SetAuthorizationErrorFlag(exception:Exception) : void
+}
+IDisposable <|-- UserRoleHandler
+IUserRoleHandler <|-- UserRoleHandler
+@enduml

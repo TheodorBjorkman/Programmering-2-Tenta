@@ -1,0 +1,13 @@
+@startuml
+class HistoryEntryChangeListAdapter {
+    m_RevisionId : string
+    m_List : IList<IChangeEntry>
+    <<readonly>> m_Presenter : IHistoryPresenter
+    + HistoryEntryChangeListAdapter(presenter:IHistoryPresenter, revisionId:string, list:IList<IChangeEntry>)
+    + <<override>> Height : int <<get>>
+    # <<override>> MakeItem() : HistoryChangeListElement
+    # <<override>> BindItem(element:HistoryChangeListElement, index:int) : void
+    + <<override>> GetEntryCount() : int
+}
+"BaseListAdapter`1" "<HistoryChangeListElement>" <|-- HistoryEntryChangeListAdapter
+@enduml

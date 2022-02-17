@@ -1,0 +1,26 @@
+@startuml
+class MiniJson <<static>> {
+    + {static} Deserialize(json:string) : object
+    + {static} Serialize(obj:object) : string
+}
+class Parser <<static>> {
+    <<const>> k_WordBreak : string = "{&#125;[],:\""
+    + {static} Parse(jsonString:string) : object
+}
+enum Token {
+    None,
+    CurlyOpen,
+    CurlyClose,
+    SquaredOpen,
+    SquaredClose,
+    Colon,
+    Comma,
+    String,
+    Number,
+    True,
+    False,
+    Null,
+}
+MiniJson +-- Parser
+Parser +-- Token
+@enduml

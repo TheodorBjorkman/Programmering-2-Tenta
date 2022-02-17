@@ -1,0 +1,5 @@
+@startuml
+interface IProjectStateRequest {
+    GetProjectState() : ProjectState
+}
+@enduml

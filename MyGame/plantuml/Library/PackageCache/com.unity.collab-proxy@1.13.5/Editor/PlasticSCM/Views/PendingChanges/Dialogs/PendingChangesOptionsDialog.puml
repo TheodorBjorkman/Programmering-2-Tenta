@@ -1,0 +1,62 @@
+@startuml
+class PendingChangesOptionsDialog {
+    # <<override>> DefaultRect : Rect <<get>>
+    <<internal>> {static} ChangeOptions(wkInfo:WorkspaceInfo, view:IRefreshableView, window:EditorWindow) : void
+    # <<override>> OnModalGUI() : void
+    # <<override>> GetTitle() : string
+    DoToolbarArea() : void
+    DoOptionsArea() : void
+    DoWhatToFindTab() : void
+    DoWhatToShowTab() : void
+    DoMoveDetectionTab() : void
+    DoFsWatcherMessage(isEnabled:bool) : void
+    DoButtonsArea() : void
+    DoOkButton() : void
+    DoCancelButton() : void
+    IsDirty(currentOptions:PendingChangesOptions) : bool
+    GetOptions() : PendingChangesOptions
+    SetOptions(options:PendingChangesOptions) : void
+    CheckFsWatcher(wkInfo:WorkspaceInfo) : void
+    {static} IsEnabled(option:WorkspaceStatusOptions, options:WorkspaceStatusOptions) : bool
+    {static} IsFileSystemWatcherEnabled(wkInfo:WorkspaceInfo) : bool
+    {static} GetFsWatcherEnabledMessage() : string
+    {static} GetFsWatcherDisabledMessage() : string
+    {static} GetFsWatcherEnabledExplanation() : string
+    {static} GetFsWatcherDisabledExplanation() : string
+    {static} GetHelpLink() : string
+    {static} Build(wkInfo:WorkspaceInfo) : PendingChangesOptionsDialog
+    {static} Create() : PendingChangesOptionsDialog
+    mSelectedTab : Tab
+    mCanShowCheckouts : bool
+    mCanAutoRefresh : bool
+    mCanFindChanged : bool
+    mCanCheckFileContent : bool
+    mCanShowPrivateFields : bool
+    mIsFileSystemWatcherEnabled : bool
+    mCanShowIgnoredFiles : bool
+    mCanShowHiddenFiles : bool
+    mCanShowDeletedFiles : bool
+    mCanFindMovedFiles : bool
+    mCanMatchBinarySameExtension : bool
+    mCanMatchTextSameExtension : bool
+    mSimilarityPercent : int
+    mInitialOptions : PendingChangesOptions
+    <<const>> BOX_PADDING : float = 22f
+    <<const>> BOX_TOOLBAR_HEIGHT : float = 20f
+    <<const>> BOX_HEIGHT : float = 560f
+    <<const>> FS_WATCHER_HELP_URL : string = "https://plasticscm.com/download/help/support"
+    <<const>> INOTIFY_HELP_URL : string = "https://plasticscm.com/download/help/inotify"
+}
+interface IAutorefreshView {
+    DisableAutorefresh() : void
+    EnableAutorefresh() : void
+}
+enum Tab {
+    WhatToFind,
+    WhatToShow,
+    MoveDetection,
+}
+PlasticDialog <|-- PendingChangesOptionsDialog
+PendingChangesOptionsDialog +-- IAutorefreshView
+PendingChangesOptionsDialog +-- Tab
+@enduml

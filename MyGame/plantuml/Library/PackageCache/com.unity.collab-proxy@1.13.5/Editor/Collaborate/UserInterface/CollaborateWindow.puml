@@ -1,0 +1,45 @@
+@startuml
+class CollaborateWindow {
+    + <<const>> UssClassName : string = "main-window"
+    + <<const>> ContainerUssClassName : string
+    + <<const>> PackagePath : string = "Packages/com.unity.collab-proxy"
+    + <<const>> UserInterfacePath : string
+    + <<const>> ResourcePath : string
+    + <<const>> LayoutPath : string
+    + <<const>> StylePath : string
+    + <<const>> IconPath : string
+    + <<const>> TestWindowPath : string
+    <<const>> k_LayoutPath : string
+    + <<const>> MainStylePath : string
+    m_MainView : MainPageView
+    m_ErrorPageView : ErrorPageView
+    m_StartView : StartPageView
+    m_ViewContainer : VisualElement
+    m_ActivePage : PageComponent
+    m_Provider : ISourceControlProvider
+    m_Models : List<IModel>
+    <<internal>> {static} Init() : void
+    <<internal>> {static} Init(focusTarget:FocusTarget) : void
+    OnDisable() : void
+    CreateGUI() : void
+    OnPlayModeStateChanged(state:PlayModeStateChange) : void
+    OnAfterAssemblyReload() : void
+    OnBeforeAssemblyReload() : void
+    OnUpdatedProjectStatus(status:ProjectStatus) : void
+    RequestFocus(focusTarget:FocusTarget) : void
+    UpdateDisplayMode(newDisplay:Display) : void
+}
+enum Display {
+    Add,
+    Error,
+    Main,
+}
+enum FocusTarget {
+    None,
+    History,
+    Changes,
+}
+EditorWindow <|-- CollaborateWindow
+CollaborateWindow +-- Display
+CollaborateWindow +-- FocusTarget
+@enduml

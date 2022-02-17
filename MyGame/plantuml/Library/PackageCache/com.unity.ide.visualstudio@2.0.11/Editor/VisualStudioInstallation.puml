@@ -1,0 +1,26 @@
+@startuml
+interface IVisualStudioInstallation {
+    Path : string <<get>>
+    SupportsAnalyzers : bool <<get>>
+    LatestLanguageVersionSupported : Version <<get>>
+    GetAnalyzers() : string[]
+    ToCodeEditorInstallation() : CodeEditor.Installation
+}
+class VisualStudioInstallation {
+    + Name : string <<get>> <<set>>
+    + Path : string <<get>> <<set>>
+    + Version : Version <<get>> <<set>>
+    + IsPrerelease : bool <<get>> <<set>>
+    + SupportsAnalyzers : bool <<get>>
+    - {static} WindowsVersionTable : VersionPair[]
+    - {static} OSXVersionTable : VersionPair[]
+    + LatestLanguageVersionSupported : Version <<get>>
+    - {static} ReadRegistry(hive:RegistryKey, keyName:string, valueName:string) : string
+    - GetWindowsBridgeFromRegistry() : string
+    - GetExtensionPath() : string
+    - {static} GetAnalyzers(path:string) : string[]
+    + GetAnalyzers() : string[]
+    + ToCodeEditorInstallation() : CodeEditor.Installation
+}
+IVisualStudioInstallation <|-- VisualStudioInstallation
+@enduml

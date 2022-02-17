@@ -1,0 +1,32 @@
+@startuml
+class VisualStudioEditor {
+    <<internal>> {static} IsOSX : bool <<get>>
+    <<internal>> {static} IsWindows : bool <<get>>
+    Installations : CodeEditor.Installation[] <<get>>
+    - {static} <<readonly>> _discoverInstallations : AsyncOperation<IVisualStudioInstallation[]>
+    - <<readonly>> _generator : IGenerator
+    {static} VisualStudioEditor()
+    - {static} DiscoverInstallations() : IVisualStudioInstallation[]
+    <<internal>> {static} IsEnabled : bool <<get>>
+    + CreateIfDoesntExist() : void
+    + Initialize(editorInstallationPath:string) : void
+    <<internal>> <<virtual>> TryGetVisualStudioInstallationForPath(editorPath:string, searchInstallations:bool, installation:IVisualStudioInstallation) : bool
+    + <<virtual>> TryGetInstallationForPath(editorPath:string, installation:CodeEditor.Installation) : bool
+    + OnGUI() : void
+    RegenerateProjectFiles() : void
+    SettingsButton(preference:ProjectGenerationFlag, guiMessage:string, toolTip:string) : void
+    + SyncIfNeeded(addedFiles:string[], deletedFiles:string[], movedFiles:string[], movedFromFiles:string[], importedFiles:string[]) : void
+    + SyncAll() : void
+    IsSupportedPath(path:string) : bool
+    - {static} CheckCurrentEditorInstallation() : void
+    + OpenProject(path:string, line:int, column:int) : bool
+    - {static} GetProjectGenerationFlagDescription(flag:ProjectGenerationFlag) : string
+    - IsProjectGeneratedFor(path:string, missingFlag:ProjectGenerationFlag) : bool
+    - OpenWindowsApp(path:string, line:int) : bool
+    {static} <<extern>> OpenVisualStudio(appPath:string, solutionPath:string, filePath:string, line:int) : bool
+    OpenOSXApp(path:string, line:int, column:int) : bool
+    - GetOrGenerateSolutionFile(path:string) : string
+    GetSolutionFile(path:string) : string
+}
+IExternalCodeEditor <|-- VisualStudioEditor
+@enduml

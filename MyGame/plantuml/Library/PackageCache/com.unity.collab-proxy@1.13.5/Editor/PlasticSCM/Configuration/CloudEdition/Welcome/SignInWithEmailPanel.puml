@@ -1,0 +1,30 @@
+@startuml
+class SignInWithEmailPanel {
+    <<internal>> SignInWithEmailPanel(parentWindow:CloudEditionWelcomeWindow, notify:IWelcomeWindowNotify, restApi:IPlasticWebRestApi)
+    <<internal>> Dispose() : void
+    SignInButton_Clicked() : void
+    BackButton_Clicked() : void
+    SuccessForConfigure(organizations:List<string>, canCreateAnOrganization:bool) : void
+    SuccessForSSO(organization:string) : void
+    SuccessForProfile(userName:string) : void
+    SuccessForCredentials(userName:string, password:string) : void
+    ValidationFailed(validationResult:Login.ValidationResult) : void
+    SignUpNeeded(loginData:Login.Data) : void
+    Error(message:string) : void
+    CleanNotificationLabels() : void
+    BuildComponents() : void
+    InitializeLayoutAndStyles() : void
+    mEmailField : TextField
+    mPasswordField : TextField
+    mEmailNotificationLabel : Label
+    mPasswordNotificationLabel : Label
+    mSignInButton : Button
+    mBackButton : Button
+    mProgressContainer : VisualElement
+    mProgressControls : IProgressControls
+    <<readonly>> mParentWindow : CloudEditionWelcomeWindow
+    <<readonly>> mNotify : IWelcomeWindowNotify
+    <<readonly>> mRestApi : IPlasticWebRestApi
+}
+VisualElement <|-- SignInWithEmailPanel
+@enduml

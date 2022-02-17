@@ -1,0 +1,8 @@
+@startuml
+class CharacterController3d <<partial>> {
+    Awake() : void
+    # StartController() : void
+    FixedUpdate() : void
+}
+EntityBase <|-- CharacterController3d
+@enduml

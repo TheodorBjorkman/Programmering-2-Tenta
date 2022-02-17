@@ -1,0 +1,5 @@
+@startuml
+interface IUserRoleRequest {
+    GetUserRole() : IAsyncOperation<UserRole>
+}
+@enduml

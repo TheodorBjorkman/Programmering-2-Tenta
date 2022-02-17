@@ -1,0 +1,9 @@
+@startuml
+class PlayerController {
+    - moveDirection : float = 0
+    Awake() : void
+    Update() : void
+    FixedUpdate() : void
+}
+CharacterController3d <|-- PlayerController
+@enduml

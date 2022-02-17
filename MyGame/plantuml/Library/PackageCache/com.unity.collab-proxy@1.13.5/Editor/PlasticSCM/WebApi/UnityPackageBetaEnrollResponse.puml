@@ -1,0 +1,6 @@
+@startuml
+class UnityPackageBetaEnrollResponse {
+    + Error : ErrorResponse.ErrorFields <<get>> <<set>>
+    + IsBetaEnabled : bool <<get>> <<set>>
+}
+@enduml

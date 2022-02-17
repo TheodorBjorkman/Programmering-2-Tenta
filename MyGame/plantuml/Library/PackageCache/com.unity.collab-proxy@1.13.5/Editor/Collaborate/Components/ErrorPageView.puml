@@ -1,0 +1,15 @@
+@startuml
+class ErrorPageView {
+    + <<const>> UssClassName : string = "error-page-view"
+    {static} <<readonly>> k_LayoutPath : string
+    m_Visible : bool
+    + ErrorPageView()
+    # <<override>> SetActive() : void
+    # <<override>> SetInactive() : void
+}
+class UxmlFactory <<new>> {
+}
+PageComponent <|-- ErrorPageView
+ErrorPageView +-- UxmlFactory
+"UxmlFactory`1" "<ErrorPageView>" <|-- UxmlFactory
+@enduml

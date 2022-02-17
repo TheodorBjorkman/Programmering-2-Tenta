@@ -1,0 +1,7 @@
+@startuml
+class VisualElementHelper <<static>> {
+    + {static} SetDisplayStyle(target:VisualElement, displayStyle:DisplayStyle) : void
+    + {static} AddStyleSheetFromPath(target:VisualElement, styleSheetPath:string) : void
+    {static} AddStyleSheet(target:VisualElement, styleSheet:StyleSheet) : void
+}
+@enduml

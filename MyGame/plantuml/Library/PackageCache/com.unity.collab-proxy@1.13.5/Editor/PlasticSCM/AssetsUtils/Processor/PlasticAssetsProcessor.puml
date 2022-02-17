@@ -1,0 +1,28 @@
+@startuml
+class PlasticAssetsProcessor {
+    <<internal>> {static} RegisterPlasticAPI(plasticAPI:IPlasticAPI) : void
+    <<internal>> {static} RegisterPendingChangesView(pendingChangesTab:PendingChangesTab) : void
+    <<internal>> {static} RegisterIncomingChangesView(incomingChangesTab:IIncomingChangesTab) : void
+    <<internal>> {static} UnRegisterViews() : void
+    <<internal>> {static} AddToSourceControl(paths:string[]) : void
+    <<internal>> {static} DeleteFromSourceControl(path:string) : void
+    <<internal>> {static} MoveOnSourceControl(srcPath:string, dstPath:string) : void
+    <<internal>> {static} CheckoutOnSourceControl(paths:string[]) : void
+    {static} AddIfNotControlled(paths:string[], api:IPlasticAPI) : void
+    {static} DeleteIfControlled(fullPath:string, api:IPlasticAPI) : void
+    {static} MoveIfControlled(srcFullPath:string, dstFullPath:string, api:IPlasticAPI) : void
+    {static} CheckoutIfControlledAndChanged(paths:string[], api:IPlasticAPI) : void
+    {static} PerformAutoRefresh() : void
+    {static} LogAddException(ex:Exception) : void
+    {static} LogDeleteException(path:string, ex:Exception) : void
+    {static} LogMoveException(srcPath:string, dstPath:string, ex:Exception) : void
+    {static} LogCheckoutException(ex:Exception) : void
+    {static} LogException(ex:Exception) : void
+    {static} GetDefaultAddOptions() : AddOptions
+    {static} <<volatile>> mPlasticAPI : IPlasticAPI
+    {static} <<internal>> mPendingChangesTab : PendingChangesTab
+    {static} mIncomingChangesTab : IIncomingChangesTab
+    {static} mCooldownAutorefreshAction : CooldownWindowDelayer
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

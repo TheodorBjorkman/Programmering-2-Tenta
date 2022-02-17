@@ -1,0 +1,7 @@
+@startuml
+interface IServiceFlags {
+    GetFlagNames() : List<string>
+    DoesFlagExist(flagName:string) : bool
+    IsFlagActive(flagName:string) : bool
+}
+@enduml

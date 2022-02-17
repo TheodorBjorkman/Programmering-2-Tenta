@@ -1,0 +1,37 @@
+@startuml
+class UnityDiffTreeTests {
+    + TestAddedNoMeta() : void
+    + TestChangedNoMeta() : void
+    + TestDeletedNoMeta() : void
+    + TestMovedNoMeta() : void
+    + TestFsPermissionsNoMeta() : void
+    + TestMergedNoMeta() : void
+    + TestAddedWithMeta() : void
+    + TestChangedWithMeta() : void
+    + TestDeletedWithMeta() : void
+    + TestMovedWithMeta() : void
+    + TestFsPermissionsWithMeta() : void
+    + TestMergedWithMeta() : void
+    + TestChangeWithDeletedMeta() : void
+}
+class Build <<static>> {
+    <<internal>> {static} Added(path:string) : ClientDiff
+    <<internal>> {static} Changed(path:string) : ClientDiff
+    <<internal>> {static} ChangedFsPermissions(path:string) : ClientDiff
+    <<internal>> {static} Deleted(path:string) : ClientDiff
+    <<internal>> {static} Merged(path:string) : ClientDiff
+    <<internal>> {static} Moved(srcPath:string, dstPath:string) : ClientDiff
+    {static} BuildAddedDifference(path:string) : Difference
+    {static} BuildChangedDifference(path:string) : Difference
+    {static} BuildChangedFsPermissionsDifference(path:string) : Difference
+    {static} BuildDeletedDifference(path:string) : Difference
+    {static} BuildMovedDifference(srcPath:string, dstPath:string) : Difference
+    {static} BuildRootMountPoint() : MountPointWithPath
+}
+class FindClientDiffInfo <<static>> {
+    <<internal>> {static} FromClientDiff(clientDiff:ClientDiff, type:ChangeCategoryType, diffTree:UnityDiffTree) : ClientDiffInfo
+    {static} FindClientDiffOfType(path:string, type:ChangeCategoryType, node:ITreeViewNode) : ClientDiffInfo
+}
+UnityDiffTreeTests +-- Build
+UnityDiffTreeTests +-- FindClientDiffInfo
+@enduml

@@ -1,0 +1,20 @@
+@startuml
+class PlatformSupportUiHelper <<static>> {
+    + {static} GeneratePlatformSupport(platforms:IEnumerable<string>) : VisualElement
+}
+class UxmlPath <<static>> {
+    <<internal>> <<const>> platformSupport : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/UXML/PlatformSupportVisual.uxml"
+}
+class UssPath <<static>> {
+    <<internal>> <<const>> platformSupportCommon : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/PlatformSupportVisualCommon.uss"
+    <<internal>> <<const>> platformSupportDark : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/PlatformSupportVisualDark.uss"
+    <<internal>> <<const>> platformSupportLight : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/PlatformSupportVisualLight.uss"
+}
+class UssClassName <<static>> {
+    <<internal>> <<const>> tagContainer : string = "tag-container"
+    <<internal>> <<const>> platformTag : string = "platform-tag"
+}
+PlatformSupportUiHelper +-- UxmlPath
+PlatformSupportUiHelper +-- UssPath
+PlatformSupportUiHelper +-- UssClassName
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class SelectedAssetGroupInfoTests {
+    + TestSelectedCount() : void
+    + TestIsCheckedInSelection() : void
+    + TestIsNotCheckedInSelection() : void
+    + TestIsControlledSelection() : void
+    + TestIsNotControlledSelection() : void
+    + TestHasAnyAddedInSelection() : void
+    + TestHasAnyNoAddedInSelection() : void
+    + TestIsFileSelection() : void
+    + TestIsNotFileSelection() : void
+    + TestHasNotAnyLockedRemoteInSelection() : void
+    + TestHasAnyLockedRemoteInSelection() : void
+    + TestIsCheckedOutSelection() : void
+    + TestIsNotCheckedOutSelection() : void
+    + TestIsPrivateSelection() : void
+    + TestIsNotPrivateSelection() : void
+    + TestIsAddedSelection() : void
+    + TestIsNotAddedSelection() : void
+}
+class AssetStatusCacheMock {
+    <<internal>> SetStatus(fullPath:string, status:AssetStatus) : void
+    GetStatusForPath(fullPath:string) : AssetStatus
+    GetStatusForGuid(guid:string) : AssetStatus
+    GetLockStatusData(guid:string) : LockStatusData
+    GetLockStatusDataForPath(path:string) : LockStatusData
+    Clear() : void
+    mData : Dictionary<string, AssetStatus>
+}
+SelectedAssetGroupInfoTests +-- AssetStatusCacheMock
+IAssetStatusCache <|-- AssetStatusCacheMock
+@enduml

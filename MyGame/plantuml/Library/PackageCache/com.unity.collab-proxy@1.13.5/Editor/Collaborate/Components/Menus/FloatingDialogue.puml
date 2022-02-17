@@ -1,0 +1,17 @@
+@startuml
+class FloatingDialogue {
+    + <<const>> UssClassName : string = "unity-floating-dialogue"
+    {static} <<readonly>> k_StylePath : string
+    {static} s_Instance : FloatingDialogue
+    + {static} Instance : FloatingDialogue <<get>>
+    FloatingDialogue()
+    + <<override>> canGrabFocus : bool <<get>>
+    SetPosition(x:float, y:float, content:VisualElement, openDirection:MenuUtilities.OpenDirection) : void
+    <<internal>> Open(x:float, y:float, content:VisualElement, openDirection:MenuUtilities.OpenDirection) : void
+    <<internal>> Close() : void
+    OnScroll(evt:WheelEvent) : void
+    OnMouseDown(evt:MouseDownEvent) : void
+    OnGeometryChange(evt:GeometryChangedEvent) : void
+}
+VisualElement <|-- FloatingDialogue
+@enduml

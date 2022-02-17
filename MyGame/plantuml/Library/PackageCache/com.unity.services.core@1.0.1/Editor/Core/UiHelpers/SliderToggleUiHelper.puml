@@ -1,0 +1,27 @@
+@startuml
+class SliderToggleUiHelper <<static>> {
+    {static} s_ToggleOffTexture : Texture2D
+    {static} s_ToggleOnTexture : Texture2D
+    {static} ToggleOffTexture : Texture2D <<get>>
+    {static} ToggleOnTexture : Texture2D <<get>>
+    + {static} ConvertToggleToSliderToggle(toggle:Toggle) : void
+    {static} SetToggleImageBasedOnValue(toggle:Toggle) : void
+}
+class ImagePath <<static>> {
+    <<internal>> <<const>> toggleOffPath : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/Images/ToggleOff.png"
+    <<internal>> <<const>> toggleOnPath : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/Images/ToggleOn.png"
+}
+class UxmlNodeName <<static>> {
+    <<internal>> <<const>> unityCheckmark : string = "unity-checkmark"
+}
+class UssClassName <<static>> {
+    <<internal>> <<const>> sliderToggle : string = "slider-toggle"
+}
+class UssPath <<static>> {
+    <<internal>> <<const>> sliderToggleCommon : string = "Packages/com.unity.services.core/Editor/Core/UiHelpers/USS/SliderToggleCommon.uss"
+}
+SliderToggleUiHelper +-- ImagePath
+SliderToggleUiHelper +-- UxmlNodeName
+SliderToggleUiHelper +-- UssClassName
+SliderToggleUiHelper +-- UssPath
+@enduml

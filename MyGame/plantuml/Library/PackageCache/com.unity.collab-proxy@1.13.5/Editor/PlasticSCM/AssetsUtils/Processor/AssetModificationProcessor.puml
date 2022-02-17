@@ -1,0 +1,10 @@
+@startuml
+class AssetModificationProcessor {
+    <<internal>> {static} IsEnabled : bool <<get>> <<set>>
+    <<internal>> {static} ForceCheckout : bool <<get>> <<set>>
+    <<internal>> {static} RegisterAssetStatusCache(assetStatusCache:IAssetStatusCache) : void
+    {static} OnWillSaveAssets(paths:string[]) : string[]
+    {static} IsOpenForEdit(assetPath:string, message:string) : bool
+    {static} mAssetStatusCache : IAssetStatusCache
+}
+@enduml

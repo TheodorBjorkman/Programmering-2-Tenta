@@ -1,0 +1,8 @@
+@startuml
+interface IHttpClient {
+    GetBaseUrlFor(serviceId:string) : string
+    GetDefaultOptionsFor(serviceId:string) : HttpOptions
+    CreateRequestForService(serviceId:string, resourcePath:string) : HttpRequest
+    Send(request:HttpRequest) : IAsyncOperation<ReadOnlyHttpResponse>
+}
+@enduml

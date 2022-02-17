@@ -1,0 +1,21 @@
+@startuml
+class LaunchTool <<static>> {
+    <<internal>> {static} OpenGUIForMode(wkInfo:WorkspaceInfo, isGluonMode:bool) : void
+    <<internal>> {static} OpenBranchExplorer(wkInfo:WorkspaceInfo, isGluonMode:bool) : void
+    <<internal>> {static} OpenChangesetDiffs(fullChangesetSpec:string, isGluonMode:bool) : void
+    <<internal>> {static} OpenSelectedChangesetsDiffs(srcFullChangesetSpec:string, dstFullChangesetSpec:string, isGluonMode:bool) : void
+    <<internal>> {static} OpenBranchDiffs(fullBranchSpec:string, isGluonMode:bool) : void
+    <<internal>> {static} OpenWorkspaceConfiguration(wkInfo:WorkspaceInfo, isGluonMode:bool) : void
+    <<internal>> {static} OpenMerge(wkPath:string, isGluonMode:bool) : void
+    <<internal>> {static} ShowDownloadPlasticExeWindow(isGluonMode:bool) : bool
+    {static} ExecuteGUI(program:string, args:string, commandFileArg:string, commandFileName:string, processId:int) : Process
+    {static} ExecuteWindowsGUI(program:string, args:string, processId:int) : Process
+    {static} ExecuteProcess(program:string, args:string) : Process
+    {static} BuildProcess(program:string, args:string) : Process
+    {static} GetGUIProcess(program:string, processId:int) : Process
+    {static} mPlasticProcessId : int
+    {static} mGluonProcessId : int
+    {static} mBrexProcessId : int
+    {static} <<readonly>> mLog : ILog
+}
+@enduml

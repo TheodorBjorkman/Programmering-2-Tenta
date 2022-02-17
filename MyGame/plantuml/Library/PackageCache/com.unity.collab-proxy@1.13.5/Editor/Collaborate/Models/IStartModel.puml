@@ -1,0 +1,11 @@
+@startuml
+interface IStartModel {
+     <<event>> ProjectStatusChanged : Action<ProjectStatus> 
+    ProjectStatus : ProjectStatus <<get>>
+    RequestTurnOnService() : void
+    ShowServicePage() : void
+    ShowLoginPage() : void
+    ShowNoSeatPage() : void
+}
+IModel <|-- IStartModel
+@enduml

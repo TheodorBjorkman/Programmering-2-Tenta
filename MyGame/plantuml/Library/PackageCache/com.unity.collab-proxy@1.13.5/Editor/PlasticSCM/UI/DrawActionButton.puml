@@ -1,0 +1,6 @@
+@startuml
+class DrawActionButton <<static>> {
+    <<internal>> {static} For(buttonText:string) : bool
+    <<internal>> {static} ForCommentSection(buttonText:string) : bool
+}
+@enduml

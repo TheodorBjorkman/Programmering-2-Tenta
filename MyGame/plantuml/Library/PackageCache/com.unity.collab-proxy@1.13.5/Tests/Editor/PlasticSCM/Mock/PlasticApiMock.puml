@@ -1,0 +1,198 @@
+@startuml
+class PlasticApiMock {
+    <<internal>> SetupGetWorkspaceTreeNode(path:string, wkTreeNode:WorkspaceTreeNode) : void
+    <<internal>> SetupGetWorkingBranch(workingBranch:BranchInfo) : void
+    Add(paths:string[], options:AddOptions, checkouts:IList) : WkAddResult
+    AddLockRule(repSpec:RepositorySpec, newRule:string, bDryRun:bool) : void
+    ApplyLabelToWorkspace(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, labelInfo:MarkerInfo) : void
+    BuildDiffInfoForDiffWithPrevious(revspec2:string, symbolicName2:string, defaultPath2:string, fileExt:string, currentWk:WorkspaceInfo) : DiffInfo
+    CalculateOutOfDateItems(wkInfo:WorkspaceInfo) : OutOfDateItems
+    ChangeRevisionType(path:string, type:EnumRevisionType) : EnumRevisionType
+    CheckAttributeExists(repSpec:RepositorySpec, attributeName:string) : bool
+    CheckBranchExists(repSpec:RepositorySpec, brInfo:BranchInfo) : bool
+    CheckCredentials(server:string, mode:SEIDWorkingMode, user:string, password:string) : void
+    CheckLabelExists(repSpec:RepositorySpec, mkInfo:MarkerInfo) : bool
+    Checkout(paths:string[]) : void
+    Checkout(paths:string[], options:CheckoutModifiers) : void
+    CheckRepositoryExists(repServer:string, repName:string) : bool
+    CheckServerConnection(repServer:string) : bool
+    CreateAttribute(repSpec:RepositorySpec, attributeName:string, attributeComment:string) : AttributeInfo
+    CreateCheckInOperation() : ICheckinOperation
+    CreateChildBranch(wkInfo:WorkspaceInfo, branchInfo:BranchInfo, title:string) : BranchInfo
+    CreateChildBranch(repSpec:RepositorySpec, parentBranchInfo:BranchInfo, name:string, comment:string) : BranchInfo
+    CreateChildBranchFromChangeset(repSpec:RepositorySpec, parentBranchInfo:BranchInfo, changeset:long, name:string) : BranchInfo
+    CreateChildBranchFromChangeset(repSpec:RepositorySpec, parentBranchInfo:BranchInfo, changeset:long, name:string, comment:string) : BranchInfo
+    CreateComment(repSpec:RepositorySpec, reviewId:long, comment:CodeReviewCommentInfo) : void
+    CreateRepository(repServer:string, repName:string) : RepositoryInfo
+    CreateReview(repSpec:RepositorySpec, reviewInfo:ReviewInfo) : ReviewInfo
+    CreateWorkspace(wkPath:string, wkName:string, repName:string) : WorkspaceInfo
+    DeleteAttributeFromObject(repSpec:RepositorySpec, attribute:AttributeRealizationInfo) : void
+    DeleteBranch(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, branchInfo:BranchInfo) : void
+    DeleteChangeset(repSpec:RepositorySpec, changesetInfo:ChangesetInfo) : bool
+    DeleteComment(repSpec:RepositorySpec, commentId:long) : void
+    DeleteControlled(path:string, options:DeleteModifiers) : void
+    DeleteLabel(repSpec:RepositorySpec, labelInfo:MarkerInfo) : void
+    DeleteReview(repSpec:RepositorySpec, reviewInfo:ReviewInfo) : void
+    DoGetAllRepositories(server:string, bFilterDeleted:bool) : IList
+    FindAttributeTypes(repSpec:RepositorySpec) : IList
+    FindGuids(repSpec:RepositorySpec, wkInfo:WorkspaceInfo, condition:string, objectType:ObjectType) : HashSet<Guid>
+    FindQuery(wkInfo:WorkspaceInfo, query:string) : QueryResult
+    FindQuery(repInfo:RepositoryInfo, query:string) : QueryResult
+    FindQuery(repSpec:RepositorySpec, query:string) : QueryResult
+    GetAddedDiffInfo(wkInfo:WorkspaceInfo, mount:MountPoint, entry:DiffViewEntry, currentWk:WorkspaceInfo) : DiffInfo
+    GetAllRepositories(bFilterDeleted:bool) : IList
+    GetAllRepositories(server:string, bFilterDeleted:bool) : IList
+    GetAllRepositories(server:string, bFilterDeleted:bool, profile:ServerProfile) : IList
+    GetAllWorkspaces() : List<WorkspaceGuiEntry>
+    GetAllWorkspacesArray() : WorkspaceInfo[]
+    GetAnnotations(repSpec:RepositorySpec, revInfo:RevisionInfo, localPath:string, comparisonMethod:string, encoding:string) : List<AnnotatedLine>
+    GetAttribute(server:string, repId:RepId, attributeName:string) : AttributeInfo
+    GetAttributeIdForRepository(repSpec:RepositorySpec, attributeName:string) : long
+    GetAttributeRealizations(repSpec:RepositorySpec, objId:long) : AttributeRealizationInfo[]
+    GetBranchDifferences(repSpec:RepositorySpec, brInfo:BranchInfo) : List<ClientDiff>
+    GetBranchExplorerLayout(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, filters:FilterCollection, options:DisplayOptions, explorerTree:BrExTree) : BrExLayout
+    GetBranchExplorerLayout(wkInfo:WorkspaceInfo, explainMergeData:RepositoryExplainMergeData, displayOptions:DisplayOptions, explorerTree:BrExTree) : BrExLayout
+    GetBranchExplorerLayout(repSpec:RepositorySpec, explorerTree:BrExTree, options:DisplayOptions) : BrExLayout
+    GetBranchInfo(repSpec:RepositorySpec, fullBranchName:string) : BranchInfo
+    GetBranchInfo(repSpec:RepositorySpec, brId:Guid) : BranchInfo
+    GetBranchInfos(repSpec:RepositorySpec, ids:List<long>) : List<BranchInfo>
+    GetChangedForMovedDifference(diff:Difference) : Difference
+    GetChangedNodeForPath(wkInfo:WorkspaceInfo, path:string) : TreeChangedNode
+    GetChanges(wkInfo:WorkspaceInfo, basePaths:List<string>, options:WorkspaceStatusOptions) : IList<ChangeInfo>
+    GetChangesetDifferences(repSpec:RepositorySpec, csetInfo:ChangesetInfo) : List<ClientDiff>
+    GetChangesetDifferences(mount:MountPointWithPath, csetInfo:ChangesetInfo) : List<ClientDiff>
+    GetChangesetGuid(repSpec:RepositorySpec, changesetId:long) : Guid
+    GetChangesetInfo(repSpec:RepositorySpec, csetId:Guid) : ChangesetInfo
+    GetChangesetInfoFromId(wkInfo:WorkspaceInfo, csId:long) : ChangesetInfo
+    GetChangesetInfoFromId(repSpec:RepositorySpec, csId:long) : ChangesetInfo
+    GetChangesetInfoFromId(repInfo:RepositoryInfo, csId:long) : ChangesetInfo
+    GetChangesetsDifferences(repSpec:RepositorySpec, sourceCsetInfo:ChangesetInfo, destinationCsetInfo:ChangesetInfo) : List<ClientDiff>
+    GetCurrentChangesetOnWorkspace(wkInfo:WorkspaceInfo) : long
+    GetDiffInfo(revSpec:string, symbolicName:string, defaultPath:string, fileExtension:string, currrentWk:WorkspaceInfo) : DiffInfo
+    GetDiffInfo(revspec1:string, revspec2:string, symbolicName1:string, symbolicName2:string, defaultPath1:string, defaultPath2:string, fileExtension:string, currrentWk:WorkspaceInfo) : DiffInfo
+    GetDiffInfo(wkInfo:WorkspaceInfo, changeInfo:ChangeInfo) : DiffInfo
+    GetDiffInfo(wkInfo:WorkspaceInfo, changeInfo:ChangeInfo, changedForMoved:ChangeInfo) : DiffInfo
+    GetDiffInfo(wkInfo:WorkspaceInfo, mount:MountPoint, diff:Difference) : DiffInfo
+    GetDiffInfo(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, leftRev:RevisionInfo, rightRev:RevisionInfo, leftDefaultPath:string, rightDefaultPath:string) : DiffInfo
+    GetHistory(repSpec:RepositorySpec, itemId:long) : List<RepObjectInfo>
+    GetHumanReadableXlinkDataGenerator() : HumanReadableXlinkDataGenerator
+    GetInProgressMergeLinks(wkInfo:WorkspaceInfo) : IDictionary<MountPoint, PendingMergeLink>
+    GetLicenseData(server:string) : LicenseData
+    GetLoadedChangeset(wkInfo:WorkspaceInfo) : long
+    GetLoadedRevisionId(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, itemId:long) : long
+    GetLockRule(repSpec:RepositorySpec) : LockRule
+    GetMainBranch(repSpec:RepositorySpec) : BranchInfo
+    GetMarkerInfo(repSpec:RepositorySpec, markerId:long) : MarkerInfo
+    GetObjectGuid(repSpec:RepositorySpec, objectId:long) : Guid
+    GetParentChangeset(repSpec:RepositorySpec, changesetId:long) : long
+    GetParentRevision(repSpec:RepositorySpec, revInfo:RevisionInfo) : RevisionInfo
+    GetPendingMergeLinks(wkInfo:WorkspaceInfo) : IDictionary<MountPoint, IList<PendingMergeLink>>
+    GetReplicationSources(repSpec:RepositorySpec, repObject:RepObjectInfo) : IList<ReplicationSourceInfo>
+    GetRepositoryInfo(repSpec:RepositorySpec) : RepositoryInfo
+    GetRepositorySpec(wkInfo:WorkspaceInfo) : RepositorySpec
+    GetReviewComments(repSpec:RepositorySpec, reviewId:long) : IList
+    GetReviewCommentsFromReviewIds(repSpec:RepositorySpec, reviewIds:List<long>) : IList
+    GetRevisionAtChangeset(repSpec:RepositorySpec, itemId:long, changesetId:long) : RevisionInfo
+    GetRevisionChildren(repSpec:RepositorySpec, revInfo:RevisionInfo) : ChildItem[]
+    GetRevisionDataToFile(repSpec:RepositorySpec, revision:HistoryRevision, tmpFile:string) : void
+    GetRevisionDataToFile(repSpec:RepositorySpec, revInfo:RevisionInfo, tmpFile:string) : void
+    GetRevisionInfo(repSpec:RepositorySpec, revisionId:long) : RevisionInfo
+    GetRootRepositoryInfo(clientPath:string) : RepositoryInfo
+    GetSeidFromName(server:string, name:string, isGroup:bool) : SEID
+    GetSelectorUserInformation(wkInfo:WorkspaceInfo) : SelectorInformation
+    GetServerWebPortAndProtocol(server:string) : WebadminAddress
+    GetSortedReplicationLogsFromBranch(repSpec:RepositorySpec, branchInfo:BranchInfo) : ReplicationLogEntryInfo[]
+    GetSortedReplicationLogsFromRepository(repSpec:RepositorySpec) : ReplicationLogEntryInfo[]
+    GetTreeContent(repSpec:RepositorySpec, changesetId:long) : TreeContent
+    GetUserName(owner:SEID) : string
+    GetUserName(server:string, owner:SEID) : string
+    GetValuesForAttribute(server:string, repId:RepId, attributeName:string) : IList
+    GetWorkingBranch(wkInfo:WorkspaceInfo) : BranchInfo
+    GetCheckoutBranch(wkInfo:WorkspaceInfo) : BranchInfo
+    GetWorkingChangeset(repSpec:RepositorySpec, wkInfo:WorkspaceInfo) : long
+    GetWorkingMode(server:string) : SEIDWorkingMode
+    GetWorkspaceFromPath(wkPath:string) : WorkspaceInfo
+    GetWorkspaceTree(wkInfo:WorkspaceInfo, path:string) : WorkspaceTreeNode
+    GetWorkspaceTreeNode(path:string) : WorkspaceTreeNode
+    GetXLinksInChangesetTree(repSpec:RepositorySpec, changesetId:long) : List<ClientXlink>
+    GetXlinkTypeString(xlink:Xlink) : string
+    HasWorkspaceMergeChanges(wkInfo:WorkspaceInfo) : bool
+    IsBranchEmpty(repSpec:RepositorySpec, branchId:long) : bool
+    IsCopied(path:string, bReplaced:bool) : bool
+    IsFsReaderWatchLimitReached(wkInfo:WorkspaceInfo) : bool
+    IsGluonWorkspace(wkInfo:WorkspaceInfo) : bool
+    IsIncomingChangesInProgress(wkInfo:WorkspaceInfo) : bool
+    IsMovedChangedDifference(diff:Difference) : bool
+    IsOnChangedTree(wkInfo:WorkspaceInfo, path:string) : bool
+    IsReadOnlyFilesPreferenceEnabled() : bool
+    IsStackTraceEnabled() : bool
+    IsWorkingChangesetDeleted(wkInfo:WorkspaceInfo) : bool
+    LaunchDifferences(diffInfo:DiffInfo, xDiffLauncher:IToolLauncher) : void
+    LoadTasks(extension:IPlasticIssueTrackerExtension, taskIds:List<string>) : List<PlasticTask>
+    MarkTaskAsOpen(extension:IPlasticIssueTrackerExtension, taskIds:List<string>, assignee:string) : void
+    MkBranch(repSpec:RepositorySpec, fullBranchName:string, changeset:long, comment:string) : BranchInfo
+    MkLabel(repSpec:RepositorySpec, labelName:string, changeset:long, comment:string) : MarkerInfo
+    MkLabelInAllXlinkedRepositories(targetXlinks:IList<ClientXlink>, labelName:string, comment:string) : IList
+    Move(source:string, destination:string, options:MoveModifiers) : void
+    MoveChangeset(repSpec:RepositorySpec, csetInfo:ChangesetInfo, dstBrInfo:BranchInfo) : void
+    PartialUpdate(wkInfo:WorkspaceInfo, paths:List<string>) : List<ErrorMessage>
+    PerformUpdateMerge(wkInfo:WorkspaceInfo, mergeSource:MergeSource, mergeResult:MergeResult, notifier:ICmdNotifier) : void
+    RemoveRepository(repInfo:RepositoryInfo) : void
+    RemoveWorkspace(wkInfo:WorkspaceInfo) : void
+    RenameBranch(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, branchInfo:BranchInfo, newName:string) : BranchInfo
+    RenameLabel(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, labelInfo:MarkerInfo, newName:string) : MarkerInfo
+    RenameRepository(repInfo:RepositoryInfo, newName:string) : RepositoryInfo
+    RenameWorkspace(wkInfo:WorkspaceInfo, newName:string) : WorkspaceInfo
+    RevertToClientDiffRevisions(wkInfo:WorkspaceInfo, clientDiff:ClientDiffInfo, wkNode:WorkspaceTreeNode, workspacePath:string) : void
+    RevertToThisRevision(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, revision:HistoryRevision, path:string) : void
+    SearchMatches(wkInfo:WorkspaceInfo, path:string, allowedChangesPerUnit:double) : List<ChangeInfo>
+    SelectiveUpdate(wkInfo:WorkspaceInfo, flags:UpdateFlags, dirs:IList, files:IList) : IList
+    SetAsGluonWorkspace(wkInfo:WorkspaceInfo) : void
+    SetAttribute(repSpec:RepositorySpec, attId:long, objId:long, attributeValue:string) : void
+    SetReadonlyFilesPreference(value:bool) : void
+    SetSelector(wkInfo:WorkspaceInfo, selector:string, flags:SetSelectorFlags) : void
+    ShelveChanges(paths:string[], comment:string) : CheckinResult
+    SwitchToBranch(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, brInfo:BranchInfo, questioner:IContinueWithPendingChangesQuestioner, notifier:ICmdNotifier) : IUpdateResult
+    SwitchToBranch(wkInfo:WorkspaceInfo, branchInfo:BranchInfo) : void
+    SwitchToChangeset(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, brInfo:BranchInfo, csInfo:ChangesetInfo, questioner:IContinueWithPendingChangesQuestioner, notifier:ICmdNotifier) : IUpdateResult
+    SwitchToLabel(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, labelInfo:MarkerInfo, questioner:IContinueWithPendingChangesQuestioner, notifier:ICmdNotifier) : IUpdateResult
+    SwitchWorkspaceSelector(wkInfo:WorkspaceInfo, entries:SwitchToSelectorEntry[]) : string
+    UndeleteClientDiff(diff:ClientDiffInfo, restorePath:string) : void
+    UndeleteRepository(repInfo:RepositoryInfo) : void
+    UndeleteRevision(repSpec:RepositorySpec, removed:RemovedRealizationInfo, restorePath:string) : void
+    UndoCheckout(wkInfo:WorkspaceInfo, paths:string[], notifier:ICmdNotifier) : void
+    UndoCheckout(wkInfo:WorkspaceInfo, paths:IList<string>, skippedLocks:IList<string>, bHandleDeletedChangeset:bool) : void
+    UndoShelvedChanges(wkInfo:WorkspaceInfo, paths:string[]) : void
+    UndoUnchanged(wkInfo:WorkspaceInfo, paths:IList) : List<string>
+    Update(path:string, flags:UpdateFlags, mergeController:IRunMergeDuringUpdate, notifier:ICmdNotifier) : IUpdateResult
+    UpdateBranchHead(repSpec:RepositorySpec, branchId:long, changesetId:long) : void
+    UpdateCheckoutBranch(wkInfo:WorkspaceInfo, branchInfo:BranchInfo) : void
+    UpdateComment(repSpec:RepositorySpec, editedComment:ReviewCommentInfo) : ReviewCommentInfo
+    UpdateObjectComment(repSpec:RepositorySpec, repObject:RepObjectInfo, newComment:string) : void
+    UpdateReview(repSpec:RepositorySpec, reviewInfo:ReviewInfo) : ReviewInfo
+    UpdateToLatest(wkInfo:WorkspaceInfo, flags:UpdateFlags, mergeController:IRunMergeDuringUpdate, notifier:ICmdNotifier) : IUpdateResult
+    GetUsers(server:string, serverSideFilter:string) : SecurityMember[]
+    GetGroups(server:string, serverSideFilter:string) : SecurityMember[]
+    GetSecurityMembers(server:string, serverSideFilter:string) : SecurityMember[]
+    GetSecurityMemberFromName(server:string, name:string) : SecurityMember
+    CreateDynamicWorkspace(wkPath:string, wkName:string, repName:string) : WorkspaceInfo
+    GetRepositoryServerInfo(server:string) : RepositoryServerInfo
+    UpdateSecuredPath(repSpec:RepositorySpec, secPathInfo:SecuredPathInfo, newBrIds:long[], aclParams:AclParams) : void
+    CreateSecuredPath(repSpec:RepositorySpec, path:string, tag:string, brIds:long[], aclParams:AclParams) : SecuredPathInfo
+    DeleteSecuredPath(repSpec:RepositorySpec, secPathInfo:SecuredPathInfo) : void
+    CalculateAcl(server:string, obj:ObjectInfo, aclInfo:AclInfo, calculatedPermissions:AclEntry[], bIsOwner:bool) : void
+    GetOwner(server:string, obj:ObjectInfo) : SEID
+    GetSecuredPaths(server:string, repId:RepId, path:string, tag:string, brIds:LongArray) : IList<SecuredPathInfo>
+    SetPermissions(server:string, obj:ObjectInfo, seid:SEID, granted:Permissions, denied:Permissions, overrideGranted:Permissions, overrideDenied:Permissions) : void
+    RemovePermissions(server:string, obj:ObjectInfo, seid:SEID) : void
+    GetAllSecuredPaths(repSpec:RepositorySpec) : IList<SecuredPathInfo>
+    GetSecuredPaths(repSpec:RepositorySpec, path:string) : IList<SecuredPathInfo>
+    DownloadFileFromPath(filePaths:List<ConfiguredPath>, wkInfo:WorkspaceInfo, updateProgress:UpdateProgress) : void
+    SaveToken(server:string, user:string, token:string) : void
+    SaveProfile(server:string, workingMode:SEIDWorkingMode, user:string, password:string) : void
+    GetReview(repSpec:RepositorySpec, reviewId:long) : ReviewInfo
+    mWorkingBranch : BranchInfo
+    mWorkspaceTreeNodes : Dictionary<string, WorkspaceTreeNode>
+}
+IPlasticAPI <|-- PlasticApiMock
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+class DrawInspectorOperations <<static>> {
+    <<internal>> {static} Enable(operations:IAssetMenuOperations, statusCache:IAssetStatusCache, assetsSelection:AssetOperations.IAssetSelection) : void
+    <<internal>> {static} Disable() : void
+    {static} Editor_finishedDefaultHeaderGUI(obj:UnityEditor.Editor) : void
+    {static} DrawBackRectangle(isEnabled:bool) : void
+    {static} DrawButtons(assetList:AssetList, selectedGroupInfo:AssetMenuOperations) : void
+    {static} DrawStatusLabels(assetStatus:AssetsOverlays.AssetStatus, lockStatusData:LockStatusData) : void
+    {static} DoAddButton() : void
+    {static} DoCheckoutButton() : void
+    {static} DoCheckinButton() : void
+    {static} DoUndoButton() : void
+    {static} mOperations : IAssetMenuOperations
+    {static} mStatusCache : IAssetStatusCache
+    {static} mAssetsSelection : AssetOperations.IAssetSelection
+    {static} mIsEnabled : bool
+}
+@enduml

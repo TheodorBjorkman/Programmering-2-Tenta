@@ -1,0 +1,8 @@
+@startuml
+class ConsoleIOHandler <<partial>> {
+    CleanWeather(input:string) : string
+    RemoveCharacter(input:string, rem:char) : string
+    RemoveCharacter(input:string, rem:char[]) : string
+}
+APICallConsole <|-- ConsoleIOHandler
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class IncomingChangesNotificationPanel {
+    IsVisible : bool <<get>>
+    Data : NotificationPanelData <<get>>
+    <<internal>> IncomingChangesNotificationPanel(plasticWindow:PlasticWindow)
+    Hide() : void
+    Show(infoText:string, actionText:string, tooltipText:string, severity:CheckIncomingChanges.Severity) : void
+    {static} UpdateData(data:NotificationPanelData, infoText:string, actionText:string, tooltipText:string, severity:CheckIncomingChanges.Severity) : void
+    mIsVisible : bool
+    mPanelData : NotificationPanelData
+    mPlasticWindow : PlasticWindow
+}
+IIncomingChangesNotificationPanel <|-- IncomingChangesNotificationPanel
+@enduml

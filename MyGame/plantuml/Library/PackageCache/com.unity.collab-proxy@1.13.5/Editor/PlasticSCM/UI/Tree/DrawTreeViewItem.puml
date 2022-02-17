@@ -1,0 +1,15 @@
+@startuml
+class DrawTreeViewItem <<static>> {
+    <<internal>> {static} InitializeStyles() : void
+    <<internal>> {static} ForCategoryItem(rowRect:Rect, rowHeight:float, depth:int, icon:Texture, label:string, isSelected:bool, isFocused:bool) : void
+    <<internal>> {static} ForCheckableCategoryItem(rowRect:Rect, rowHeight:float, depth:int, icon:Texture, label:string, isSelected:bool, isFocused:bool, wasChecked:bool, hadCheckedChildren:bool) : bool
+    <<internal>> {static} ForItemCell(rect:Rect, rowHeight:float, depth:int, icon:Texture, overlayIconData:GetChangesOverlayIcon.Data, label:string, isSelected:bool, isFocused:bool, isBoldText:bool, isSecondaryLabel:bool) : void
+    <<internal>> {static} ForCheckableItemCell(rect:Rect, rowHeight:float, depth:int, icon:Texture, overlayIconData:GetChangesOverlayIcon.Data, label:string, isSelected:bool, isFocused:bool, isHighlighted:bool, wasChecked:bool) : bool
+    {static} DrawIconLeft(rect:Rect, rowHeight:float, icon:Texture, overlayIconData:GetChangesOverlayIcon.Data) : Rect
+    {static} GetCheckboxRect(rect:Rect, rowHeight:float) : Rect
+    {static} GetIndent(depth:int) : float
+    <<internal>> {static} ForSecondaryLabelRightAligned(rect:Rect, label:string, isSelected:bool, isFocused:bool, isBoldText:bool) : void
+    <<internal>> {static} ForSecondaryLabel(rect:Rect, label:string, isSelected:bool, isFocused:bool, isBoldText:bool) : void
+    <<internal>> {static} ForLabel(rect:Rect, label:string, isSelected:bool, isFocused:bool, isBoldText:bool) : void
+}
+@enduml

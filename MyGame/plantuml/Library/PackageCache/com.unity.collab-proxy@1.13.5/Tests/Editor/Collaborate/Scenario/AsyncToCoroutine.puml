@@ -1,0 +1,29 @@
+@startuml
+class CoroutineSynchronizationContext {
+    <<const>> k_AwqInitialCapacity : int = 20
+    <<readonly>> m_AsyncWorkQueue : Queue<WorkRequest>
+    <<readonly>> m_MainThreadId : int
+    + <<override>> Send(callback:SendOrPostCallback, state:object) : void
+    + <<override>> Post(callback:SendOrPostCallback, state:object) : void
+    + Exec() : void
+}
+class AsyncToCoroutine {
+    <<readonly>> m_Context : CoroutineSynchronizationContext
+    <<readonly>> m_Cleanup : bool
+    + Before : Func<Task> <<get>> <<set>>
+    + After : Func<Task> <<get>> <<set>>
+    + AsyncToCoroutine(cleanup:bool)
+    + Run(func:Func<Task>) : IEnumerator
+    + Run(action:Action) : IEnumerator
+    Run(func:Func<Task>, action:Action) : IEnumerator
+}
+class WorkRequest <<struct>> {
+    <<readonly>> m_DelegateCallback : SendOrPostCallback
+    <<readonly>> m_DelegateState : object
+    <<readonly>> m_WaitHandle : ManualResetEvent
+    + WorkRequest(callback:SendOrPostCallback, state:object, waitHandle:ManualResetEvent)
+    + Invoke() : void
+}
+SynchronizationContext <|-- CoroutineSynchronizationContext
+CoroutineSynchronizationContext +-- WorkRequest
+@enduml

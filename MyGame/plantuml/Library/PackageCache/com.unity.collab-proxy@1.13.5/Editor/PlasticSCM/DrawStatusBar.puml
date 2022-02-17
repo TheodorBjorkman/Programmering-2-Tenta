@@ -1,0 +1,11 @@
+@startuml
+class DrawStatusBar <<static>> {
+    <<internal>> {static} For(workspaceInfo:WorkspaceInfo, workspaceWindow:WorkspaceWindow, mergeViewLauncher:IMergeViewLauncher, gluonSwitcher:IGluonViewSwitcher, isGluonMode:bool, notificationPanel:IIncomingChangesNotificationPanel) : void
+    {static} DrawStatusBarIcon() : void
+    {static} DrawStatusBarLabel(status:WorkspaceStatusString.Data) : void
+    {static} GetBarTexture() : Texture2D
+    {static} mBarTexture : Texture2D = null
+    {static} <<readonly>> mBarHeight : float = 24f
+    {static} <<readonly>> mBarIconSize : float = 16f
+}
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+class StartPresenter {
+    <<readonly>> m_View : IStartView
+    <<readonly>> m_Model : IStartModel
+    m_IsStarted : bool
+    + StartPresenter(view:IStartView, model:IStartModel)
+    + Start() : void
+    + Stop() : void
+    OnStateChanged() : void
+    PopulateInitialData() : void
+    OnProjectStatusChanged(status:ProjectStatus) : void
+    + RequestStart() : void
+}
+IStartPresenter <|-- StartPresenter
+@enduml

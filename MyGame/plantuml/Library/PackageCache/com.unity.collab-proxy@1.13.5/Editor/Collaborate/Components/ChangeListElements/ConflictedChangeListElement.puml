@@ -1,0 +1,22 @@
+@startuml
+class ConflictedChangeListElement {
+    + <<new>> <<const>> UssClassName : string = "conflicted-change-list-element"
+    + <<const>> StatusIconUssClassName : string
+    + <<const>> ShowButtonUssClassName : string
+    + <<const>> ChooseMergeButtonUssClassName : string
+    + <<const>> ChooseRemoteButtonUssClassName : string
+    + <<const>> ChooseMineButtonUssClassName : string
+    + <<readonly>> statusIcon : VisualElement
+    + <<readonly>> showButton : IconButton
+    + <<readonly>> chooseMergeButton : IconButton
+    + <<readonly>> chooseRemoteButton : IconButton
+    + <<readonly>> chooseMineButton : IconButton
+    + ConflictedChangeListElement()
+    + <<override>> ClearData() : void
+}
+class UxmlFactory <<new>> {
+}
+BaseChangeListElement <|-- ConflictedChangeListElement
+ConflictedChangeListElement +-- UxmlFactory
+"UxmlFactory`1" "<ConflictedChangeListElement>" <|-- UxmlFactory
+@enduml

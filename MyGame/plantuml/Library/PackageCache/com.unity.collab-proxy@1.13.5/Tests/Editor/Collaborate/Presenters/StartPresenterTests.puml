@@ -1,0 +1,12 @@
+@startuml
+class StartPresenterTests {
+    m_View : TestStartView
+    m_Model : TestStartModel
+    m_Presenter : StartPresenter
+    + Setup() : void
+    + TearDown() : void
+    + TestRequestingStart() : void
+    + TestUpdatingProjectStatus() : void
+    + TestStateChange() : void
+}
+@enduml

@@ -1,0 +1,5 @@
+@startuml
+class RiderFileSystemWatcher <<static>> {
+    + {static} InitWatcher(watchDirectory:string, filter:string, onChanged:FileSystemEventHandler) : void
+}
+@enduml

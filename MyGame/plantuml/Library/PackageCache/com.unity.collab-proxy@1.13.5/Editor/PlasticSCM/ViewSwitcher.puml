@@ -1,0 +1,76 @@
+@startuml
+class ViewSwitcher {
+    <<internal>> IncomingChangesTabForTesting : IIncomingChangesTab <<get>>
+    <<internal>> PendingChangesTab : PendingChangesTab <<get>>
+    <<internal>> ChangesetsTab : ChangesetsTab <<get>>
+    <<internal>> HistoryTab : HistoryTab <<get>>
+    <<internal>> ViewSwitcher(wkInfo:WorkspaceInfo, viewHost:ViewHost, isGluonMode:bool, pendingChanges:PlasticGui.WorkspaceWindow.PendingChanges.PendingChanges, developerNewIncomingChangesUpdater:NewIncomingChangesUpdater, gluonNewIncomingChangesUpdater:GluonNewIncomingChangesUpdater, incomingChangesNotificationPanel:IIncomingChangesNotificationPanel, assetStatusCache:IAssetStatusCache, notificationDrawer:NotificationDrawer, parentWindow:EditorWindow)
+    <<internal>> SetWorkspaceWindow(workspaceWindow:WorkspaceWindow) : void
+    <<internal>> ShowInitialView() : void
+    <<internal>> AutoRefreshPendingChangesView() : void
+    <<internal>> AutoRefreshIncomingChangesView() : void
+    <<internal>> RefreshView(viewType:ViewType) : void
+    <<internal>> RefreshSelectedView() : void
+    <<internal>> OnDisable() : void
+    <<internal>> Update() : void
+    <<internal>> TabButtonsGUI() : void
+    <<internal>> TabViewGUI() : void
+    ShowPendingChanges() : void
+    ShowSyncView(syncViewToSelect:string) : void
+    ShowBranchExplorerView() : void
+    DisableMergeView() : void
+    IsIncomingChangesView() : bool
+    CloseIncomingChangesView() : void
+    MergeFrom(objectInfo:ObjectInfo, mergeType:EnumMergeType) : void
+    MergeFrom(objectInfo:ObjectInfo, mergeType:EnumMergeType, from:ShowIncomingChangesFrom) : void
+    MergeFromInterval(objectInfo:ObjectInfo, ancestorChangesetInfo:ObjectInfo, mergeType:EnumMergeType) : void
+    ShowIncomingChangesView() : void
+    ShowHistoryView(repSpec:RepositorySpec, itemId:long, path:string, isDirectory:bool) : void
+    CloseHistoryTab() : void
+    ShowPendingChangesView() : void
+    ShowIncomingChangesView() : void
+    ShowChangesetsView() : void
+    ShowHistoryView(repSpec:RepositorySpec, itemId:long, path:string, isDirectory:bool) : void
+    InitializeTabButtonWidth() : void
+    ShowView(viewToShow:SelectedTab) : void
+    GetRefreshableViewBasedOnSelectedTab(selectedTab:SelectedTab) : IRefreshableView
+    GetRefreshableView(viewType:ViewType) : IRefreshableView
+    <<internal>> IsViewSelected(tab:SelectedTab) : bool
+    SetSelectedView(tab:SelectedTab) : void
+    PendingChangesTabButtonGUI() : void
+    IncomingChangesTabButtonGUI() : void
+    ChangesetsTabButtonGUI() : void
+    HistoryTabButtonGUI() : void
+    mIncomingChangesTab : IIncomingChangesTab
+    mSelectedTab : SelectedTab
+    mPreviousSelectedTab : SelectedTab
+    mTabButtonWidth : float
+    mPendingChangesTabButton : TabButton
+    mChangesetsTabButton : TabButton
+    mIncomingChangesTabButton : TabButton
+    mHistoryTabButton : TabButton
+    mWorkspaceWindow : WorkspaceWindow
+    <<readonly>> mParentWindow : EditorWindow
+    <<readonly>> mNotificationDrawer : NotificationDrawer
+    <<readonly>> mAssetStatusCache : IAssetStatusCache
+    <<readonly>> mIncomingChangesNotificationPanel : IIncomingChangesNotificationPanel
+    <<readonly>> mGluonNewIncomingChangesUpdater : GluonNewIncomingChangesUpdater
+    <<readonly>> mDeveloperNewIncomingChangesUpdater : NewIncomingChangesUpdater
+    <<readonly>> mPendingChanges : PlasticGui.WorkspaceWindow.PendingChanges.PendingChanges
+    <<readonly>> mIsGluonMode : bool
+    <<readonly>> mViewHost : ViewHost
+    <<readonly>> mWkInfo : WorkspaceInfo
+}
+enum SelectedTab {
+    None= 0,
+    PendingChanges= 1,
+    IncomingChanges= 2,
+    Changesets= 3,
+    History= 4,
+}
+IViewSwitcher <|-- ViewSwitcher
+IMergeViewLauncher <|-- ViewSwitcher
+IGluonViewSwitcher <|-- ViewSwitcher
+IHistoryViewLauncher <|-- ViewSwitcher
+ViewSwitcher +-- SelectedTab
+@enduml

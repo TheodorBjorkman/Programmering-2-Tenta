@@ -1,0 +1,42 @@
+@startuml
+interface ISequenceState {
+    asset : TimelineAsset <<get>>
+    director : PlayableDirector <<get>>
+    hostClip : TimelineClip <<get>>
+    start : double <<get>>
+    timeScale : double <<get>>
+    duration : double <<get>>
+    isReadOnly : bool <<get>>
+    viewModel : TimelineAssetViewModel <<get>>
+    time : double <<get>> <<set>>
+    frame : int <<get>> <<set>>
+    frameRate : float <<get>> <<set>>
+    GetEvaluableRange() : Range
+    TimeAsString(timeValue:double, format:string) : string
+    ToGlobalTime(t:double) : double
+    ToLocalTime(t:double) : double
+    ResetIsReadOnly() : void
+}
+class NullSequenceState {
+    + asset : TimelineAsset <<get>>
+    + director : PlayableDirector <<get>>
+    + hostClip : TimelineClip <<get>>
+    + start : double <<get>>
+    + timeScale : double <<get>>
+    + duration : double <<get>>
+    + isReadOnly : bool <<get>>
+    m_ViewModel : TimelineAssetViewModel
+    + viewModel : TimelineAssetViewModel <<get>>
+    + time : double <<get>> <<set>>
+    + frame : int <<get>> <<set>>
+    + frameRate : float <<get>> <<set>>
+    + GetEvaluableRange() : Range
+    + TimeAsString(timeValue:double, format:string) : string
+    + ToGlobalTime(t:double) : double
+    + ToLocalTime(t:double) : double
+    + ResetIsReadOnly() : void
+    + Dispose() : void
+}
+IDisposable <|-- ISequenceState
+ISequenceState <|-- NullSequenceState
+@enduml

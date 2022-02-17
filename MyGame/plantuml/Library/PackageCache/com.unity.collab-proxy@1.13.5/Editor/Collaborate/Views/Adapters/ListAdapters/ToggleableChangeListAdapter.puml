@@ -1,0 +1,19 @@
+@startuml
+class ToggleableChangeListAdapter {
+    m_List : IReadOnlyList<IChangeEntryData>
+    + List : IReadOnlyList<IChangeEntryData> <<set>>
+    <<readonly>> m_Presenter : IChangesPresenter
+    m_LastBoundElementIndex : int
+    + ToggleableChangeListAdapter(presenter:IChangesPresenter)
+    + <<override>> Height : int <<get>>
+    # <<override>> MakeItem() : ToggleableChangeListElement
+    # <<override>> BindItem(element:ToggleableChangeListElement, index:int) : void
+    + <<override>> GetEntryCount() : int
+    OnItemToggleChanged(index:int, toggled:bool) : void
+    OnDiscardClicked(index:int) : void
+    + GetLastBoundElementIndex() : int
+    + GetFirstToggledIndex() : int
+    OnDiffClicked(index:int) : void
+}
+"BaseListAdapter`1" "<ToggleableChangeListElement>" <|-- ToggleableChangeListAdapter
+@enduml

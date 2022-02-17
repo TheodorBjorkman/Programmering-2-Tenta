@@ -1,0 +1,21 @@
+@startuml
+class EmptyCheckinMessageDialog {
+    <<internal>> UserChoseToNotDisplayWarningAgain : bool <<get>>
+    # <<override>> GetTitle() : string
+    # <<override>> OnModalGUI() : void
+    DoMainContentSection() : void
+    DoCheckboxSection() : void
+    DoButtonsArea() : void
+    DoCheckInAnywayButton() : void
+    DoCancelButton() : void
+    <<internal>> {static} ShouldContinueWithCheckin(parentWindow:EditorWindow, wkInfo:WorkspaceInfo) : bool
+    {static} Create(wkInfo:WorkspaceInfo) : EmptyCheckinMessageDialog
+    {static} GetIconTexture() : Texture2D
+    mWkInfo : WorkspaceInfo
+    mSentCheckinAnywayTrackEvent : bool = false
+    mSentCancelTrackEvent : bool = false
+    mSentCheckboxTrackEvent : bool = false
+    {static} sPlasticIconImage : Texture2D = null
+}
+PlasticDialog <|-- EmptyCheckinMessageDialog
+@enduml

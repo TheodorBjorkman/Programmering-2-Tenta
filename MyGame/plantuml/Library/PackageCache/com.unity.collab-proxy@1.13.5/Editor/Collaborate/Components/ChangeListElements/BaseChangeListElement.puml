@@ -1,0 +1,25 @@
+@startuml
+class BaseChangeListElement {
+    + <<const>> UssClassName : string = "base-change-list-element"
+    + <<const>> FileNameUssClassName : string
+    + <<const>> FilePathUssClassName : string
+    + <<const>> IconsUssClassName : string
+    + <<const>> ButtonsUssClassName : string
+    + <<const>> IconUssClassName : string
+    + <<const>> ButtonUssClassName : string
+    {static} <<readonly>> k_LayoutPath : string
+    {static} <<readonly>> k_StylePath : string
+    # <<readonly>> m_FileName : Label
+    # <<readonly>> m_FilePath : Label
+    + <<readonly>> icons : VisualElement
+    + <<readonly>> buttons : VisualElement
+    + BaseChangeListElement()
+    + UpdateFilePath(path:string) : void
+    + <<virtual>> ClearData() : void
+}
+class UxmlFactory <<new>> {
+}
+VisualElement <|-- BaseChangeListElement
+BaseChangeListElement +-- UxmlFactory
+"UxmlFactory`1" "<BaseChangeListElement>" <|-- UxmlFactory
+@enduml

@@ -1,0 +1,44 @@
+@startuml
+class UserRoleRequest {
+    + GetUserRole() : IAsyncOperation<UserRole>
+    {static} QueryProjectUsers(configurationRequestTask:IAsyncOperation<DefaultCdnEndpointConfiguration>, resultAsyncOp:AsyncOperation<UserRole>) : void
+    {static} FindUserRoleToFinishAsyncOperation(getProjectUsersRequest:UnityWebRequest, resultAsyncOp:AsyncOperation<UserRole>) : void
+    {static} ExtractUserListFromUnityWebRequest(unityWebRequest:UnityWebRequest) : UserList
+    {static} FindCurrentUserInList(currentUserId:string, users:IEnumerable<User>) : User
+}
+class UserList {
+    users : User[]
+    + Users : User[] <<get>>
+}
+class User {
+    foreign_key : string
+    + Id : string <<get>>
+    name : string
+    + Name : string <<get>>
+    email : string
+    + Email : string <<get>>
+    access_granted_by : string
+    + AccessGrantedBy : string <<get>>
+    role : string
+    + Role : UserRole <<get>>
+}
+class RequestNotAuthorizedException {
+}
+class CurrentUserNotFoundException {
+}
+class UserListNotFoundException {
+}
+class UnknownUserRoleException {
+}
+IUserRoleRequest <|-- UserRoleRequest
+UserRoleRequest +-- UserList
+UserRoleRequest +-- User
+UserRoleRequest +-- RequestNotAuthorizedException
+Exception <|-- RequestNotAuthorizedException
+UserRoleRequest +-- CurrentUserNotFoundException
+Exception <|-- CurrentUserNotFoundException
+UserRoleRequest +-- UserListNotFoundException
+Exception <|-- UserListNotFoundException
+UserRoleRequest +-- UnknownUserRoleException
+Exception <|-- UnknownUserRoleException
+@enduml

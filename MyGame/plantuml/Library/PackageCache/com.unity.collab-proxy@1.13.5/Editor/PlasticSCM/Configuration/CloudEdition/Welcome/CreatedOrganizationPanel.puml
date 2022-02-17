@@ -1,0 +1,12 @@
+@startuml
+class CreatedOrganizationPanel {
+    <<internal>> CreatedOrganizationPanel(organizationName:string, parentWindow:CloudEditionWelcomeWindow)
+    BuildComponents() : void
+    InitializeLayoutAndStyles() : void
+    ContinueButton_Clicked() : void
+    <<internal>> Dispose() : void
+    mOrganizationName : string
+    mParentWindow : CloudEditionWelcomeWindow
+}
+VisualElement <|-- CreatedOrganizationPanel
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+class SSOSignUpPanel {
+    <<internal>> SSOSignUpPanel(parentWindow:CloudEditionWelcomeWindow, restApi:IPlasticWebRestApi, cmConnection:CmConnection)
+    <<internal>> SetSignUpData(user:string, password:string) : void
+    <<internal>> Dispose() : void
+    UserNameTextBox_TextChanged(evt:ChangeEvent<string>) : void
+    PasswordTextBox_TextChanged(evt:ChangeEvent<string>) : void
+    ConfirmPasswordTextBox_TextChanged(evt:ChangeEvent<string>) : void
+    SignUpButton_Clicked() : void
+    SignUpWithUnityButton_clicked() : void
+    TermsOfServiceButton_Clicked() : void
+    PrivacyPolicyButton_Clicked() : void
+    PrivacyPolicyStatementButton_Clicked() : void
+    BuildComponents() : void
+    InitializeLayoutAndStyles() : void
+    CleanNotificationLabels() : void
+    {static} ShowNotification(label:Label, text:string) : void
+    {static} CleanNotification(label:Label) : void
+    Success(organizations:List<string>, canCreateAnOrganization:bool) : void
+    ValidationFailed(validationResult:SignUp.ValidationResult) : void
+    LoginNeeded(loginData:Login.Data, message:string) : void
+    Error(message:string) : void
+    mTermsOfServiceButton : Button
+    mPrivacyPolicyButton : Button
+    mPrivacyPolicyStatementButton : Button
+    mUserNameTextField : TextField
+    mPasswordTextField : TextField
+    mConfirmPasswordTextField : TextField
+    mUserNotificationLabel : Label
+    mPasswordNotificationLabel : Label
+    mConfirmPasswordNotificationLabel : Label
+    mSignUpButton : Button
+    mSignUpWithUnityButton : Button
+    mProgressContainer : VisualElement
+    mProgressControls : IProgressControls
+    mWaitingSignInPanel : WaitingSignInPanel
+    <<readonly>> mParentWindow : CloudEditionWelcomeWindow
+    <<readonly>> mRestApi : IPlasticWebRestApi
+    <<readonly>> mCmConnection : CmConnection
+    <<const>> hideGoogleSignUpButton : bool = true
+}
+VisualElement <|-- SSOSignUpPanel
+@enduml

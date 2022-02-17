@@ -1,0 +1,35 @@
+@startuml
+interface IWindowCache {
+    Clear() : void
+    SimpleSelectedItems : SelectedItemsDictionary <<get>> <<set>>
+    RevisionSummary : string <<get>> <<set>>
+    ChangesSearchValue : string <<get>> <<set>>
+    SelectedHistoryRevision : string <<get>> <<set>>
+    HistoryPageNumber : int <<get>> <<set>>
+    TabIndex : int <<get>> <<set>>
+}
+class WindowCache {
+    +  <<event>> BeforeSerialize : Action<IWindowCache> 
+    + Serialize() : void
+    + Clear() : void
+    SimpleSelectedItems : SelectedItemsDictionary <<get>> <<set>>
+    RevisionSummary : string <<get>> <<set>>
+    ChangesSearchValue : string <<get>> <<set>>
+    SelectedHistoryRevision : string <<get>> <<set>>
+    HistoryPageNumber : int <<get>> <<set>>
+    TabIndex : int <<get>> <<set>>
+    + SimpleSelectedItems : SelectedItemsDictionary
+    + RevisionSummary : string
+    + ChangesSearchValue : string
+    + SelectedHistoryRevision : string
+    + HistoryPageNumber : int
+    + TabIndex : int
+}
+class SelectedItemsDictionary {
+    + SelectedItemsDictionary()
+    + SelectedItemsDictionary(dictionary:IDictionary<string, bool>)
+}
+"ScriptableObjectSingleton`1" "<WindowCache>" <|-- WindowCache
+IWindowCache <|-- WindowCache
+"SerializableDictionary`2" "<string,bool>" <|-- SelectedItemsDictionary
+@enduml

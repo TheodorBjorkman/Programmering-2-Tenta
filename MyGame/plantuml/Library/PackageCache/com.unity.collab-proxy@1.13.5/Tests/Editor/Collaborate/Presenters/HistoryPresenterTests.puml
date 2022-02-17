@@ -1,0 +1,22 @@
+@startuml
+class HistoryPresenterTests {
+    m_View : TestHistoryView
+    m_HistoryModel : TestHistoryModel
+    m_MainModel : TestMainModel
+    m_Presenter : HistoryPresenter
+    + Setup() : void
+    + TearDown() : void
+    + TestStartCall() : void
+    + TestStartWithSavedRevisionCall() : void
+    + TestReceivingUpdateEvent() : void
+    + TestReceivingUpdateEventWithSelection() : void
+    + TestReceivingEntryCount() : void
+    + TestPreviousPageCall() : void
+    + TestPreviousPageCallOnZero() : void
+    + TestNextPageCall() : void
+    + TestNextPageCallOnZero() : void
+    + TestSetSelectedRevisionId() : void
+    + TestGotoCall() : void
+    + TestRevertCall() : void
+}
+@enduml

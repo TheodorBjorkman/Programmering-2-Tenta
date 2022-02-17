@@ -1,0 +1,48 @@
+@startuml
+class MainPageView {
+    m_Presenter : IMainPresenter
+    + <<const>> UssClassName : string = "main-page-view"
+    + <<const>> TopBarUssClassName : string
+    + <<const>> AlertBoxUssClassName : string
+    + <<const>> TabViewUssClassName : string
+    + <<const>> ContainerUssClassName : string
+    + <<const>> ChangesTabIndex : int = 0
+    + <<const>> HistoryTabIndex : int = 1
+    {static} <<readonly>> k_LayoutPath : string
+    {static} <<readonly>> k_StylePath : string
+    <<readonly>> m_AlertBox : AlertBox
+    <<readonly>> m_TabView : TabView
+    <<readonly>> m_HistoryView : HistoryTabPageView
+    <<readonly>> m_ChangesView : ChangesTabPageView
+    <<readonly>> m_Container : VisualElement
+    <<readonly>> m_TopBar : TopBar
+    m_ProgressView : ProgressView
+    m_DisplayMode : DisplayMode
+    + MainPageView()
+    + Presenter : IMainPresenter <<set>>
+    # <<override>> SetActive() : void
+    # <<override>> SetInactive() : void
+    + AddAlert(id:string, level:AlertBox.AlertLevel, message:string, button:(string text, Action action)?) : void
+    + RemoveAlert(id:string) : void
+    + SetTab(index:int) : void
+    + AddOperationProgress() : void
+    + RemoveOperationProgress() : void
+    + SetOperationProgress(title:string, details:string, percentage:int, completed:int, total:int, isPercentage:bool, canCancel:bool) : void
+    + ClearBackNavigation() : void
+    + DisplayBackNavigation(text:string) : void
+    SetDisplay(mode:DisplayMode) : void
+    OnTabSwitched(index:int) : void
+    OnBackButtonClicked() : void
+}
+class UxmlFactory <<new>> {
+}
+enum DisplayMode {
+    TabView,
+    ProgressView,
+}
+PageComponent <|-- MainPageView
+IMainView <|-- MainPageView
+MainPageView +-- UxmlFactory
+"UxmlFactory`1" "<MainPageView>" <|-- UxmlFactory
+MainPageView +-- DisplayMode
+@enduml

@@ -1,0 +1,75 @@
+@startuml
+class IncomingChangesTab {
+    <<internal>> IncomingChangesTab(wkInfo:WorkspaceInfo, viewHost:ViewHost, workspaceWindow:WorkspaceWindow, newIncomingChangesUpdater:NewIncomingChangesUpdater, updateIncomingChanges:CheckIncomingChanges.IUpdateIncomingChanges, parentWindow:EditorWindow)
+    IsVisible : bool <<get>> <<set>>
+    OnDisable() : void
+    Update() : void
+    OnGUI() : void
+    AutoRefresh() : void
+    Refresh() : void
+    UpdateData(tree:IncomingChangesTree, errorMessages:List<ErrorMessage>, processMergesButtonText:string, conflictsLabelData:PendingConflictsLabelData, changesToApplySummaryText:string) : void
+    UpdatePendingConflictsLabel(data:PendingConflictsLabelData) : void
+    UpdateSolvedFileConflicts(solvedConflicts:List<IncomingChangeInfo>, currentConflict:IncomingChangeInfo) : void
+    ShowMessage(message:string, isErrorMessage:bool) : void
+    HideMessage() : void
+    DisableProcessMergesButton() : void
+    ShowCancelButton() : void
+    HideCancelButton() : void
+    GetSelectedIncomingChangesGroupInfo() : SelectedIncomingChangesGroupInfo
+    MergeContributors() : void
+    MergeKeepingSourceChanges() : void
+    MergeKeepingWorkspaceChanges() : void
+    DiffIncomingChanges() : void
+    DiffYoursWithIncoming() : void
+    DiffIncomingChanges() : void
+    DiffYoursWithIncoming() : void
+    SelectionHasMeta() : bool
+    {static} DiffIncomingChanges(incomingChange:IncomingChangeInfo, wkInfo:WorkspaceInfo) : void
+    {static} DiffYoursWithIncoming(incomingChange:IncomingChangeInfo, wkInfo:WorkspaceInfo) : void
+    {static} UpdateErrorsList(errorsListView:ErrorsListView, errorMessages:List<ErrorMessage>) : void
+    UpdateProcessMergesButtonText() : void
+    ShowProcessMergesButton(processMergesButtonText:string) : void
+    DoActionsToolbar(isProcessMergesButtonVisible:bool, isCancelMergesButtonVisible:bool, isProcessMergesButtonEnabled:bool, isCancelMergesButtonEnabled:bool, processMergesButtonText:string, incomingChangesViewLogic:IncomingChangesViewLogic, incomingChangesTreeView:IncomingChangesTreeView, progressControls:ProgressControlsForViews) : void
+    {static} DoIncomingChangesArea(incomingChangesTreeView:IncomingChangesTreeView, pendingConflictsLabelData:PendingConflictsLabelData, changesToApplySummaryLabelText:string, messageLabelText:string, isMessageLabelVisible:bool, isOperationRunning:bool) : void
+    {static} DoProcessMergesButton(isEnabled:bool, processMergesButtonText:string, incomingChangesViewLogic:IncomingChangesViewLogic, incomingChangesTreeView:IncomingChangesTreeView) : void
+    DoCancelMergesButton(isEnabled:bool, incomingChangesViewLogic:IncomingChangesViewLogic) : void
+    DoErrorsArea(errorsListView:ErrorsListView, splitterState:object, errorMessageLabelText:string, isErrorsListVisible:bool, isErrorMessageLabelVisible:bool) : void
+    {static} DoPendingConflictsAndChangesToApplyLabel(pendingConflictsLabelData:PendingConflictsLabelData, changesToApplySummaryLabelText:string) : void
+    {static} UpdateIncomingChangesTree(incomingChangesTreeView:IncomingChangesTreeView, tree:IncomingChangesTree) : void
+    {static} DoIncomingChangesTreeViewArea(incomingChangesTreeView:IncomingChangesTreeView, isOperationRunning:bool) : void
+    DoErrorsListArea(errorsListView:ErrorsListView, splitterState:object) : void
+    {static} DoErrorMessageArea(message:string) : void
+    DoErrorsListSplitViewArea(errorsListView:ErrorsListView, splitterState:object) : void
+    {static} DoErrorsListViewArea(errorsListView:ErrorsListView) : void
+    DoErrorDetailsTextArea(selectedErrorMessage:ErrorMessage) : void
+    {static} DoRefreshButton(isEnabled:bool, incomingChangesViewLogic:IncomingChangesViewLogic) : void
+    {static} DoInfoMessageArea(message:string) : void
+    BuildComponents() : void
+    mIsVisible : bool
+    mIsProcessMergesButtonVisible : bool
+    mIsCancelMergesButtonVisible : bool
+    mIsMessageLabelVisible : bool
+    mIsErrorMessageLabelVisible : bool
+    mIsErrorsListVisible : bool
+    mIsProcessMergesButtonEnabled : bool
+    mIsCancelMergesButtonEnabled : bool
+    mProcessMergesButtonText : string
+    mMessageLabelText : string
+    mErrorMessageLabelText : string
+    mPendingConflictsLabelData : PendingConflictsLabelData
+    mChangesToApplySummaryLabelText : string
+    mIncomingChangesTreeView : IncomingChangesTreeView
+    mErrorsListView : ErrorsListView
+    mErrorsSplitterState : object
+    mErrorDetailsSplitterState : object
+    <<readonly>> mProgressControls : ProgressControlsForViews
+    mErrorDetailsScrollPosition : Vector2
+    <<readonly>> mIncomingChangesViewLogic : IncomingChangesViewLogic
+    <<readonly>> mParentWindow : EditorWindow
+    <<readonly>> mNewIncomingChangesUpdater : NewIncomingChangesUpdater
+    <<readonly>> mWkInfo : WorkspaceInfo
+}
+IIncomingChangesTab <|-- IncomingChangesTab
+IRefreshableView <|-- IncomingChangesTab
+IIncomingChangesViewMenuOperations <|-- IncomingChangesTab
+@enduml

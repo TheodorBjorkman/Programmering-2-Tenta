@@ -1,0 +1,20 @@
+@startuml
+class TurnOffPlasticWindow {
+    <<internal>> {static} ShowWindow() : void
+    OnEnable() : void
+    OnDestroy() : void
+    Dispose() : void
+    InitializeLayoutAndStyles() : void
+    BuildComponents() : void
+    UpdateProgress() : void
+    CreateButton_Clicked() : void
+    mRoot : VisualElement
+    mTurnOffButton : Button
+    mTurnOffLabel : Label
+    mTurnedOffLabel : Label
+    mProgressBar : ProgressBar
+    mProgress : int
+    mPlasticWindow : PlasticWindow
+}
+EditorWindow <|-- TurnOffPlasticWindow
+@enduml

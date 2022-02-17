@@ -1,0 +1,14 @@
+@startuml
+class UnityWebRequestClient {
+    <<readonly>> m_ServiceIdToConfig : Dictionary<string, HttpServiceConfig>
+    + GetBaseUrlFor(serviceId:string) : string
+    + GetDefaultOptionsFor(serviceId:string) : HttpOptions
+    + CreateRequestForService(serviceId:string, resourcePath:string) : HttpRequest
+    <<internal>> {static} CombinePaths(path1:string, path2:string) : string
+    + Send(request:HttpRequest) : IAsyncOperation<ReadOnlyHttpResponse>
+    {static} ConvertToWebRequest(request:HttpRequest) : UnityWebRequest
+    {static} ConvertToResponse(webRequest:UnityWebRequest) : HttpResponse
+    <<internal>> SetServiceConfig(config:HttpServiceConfig) : void
+}
+IHttpClient <|-- UnityWebRequestClient
+@enduml

@@ -1,0 +1,8 @@
+@startuml
+class SearchLocks <<static>> {
+    <<internal>> {static} GetLocksInfo(wkInfo:WorkspaceInfo, locksCandidates:Dictionary<RepositorySpec, List<WorkspaceTreeNode>>) : Dictionary<WorkspaceTreeNode, LockInfo>
+    {static} FillRepositoryLocks(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, candidates:List<WorkspaceTreeNode>, locksByItemByServer:Dictionary<string, Dictionary<Guid, LockInfo>>, locks:Dictionary<WorkspaceTreeNode, LockInfo>) : void
+    {static} GetLockableCandidates(candidates:List<WorkspaceTreeNode>, lockRule:LockRule) : List<WorkspaceTreeNode>
+    {static} GetCandidatesGuids(wkInfo:WorkspaceInfo, repSpec:RepositorySpec, candidates:List<WorkspaceTreeNode>) : IList<Guid>
+}
+@enduml

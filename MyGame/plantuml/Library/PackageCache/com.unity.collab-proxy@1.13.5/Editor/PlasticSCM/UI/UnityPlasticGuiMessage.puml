@@ -1,0 +1,16 @@
+@startuml
+class UnityPlasticGuiMessage {
+    <<internal>> UnityPlasticGuiMessage(parentWindow:EditorWindow)
+    ShowMessage(title:string, message:string, alertType:GuiMessage.GuiMessageType) : void
+    ShowError(message:string) : void
+    ShowQuestion(title:string, message:string, firstActionButton:string, secondActionButton:string, thirdActionButton:string, isFirstButtonEnabled:bool) : GuiMessage.GuiMessageResponseButton
+    ShowQuestion(title:string, message:string, yesButton:string) : bool
+    ShowYesNoQuestion(title:string, message:string) : bool
+    ShowYesNoCancelQuestion(title:string, message:string) : GuiMessage.GuiMessageResponseButton
+    ShowYesNoQuestionWithType(title:string, message:string, messageType:GuiMessage.GuiMessageType) : bool
+    {static} GetResponse(dialogResult:int) : GuiMessage.GuiMessageResponseButton
+    {static} BuildDialogTitle(title:string, alertType:GuiMessage.GuiMessageType) : string
+    {static} GetAlertTypeText(alertType:GuiMessage.GuiMessageType) : string
+    mParentWindow : EditorWindow
+}
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+interface IAdapter {
+    Height : int <<get>>
+    MakeItem : Func<VisualElement> <<get>>
+    BindItem : Action<VisualElement, int> <<get>>
+    GetEntryCount() : int
+    RegisterObserver(observer:IAdapterObserver) : void
+    DeregisterObserver(observer:IAdapterObserver) : void
+}
+@enduml

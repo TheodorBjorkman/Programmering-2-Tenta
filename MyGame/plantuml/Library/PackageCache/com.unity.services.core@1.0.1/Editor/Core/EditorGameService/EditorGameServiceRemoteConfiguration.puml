@@ -1,0 +1,22 @@
+@startuml
+class "EditorGameServiceRemoteConfiguration`1"<T> {
+    m_ConfigUrl : string
+    m_SessionStateKey : string
+    m_CachedConfiguration : T
+    m_IsConfigurationLoaded : bool
+    m_FetchOperation : IAsyncOperation<string>
+    m_HttpClient : IHttpClient
+    <<internal>> <<virtual>> GetHttpClient() : IHttpClient
+    + EditorGameServiceRemoteConfiguration(configUrl:string)
+    + GetConfiguration(onGetConfigurationCompleted:Action<T>) : void
+    <<internal>> GetConfiguration() : IAsyncOperation<T>
+    + ClearCache() : void
+    FetchConfigurationFromCdn() : IAsyncOperation<string>
+    {static} SafeGetUTF8StringFromBytes(bytes:byte[]) : string
+}
+class "CdnConfiguredEndpoint`1"<T> {
+    <<const>> k_CdnUrl : string = "https://public-cdn.cloud.unity3d.com/config/proxy/production"
+    + CdnConfiguredEndpoint()
+}
+"EditorGameServiceRemoteConfiguration`1" "<T>" <|-- "CdnConfiguredEndpoint`1"
+@enduml

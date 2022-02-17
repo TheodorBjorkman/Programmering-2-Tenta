@@ -1,0 +1,13 @@
+@startuml
+class EnabledVisuals {
+    <<const>> k_StorageUrl : string = "https://core.cloud.unity3d.com/orgs/{0&#125;/projects/{1&#125;/usage"
+    + GetVisuals() : VisualElement
+    SetupPublishSection(containerUI:VisualElement) : void
+    {static} ShowChangesWindow() : void
+    SetupHistorySection(containerUI:VisualElement) : void
+    {static} ShowHistoryWindow() : void
+    {static} SetupCloudStorage(containerUI:VisualElement) : void
+    {static} GoToCloudStorageDashboard() : void
+}
+IVisuals <|-- EnabledVisuals
+@enduml

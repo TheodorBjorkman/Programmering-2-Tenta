@@ -1,0 +1,21 @@
+@startuml
+class OrganizationPanel {
+    <<internal>> OrganizationPanel(parentWindow:CloudEditionWelcomeWindow, restApi:IPlasticWebRestApi, title:string, organizations:List<string>, canCreateAnOrganization:bool)
+    BuildComponents(title:string, canCreateAnOrganization:bool) : void
+    <<internal>> Dispose() : void
+    - JoinOrganizationButton_clicked() : void
+    - CreateOrganizationButton_Clicked() : void
+    BuildSingleOrganizationSection(organizationName:string) : void
+    BuildMultipleOrganizationsSection(organizationNames:List<string>) : void
+    BuildCreateOrganizationSection(firstOrganization:bool) : void
+    InitializeLayoutAndStyles() : void
+    mOrganizations : List<string>
+    mJoinSingleOrganizationButton : Button = null
+    mJoinMultipleOrganizationsButton : Button = null
+    mCreateOrganizationButton : Button = null
+    + mOrganizationToJoin : string = ""
+    <<readonly>> mParentWindow : CloudEditionWelcomeWindow
+    <<readonly>> mRestApi : IPlasticWebRestApi
+}
+VisualElement <|-- OrganizationPanel
+@enduml

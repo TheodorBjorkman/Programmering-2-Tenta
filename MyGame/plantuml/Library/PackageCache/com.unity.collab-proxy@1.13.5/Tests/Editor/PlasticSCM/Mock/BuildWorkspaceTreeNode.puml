@@ -1,0 +1,7 @@
+@startuml
+class BuildWorkspaceTreeNode <<static>> {
+    <<internal>> {static} Controlled() : WorkspaceTreeNode
+    <<internal>> {static} CheckedOut() : WorkspaceTreeNode
+    <<internal>> {static} Added() : WorkspaceTreeNode
+}
+@enduml

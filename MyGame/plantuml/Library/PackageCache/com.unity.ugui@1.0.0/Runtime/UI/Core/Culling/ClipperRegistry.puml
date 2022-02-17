@@ -1,0 +1,11 @@
+@startuml
+class ClipperRegistry {
+    {static} s_Instance : ClipperRegistry
+    <<readonly>> m_Clippers : IndexedSet<IClipper>
+    # ClipperRegistry()
+    + {static} instance : ClipperRegistry <<get>>
+    + Cull() : void
+    + {static} Register(c:IClipper) : void
+    + {static} Unregister(c:IClipper) : void
+}
+@enduml

@@ -1,0 +1,53 @@
+@startuml
+interface IWelcomeWindowNotify {
+    SuccessForConfigure(organizations:List<string>, canCreateAnOrganization:bool) : void
+    SuccessForSSO(organization:string) : void
+    SuccessForCredentials(userName:string, password:string) : void
+    SuccessForProfile(userName:string) : void
+    SignUpNeeded(user:string, password:string) : void
+    Back() : void
+}
+class CloudEditionWelcomeWindow {
+    <<internal>> {static} ShowWindow(restApi:IPlasticWebRestApi, cmConnection:CmConnection, welcomeView:WelcomeView, autoLogin:bool) : void
+    <<internal>> {static} GetWelcomeWindow() : CloudEditionWelcomeWindow
+    OnEnable() : void
+    <<internal>> CancelJoinOrganization() : void
+    <<internal>> JoinOrganizationAndWelcomePage(organization:string) : void
+    <<internal>> {static} JoinCloudServer(cloudServer:string, username:string, accessToken:string) : void
+    <<internal>> ReplaceRootPanel(panel:VisualElement) : void
+    OnDestroy() : void
+    Dispose() : void
+    SuccessForConfigure(organizations:List<string>, canCreateAnOrganization:bool, userName:string, accessToken:string) : void
+    <<internal>> ShowOrganizationPanel(title:string, organizations:List<string>, canCreateAnOrganization:bool) : void
+    SuccessForSSO(organization:string) : void
+    SuccessForProfile(email:string) : void
+    SuccessForCredentials(email:string, accessToken:string) : void
+    Cancel(errorMessage:string) : void
+    SuccessForConfigure(organizations:List<string>, canCreateAnOrganization:bool) : void
+    <<internal>> FillUserAndToken(userName:string, accessToken:string) : void
+    <<internal>> ShowOrganizationPanelFromAutoLogin(organizations:List<string>, canCreateAnOrganization:bool) : void
+    SuccessForSSO(organization:string) : void
+    SuccessForCredentials(userName:string, password:string) : void
+    SuccessForProfile(userName:string) : void
+    SignUpNeeded(user:string, password:string) : void
+    Back() : void
+    SwitchToSignUpPage(user:string, password:string) : void
+    GetWindowTitle() : string
+    <<internal>> {static} GetPlasticConfigFileToSaveOrganization() : string
+    <<internal>> {static} GetGluonConfigFileToSaveOrganization() : string
+    BuildComponents() : void
+    <<internal>> mTabView : TabView
+    mOrganizationPanel : OrganizationPanel
+    mSignInPanel : SignInPanel
+    mSSOSignUpPanel : SSOSignUpPanel
+    mWelcomeView : WelcomeView
+    mUserName : string
+    mAccessToken : string
+    mIsOnSignIn : bool = true
+    {static} sRestApi : IPlasticWebRestApi
+    {static} sCmConnection : CmConnection
+    {static} sAutoLogin : bool = false
+}
+EditorWindow <|-- CloudEditionWelcomeWindow
+IWelcomeWindowNotify <|-- CloudEditionWelcomeWindow
+@enduml

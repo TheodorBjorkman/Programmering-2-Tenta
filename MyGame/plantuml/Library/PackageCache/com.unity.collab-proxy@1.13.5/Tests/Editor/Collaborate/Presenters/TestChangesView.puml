@@ -1,0 +1,32 @@
+@startuml
+class TestChangesView {
+    + SetBusyStatusCount : int
+    + SetBusyStatusValue : bool?
+    + SetSearchQueryCount : int
+    + SetSearchQueryValue : string
+    + SetRevisionSummaryCount : int
+    + SetRevisionSummaryValue : string
+    + SetConflictsCount : int
+    + SetConflictsValue : IReadOnlyList<IChangeEntryData>
+    + SetChangesCount : int
+    + SetChangesValue : IReadOnlyList<IChangeEntryData>
+    + SetToggledCountCount : int
+    + SetToggledCountValue : int?
+    + SetPublishEnabledCount : int
+    + SetPublishEnabledValue : bool?
+    + SetPublishEnabledReason : string
+    + DisplayDialogueCount : int
+    + Presenter : IChangesPresenter <<get>> <<set>>
+    + SetBusyStatus(busy:bool) : void
+    + SetSearchQuery(query:string) : void
+    + SetRevisionSummary(message:string) : void
+    + SetConflicts(list:IReadOnlyList<IChangeEntryData>) : void
+    + SetChanges(list:IReadOnlyList<IChangeEntryData>) : void
+    + SetToggledCount(count:int) : void
+    + SetPublishEnabled(enabled:bool, reason:string) : void
+    + DisplayDialogue(title:string, message:string, affirmative:string) : bool
+    + DisplayDialogue(title:string, message:string, affirmative:string, negative:string) : bool
+    + SetSelectedChanges() : void
+}
+IChangesView <|-- TestChangesView
+@enduml

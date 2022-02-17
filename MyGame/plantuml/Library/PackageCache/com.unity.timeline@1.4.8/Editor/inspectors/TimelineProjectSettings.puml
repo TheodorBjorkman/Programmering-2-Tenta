@@ -1,0 +1,27 @@
+@startuml
+class TimelineProjectSettings {
+    + assetDefaultFramerate : float
+    <<internal>> {static} framerateLabels : string[]
+    <<internal>> {static} framerateValues : float[]
+    OnDisable() : void
+    + Save() : void
+    <<internal>> GetSerializedObject() : SerializedObject
+}
+class TimelineProjectSettingsProvider {
+    m_SerializedObject : SerializedObject
+    m_Framerate : SerializedProperty
+    m_customFramerate : bool
+    + TimelineProjectSettingsProvider(path:string, scopes:SettingsScope, keywords:IEnumerable<string>)
+    + <<override>> OnActivate(searchContext:string, rootElement:VisualElement) : void
+    + <<override>> OnGUI(searchContext:string) : void
+    + {static} CreateTimelineProjectSettingProvider() : SettingsProvider
+}
+class Styles {
+    + {static} <<readonly>> DefaultFramerateLabel : GUIContent
+    + {static} <<readonly>> CustomFramerateLabel : GUIContent
+    + {static} <<readonly>> TimelineAssetLabel : GUIContent
+}
+"ScriptableSingleton`1" "<TimelineProjectSettings>" <|-- TimelineProjectSettings
+SettingsProvider <|-- TimelineProjectSettingsProvider
+TimelineProjectSettingsProvider +-- Styles
+@enduml

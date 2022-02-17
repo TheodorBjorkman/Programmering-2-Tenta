@@ -1,0 +1,18 @@
+@startuml
+class ChangeListElement {
+    + <<new>> <<const>> UssClassName : string = "change-list-element"
+    + <<const>> StatusIconUssClassName : string
+    + <<const>> DiffButtonUssClassName : string
+    + <<const>> DiscardButtonUssClassName : string
+    + <<readonly>> discardButton : IconButton
+    + <<readonly>> diffButton : IconButton
+    + <<readonly>> statusIcon : VisualElement
+    + ChangeListElement()
+    + <<override>> ClearData() : void
+}
+class UxmlFactory <<new>> {
+}
+BaseChangeListElement <|-- ChangeListElement
+ChangeListElement +-- UxmlFactory
+"UxmlFactory`1" "<ChangeListElement>" <|-- UxmlFactory
+@enduml

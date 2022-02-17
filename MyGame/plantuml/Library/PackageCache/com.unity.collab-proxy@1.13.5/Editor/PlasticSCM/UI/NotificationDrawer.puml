@@ -1,0 +1,16 @@
+@startuml
+class NotificationDrawer {
+    + NotificationDrawer()
+    <<internal>> Notify(message:string, type:MessageType, imageName:Images.Name) : void
+    <<internal>> DoDrawer() : void
+    - notifications : Queue<NotifyMessage>
+    <<const>> AUTO_HIDE_DELAY : int = 5000
+}
+class NotifyMessage <<struct>> {
+    <<internal>> Message : string <<get>>
+    <<internal>> MessageType : MessageType <<get>>
+    <<internal>> ImageName : Images.Name <<get>>
+    <<internal>> NotifyMessage(message:string, messageType:MessageType, imageName:Images.Name)
+}
+NotificationDrawer +-- NotifyMessage
+@enduml
